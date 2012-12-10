@@ -1,6 +1,7 @@
-import pygame, math, sys, random
+import pygame, sys, math
 
-class Button():
+class Button:
+    
     def __init__(self, text, location, color, highlighted = False):
         self.surfaces = []
         self.font = pygame.font.Font(None, 60)
@@ -12,14 +13,17 @@ class Button():
         self.highlighted = highlighted
         self.place(location)
         
-    def  __str__(self):
-        return "I'm a button " + str(self.rect.center) + str(self.speed) + str(self.living)
-     
-	def place(self, pt):
-		print "I've moved to", pt
-    
-	def update(self, pt):
-		print "I updated."
-    
-    def collidePt(self, other):
-        print "trying to hit other", screenHeight
+    def place(self, pt):
+        self.rect = self.rect.move(pt)    
+        
+    def update(self, color):
+        if self.highlighted:
+            self.frame = 1
+        else:
+            self.frame = 0
+            self.surface = self.font.render(str(self.text), 1, (color))
+        
+    def collidePt(self, pt):
+        if (pt[0] > self.rect.left and pt[0] < self.rect.right):
+            if (pt[1] > self.rect.top and pt[1] < self.rect.bottom):
+                return True       

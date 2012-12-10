@@ -1,17 +1,18 @@
 import pygame, math, sys, random
 from Player import Player
-from Enemies import Enenmies
+from Enemies import Enemy
 from Sword import Sword
-from Screen import Screen
+# from Screen import Screen
 from Menu import Button
 from Bosses import Boss
-from NPC import NPC
+from Block import Block
 
 if pygame.mixer:
     pygame.mixer.init()
 
 pygame.init()
 
+maxEnemies = 5
 
 clk = pygame.time.Clock()
 screenWidth = 800
@@ -21,16 +22,18 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 
-singleplayer = Button("SINGLEPLAYER", [0,10], (10, 100, 10))
-exit = Button("EXIT", [0,10], (10, 100, 10))
-singleplayer.place([300, 300])
-exit.place([300, 400])
-player = Player(["player.png"], [0,0], screenSize, 10)
+singleplayer = Button("SINGLEPLAYER", [300,400], (200, 10, 10))
+exit = Button("EXIT", [300,500], (200, 10, 10))
+player = Player(["rcs/imgs/player/player.png"], 2, screenSize, 10)
 player.place([300,500])
+enemies = []
+blocks = []
+boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
+boss.place([300,500])
+sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
 
-
-
-if pygame.mixer:    song = pygame.mixer.music.load('02.Plutonium_Telecom-Attempt_3.ogg')
+if pygame.mixer:
+    song = pygame.mixer.music.load('rcs/sounds/soundtracks/02.Plutonium_Telecom-Attempt_3.ogg')
 if pygame.mixer:    
     pygame.mixer.music.play()
     
@@ -40,7 +43,27 @@ blue = 0
 bgColor = red, green, blue
 
 run = False
+#---build from file----
 
+file = open("map.lvl", "r")
+lines = file.readlines()
+file.close()
+
+newlines = []
+
+for line in lines:
+    newline = ""
+    for character in line:
+        if character != "\n":
+            newline += character
+    newlines += [newline]
+    
+for y, line in enumerate(newlines):
+    for x, c in enumerate(line):
+        if c == "w":
+            blocks += [Block([(x*25)+12.5, (y*25)+12.5], screenSize, )]
+            
+#----Done with file---
 # Menu
 while True:
     while not run:
@@ -73,8 +96,8 @@ while True:
                         exit.clicked = True
                         sys.exit()
 
-        singleplayer.update((10, 200, 10))
-        exit.update((10, 200, 10))
+        singleplayer.update((200, 10, 10))
+        exit.update((200, 10, 10))
         
         screen.fill(bgColor)
         screen.blit(singleplayer.surface, singleplayer.rect)
@@ -86,28 +109,49 @@ while True:
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
-                    player.speed[0] = player.speed[0] =-10
+                    player.direction("left")
                 if event.key == pygame.K_d:
-                    player.speed[0] = player.speed[0] =10
-                if event.key == pygame.K_SPACE:
-                    player.speed[0] = player.speed[0] =0
-                if event.key == pygame.K_j:
-                   
+                    player.direction("right")
+                if event.key == pygame.K_w:
+                    player.direction("up")
+                if event.key == pygame.K_s:
+                    player.direction("down")
                     
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
-                    player.speed[1] = player.speed[0] = 0
+                    player.direction("stop left")
                 if event.key == pygame.K_d:
-                    player.speed[1] = player.speed[0] = 0
-                
-       
+                    player.direction("stop right")
+                if event.key == pygame.K_w:
+                    player.direction("stop up")
+                if event.key == pygame.K_s:
+                    player.direction("stop down")
+                    
+        if random.randint(1, 100) < maxEnemies -len(enemies):
+            enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+            
+            
         # Stuff that objects do
         player.move()
-        player.wallCollide()
-          
+        player.collideWall()
+        boss.attack(player)
+        boss.playerDetect(player)
+        boss.move
+        boss.collide(player)
+        boss.collideWall()
+        for enemy in enemies:
+            enemy.collideWall()
+            enemy.move()
+            sword.attack(enemy)
+            enemy.attack(player)
+            enemy.playerDetect(player)
+            player.collide(enemy)
+        
         # Blitting
-        screen.fill(bgColor)
-        screen.blit(background.surface, background.rect)   
+        screen.fill(bgColor)  
         screen.blit(player.surface, player.rect)  
+        for enemey in enemies:
+            screen.blit(enemy.surface, enemy.rect)  
+        screen.blit(boss.surface, boss.rect)  
         pygame.display.flip()
         clk.tick(90)
