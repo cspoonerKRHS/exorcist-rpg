@@ -1,10 +1,10 @@
 import pygame, math, sys
 
 class Block():
-    def __init__(self, pos, screenSize):
+    def __init__(self, pos, screenSize, image):
         self.font = pygame.font.Font(None, 60)
         self.value = 0
-        self.surface = pygame.image.load("rcs/imgs/block/block.png")
+        self.surface = pygame.image.load(image)
         self.rect = self.surface.get_rect(centerx=pos[0], centery=pos[1])
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
