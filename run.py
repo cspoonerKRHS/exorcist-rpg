@@ -61,7 +61,7 @@ for line in lines:
 for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
-            blocks += [Block([(x*25)+12.5, (y*25)+12.5], screenSize, )]
+            blocks += [Block([(x*25)+12.5, (y*25)+12.5], screenSize,"rcs/imgs/block/block.png" )]
             
 #----Done with file---
 # Menu
