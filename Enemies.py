@@ -48,4 +48,4 @@ class Enemy():
         print "trying to melee other", str(other)
         
     def playerDetect(self, other):
-        print "rying to detect player", str(other)
+        print "trying to detect player", str(other)
