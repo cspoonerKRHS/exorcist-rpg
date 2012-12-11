@@ -31,6 +31,7 @@ blocks = []
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
+enemy = Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)
 
 if pygame.mixer:
     song = pygame.mixer.music.load('rcs/sounds/soundtracks/02.Plutonium_Telecom-Attempt_3.ogg')
@@ -153,5 +154,6 @@ while True:
         for enemey in enemies:
             screen.blit(enemy.surface, enemy.rect)  
         screen.blit(boss.surface, boss.rect)  
+        screen.blit(enemy.surface, enemy.rect)
         pygame.display.flip()
         clk.tick(90)
