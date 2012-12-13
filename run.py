@@ -62,7 +62,11 @@ for line in lines:
 for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
-            blocks += [Block([(x*25)+12.5, (y*25)+12.5], screenSize,"rcs/imgs/block/block.png" )]
+            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/cobblestone.png" )]
+        if c == " ":
+            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/grass.png" )]
+        if c == "c":
+            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wood.png" )]
             
 #----Done with file---
 # Menu
@@ -149,11 +153,12 @@ while True:
             player.collide(enemy)
         
         # Blitting
-        screen.fill(bgColor)  
-        screen.blit(player.surface, player.rect)  
-        for enemey in enemies:
-            screen.blit(enemy.surface, enemy.rect)  
-        screen.blit(boss.surface, boss.rect)  
-        screen.blit(enemy.surface, enemy.rect)
+        screen.fill(bgColor)
+        for block in blocks:
+            screen.blit(block.surface, block.rect)  
+#        screen.blit(player.surface, player.rect)  
+#        for enemey in enemies:
+#            screen.blit(enemy.surface, enemy.rect)
+#        screen.blit(boss.surface, boss.rect)  
         pygame.display.flip()
         clk.tick(90)
