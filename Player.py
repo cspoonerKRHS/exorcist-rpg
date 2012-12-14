@@ -20,7 +20,7 @@ class Player():
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
-        print "I've moved to", pt
+        self.rect = self.rect.move(pt)
         
     def direction(self, dir):
         if dir == "up":
@@ -41,19 +41,49 @@ class Player():
             self.speed[0] = 0
         
     def move(self):
-        print "I've moved", self.speed
+        self.rect = self.rect.move(self.speed) 
     
-    def distToPoint(self, pt):
-        print "I am this far from it."
-    
-    def collide(self, other):
-        print "trying to hit other", self.screenHeight, other
-    
-    def collideWall(self):
-        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
+    def animate(self):
+        if self.frame < self.maxFrame:
+            self.frame += 1
+        else:
+            self.frame = 0
+            # self.living = False
+        self.surface = self.surfaces[self.frame]
         
-    def attack(self, other):
-        print "trying to hit other", str(other)
-        #if pygame.mixer:
-        #   self.bounceSound.play()
+    def distToPoint(self, pt):
+        x1 = self.rect.center[0]
+        x2 = pt[0]
+        y1 = self.rect.center[1]
+        y2 = pt[1]
+        return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
+
+    
+    def wallCollide(self):
+        if (self.rect.left < 0 
+            or self.rect.right > self.screenWidth):
+            self.speed[1] = self.speed[1] = 0
+            self.speed[0] = self.speed[0] = 0
+        
+    def enemyCollide(self, other, effect):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+                if (self.rect.bottom > other.rect.top and 
+                    self.rect.top < other.rect.bottom):
+                    
+    def blockCollide(self, other):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+                if (self.rect.bottom > other.rect.top and 
+                    self.rect.top < other.rect.bottom):
+                    if self.living == True:
+                        other.hit = True
+                        other.speed = [0, 0]
+                        other.sound.play()
+                        self.living = False
+                        self.damage += 1
+                        if other.ran == True:
+                            other.living = False
+                            other.hit = True       
+                    
         
