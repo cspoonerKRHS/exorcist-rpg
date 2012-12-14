@@ -2,7 +2,7 @@ import pygame, math, sys, random
 from Player import Player
 from Enemies import Enemy
 from Sword import Sword
-# from Screen import Screen
+from Screen import Screen
 from Menu import Button
 from Bosses import Boss
 from Block import Block
@@ -24,8 +24,8 @@ screen = pygame.display.set_mode(screenSize)
 
 singleplayer = Button("SINGLEPLAYER", [300,400], (200, 10, 10))
 exit = Button("EXIT", [300,500], (200, 10, 10))
-#player = Player(["rcs/imgs/player/player.png"], 2, screenSize, 10)
-#player.place([300,500])
+# player = Player(["rcs/imgs/player/player.png"], 2, screenSize, 10)
+# player.place([300,500])
 enemies = []
 blocks = []
 fblocks = []
@@ -34,6 +34,24 @@ boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
 enemy = Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)
+
+healthbar_imgs = []
+for i in range(100, 0, -5):
+    healthbar_imgs += ["rcs/imgs/stats_bar/health_bar_" + str(i) + "%.png"]
+    
+healthbar = Screen(healthbar_imgs, [0, 0], screenSize)
+healthbar.place([645,23])
+energybar_background = Screen(["rcs/imgs/stats_bar/energy_bar_background.png"], [0,0], screenSize)
+energybar_background.place([640, 35])
+energybar_imgs = ["rcs/imgs/stats_bar/nothing.png"]
+
+for i in range(5, 105, 5):
+    energybar_imgs += ["rcs/imgs/stats_bar/energy_bar_" + str(i) + "%.png"]
+    
+energybar = Screen(energybar_imgs, [0, 0], screenSize)
+energybar.place([645,38])
+healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [0,0], screenSize)
+healthbar_background.place([640, 20])
 
 if pygame.mixer:
     song = pygame.mixer.music.load('rcs/sounds/soundtracks/02.Plutonium_Telecom-Attempt_3.ogg')
@@ -143,12 +161,12 @@ while True:
             
             
         # Stuff that objects do
-        player.move()
-        player.collideWall()
-        boss.attack(player)
-        boss.playerDetect(player)
-        boss.move
-        boss.collide(player)
+        # player.move()
+        # player.collideWall()
+        # boss.attack(player)
+        # boss.playerDetect(player)
+        # boss.move
+        # boss.collide(player)
         boss.collideWall()
         for enemy in enemies:
             enemy.collideWall()
@@ -156,7 +174,7 @@ while True:
             sword.attack(enemy)
             enemy.attack(player)
             enemy.playerDetect(player)
-            player.collide(enemy)
+            # player.collide(enemy)
         
         # Blitting
         screen.fill(bgColor)
@@ -166,9 +184,13 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in wblocks:
             screen.blit(block.surface, block.rect)
-        screen.blit(player.surface, player.rect)  
+        # screen.blit(player.surface, player.rect)  
         for enemey in enemies:
             screen.blit(enemy.surface, enemy.rect)
         screen.blit(boss.surface, boss.rect)  
+        screen.blit(healthbar_background.surface, healthbar_background.rect)  
+        screen.blit(healthbar.surface, healthbar.rect)  
+        screen.blit(energybar_background.surface, energybar_background.rect)  
+        screen.blit(energybar.surface, energybar.rect)  
         pygame.display.flip()
         clk.tick(90)

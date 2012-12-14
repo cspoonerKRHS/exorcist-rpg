@@ -70,6 +70,7 @@ class Player():
             and self.rect.left < other.rect.right):
                 if (self.rect.bottom > other.rect.top and 
                     self.rect.top < other.rect.bottom):
+                    pass
                     
     def blockCollide(self, other):
         if (self.rect.right > other.rect.left 
