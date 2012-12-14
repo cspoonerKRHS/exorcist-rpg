@@ -1,12 +1,14 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, speed, screenSize, position):
+    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
+        self.waitCount = 0
+        self.waitMax = waitMax
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.speed = speed
@@ -26,6 +28,19 @@ class Enemy():
         
     def move(self):
         print "I've moved", self.speed
+        self.rect = self.rect.move(self.speed)
+        
+        if self.waitCount < self.waitMax:
+            self.waitCount += 1
+        else:
+            self.waitCount = 0
+            
+            if self.frame < self.maxFrame:
+                self.frame += 1 
+            else:
+                self.frame = 0
+            self.surface = self.surfaces[self.frame]
+        
     
     def distToPoint(self, pt):
         print "I am this far from it."
