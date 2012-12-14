@@ -24,10 +24,12 @@ screen = pygame.display.set_mode(screenSize)
 
 singleplayer = Button("SINGLEPLAYER", [300,400], (200, 10, 10))
 exit = Button("EXIT", [300,500], (200, 10, 10))
-player = Player(["rcs/imgs/player/player.png"], 2, screenSize, 10)
-player.place([300,500])
+#player = Player(["rcs/imgs/player/player.png"], 2, screenSize, 10)
+#player.place([300,500])
 enemies = []
 blocks = []
+fblocks = []
+wblocks = []
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
@@ -64,9 +66,13 @@ for y, line in enumerate(newlines):
         if c == "w":
             blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/cobblestone.png" )]
         if c == " ":
-            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/grass.png" )]
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/grass.png" )]
         if c == "c":
-            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wood.png" )]
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wood.png" )]
+        if c == "s":
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/snow.png" )]
+        if c == "r":
+            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water.png" )]
             
 #----Done with file---
 # Menu
@@ -155,10 +161,14 @@ while True:
         # Blitting
         screen.fill(bgColor)
         for block in blocks:
-            screen.blit(block.surface, block.rect)  
-#        screen.blit(player.surface, player.rect)  
-#        for enemey in enemies:
-#            screen.blit(enemy.surface, enemy.rect)
-#        screen.blit(boss.surface, boss.rect)  
+            screen.blit(block.surface, block.rect)
+        for block in fblocks:
+            screen.blit(block.surface, block.rect)
+        for block in wblocks:
+            screen.blit(block.surface, block.rect)
+        screen.blit(player.surface, player.rect)  
+        for enemey in enemies:
+            screen.blit(enemy.surface, enemy.rect)
+        screen.blit(boss.surface, boss.rect)  
         pygame.display.flip()
         clk.tick(90)
