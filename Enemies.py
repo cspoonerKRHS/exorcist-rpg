@@ -30,21 +30,18 @@ class Enemy():
     def distToPoint(self, pt):
         print "I am this far from it."
     
-    def collide(self, other):
-        print "trying to hit other", screenHeight
-    if (self.rect.right > other.rect.left          
-        and self.rect.left < other.rect.right):
-            
-        if (self.rect.bottom > other.rect.top and 
-            self.rect.top < other.rect.bottom):
-                
-            if (self.distToPoint(other.rect.center)
-                < self.radius + other.radius): 
-                     
-                self.speed[0] = self.speed[0] * -1
-                self.speed[1] = self.speed[1] * -1
-                other.speed[0] = other.speed[0] * -1
-                other.speed[1] = other.speed[1] * -1
+#    def collide(self, other):
+#        print "trying to hit other", screenHeight
+#    if (self.rect.right > other.rect.left          
+#        and self.rect.left < other.rect.right):
+#            self.speed[0] = self.speed[0] * -1
+#            self.speed[1] = self.speed[1] * -1
+#    if (self.distToPoint(other.rect.center)
+#        < self.radius + other.radius): 
+#            self.speed[0] = self.speed[0] * -1
+#            self.speed[1] = self.speed[1] * -1
+#            other.speed[0] = other.speed[0] * -1
+#            other.speed[1] = other.speed[1] * -1
     
     def collideWall(self):
         print "trying to hit edges of screen", self.screenWidth, self.screenHeight
@@ -58,8 +55,6 @@ class Enemy():
 
     def attack(self, other):
         print "trying to hit other", str(other)
-        #if pygame.mixer:
-        #   self.bounceSound.play()
     
     def shoot(self, other):
         print "trying to shoot other", str(other)
