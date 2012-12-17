@@ -25,14 +25,14 @@ screen = pygame.display.set_mode(screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(["rcs/imgs/player/player.png"], 2, screenSize, [100, 100])
-enemies = []
+enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)]
 blocks = []
 fblocks = []
 wblocks = []
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
-enemy = Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)
+
 
 healthbar_imgs = []
 for i in range(100, 0, -5):
