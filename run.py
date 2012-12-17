@@ -66,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map.lvl", "r")
+file = open("map2.lvl", "r")
 lines = file.readlines()
 file.close()
 
@@ -90,7 +90,7 @@ for y, line in enumerate(newlines):
         if c == "s":
             fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/snow.png" )]
         if c == "r":
-            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water.png" )]
+            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
             
 #----Done with file---
 # Menu
