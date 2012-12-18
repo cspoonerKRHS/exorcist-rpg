@@ -10,6 +10,8 @@ class Player():
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.maxSpeed = speed
+        self.waitCount = 0
+        self.waitMax = 10
         self.speed = [0,0]
         self.place(position)
         self.screenWidth = screenSize[0]
@@ -44,12 +46,16 @@ class Player():
         self.rect = self.rect.move(self.speed) 
     
     def animate(self):
-        if self.frame < self.maxFrame:
-            self.frame += 1
+        if self.waitCount < self.waitMax:
+            self.waitCount += 1
         else:
-            self.frame = 0
-            # self.living = False
-        self.surface = self.surfaces[self.frame]
+            self.waitCount = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+                # self.living = False
+            self.surface = self.surfaces[self.frame]
         
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
