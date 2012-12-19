@@ -10,13 +10,12 @@ class Player():
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.maxSpeed = speed
-        self.waitCount = 0
-        self.waitMax = 10
         self.speed = [0,0]
         self.place(position)
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
+        self.dir = "none"
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -27,36 +26,49 @@ class Player():
     def direction(self, dir):
         if dir == "up":
             self.speed[1] = -self.maxSpeed
+            self.dir = "up"
         elif dir == "stop up":
             self.speed[1] = 0
+            self.dir = "none"
         elif dir == "down":
             self.speed[1] = self.maxSpeed
+            self.dir = "down"
         elif dir == "stop down":
             self.speed[1] = 0
+            self.dir = "none"
         elif dir == "left":
             self.speed[0] = -self.maxSpeed
+            self.dir = "left"
         elif dir == "stop left":
             self.speed[0] = 0
+            self.dir = "none"
         elif dir == "right":
             self.speed[0] = self.maxSpeed
+            self.dir = "right"
         elif dir == "stop right":
             self.speed[0] = 0
-        
-    def move(self):
-        self.rect = self.rect.move(self.speed) 
-    
-    def animate(self):
-        if self.waitCount < self.waitMax:
-            self.waitCount += 1
-        else:
-            self.waitCount = 0
+            self.dir = "none"
+     
+    def diranimate(self, imgs,dir):
+        if self.dir == dir:
             if self.frame < self.maxFrame:
                 self.frame += 1
             else:
                 self.frame = 0
                 # self.living = False
-            self.surface = self.surfaces[self.frame]
+                self.surface = self.surfaces[self.frame]
         
+    def move(self):
+        self.rect = self.rect.move(self.speed) 
+    
+    def animate(self, imgs):
+        if self.frame < self.maxFrame:
+            self.frame += 1
+        else:
+            self.frame = 0
+            # self.living = False
+        self.surface = self.surfaces[self.frame]
+    
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
         x2 = pt[0]
