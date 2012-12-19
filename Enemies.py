@@ -19,7 +19,7 @@ class Enemy():
         self.living = True
         self.detect = [detectField]
         self.rect2 = self.detect.get_rect()
-        
+#hello sam
     def  __str__(self):
         return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
      
