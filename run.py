@@ -21,11 +21,12 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-
+playerimgs = []
+playerimgs += ["rcs/imgs/player/player.png"]
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-player = Player(["rcs/imgs/player/player.png"], 2, screenSize, [100, 100])
-enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)]
+player = Player(playerimgs, 2, screenSize, [100, 100])
+enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], "enemydetect.png", [0,0], screenSize, 10)]
 blocks = []
 fblocks = []
 wblocks = []
@@ -140,11 +141,11 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
                     player.direction("left")
-                if event.key == pygame.K_d:
+                elif event.key == pygame.K_d:
                     player.direction("right")
-                if event.key == pygame.K_w:
+                elif event.key == pygame.K_w:
                     player.direction("up")
-                if event.key == pygame.K_s:
+                elif event.key == pygame.K_s:
                     player.direction("down")
                     
             if event.type == pygame.KEYUP:
@@ -164,6 +165,8 @@ while True:
         # Stuff that objects do
         player.move()
         player.wallCollide()
+        # Player animation's
+        player.diranimate(["rcs/imgs/player/player_walk1.png", "rcs/imgs/player/player_walk2.png"], "down")
         # boss.attack(player)
         # boss.playerDetect(player)
         # boss.move

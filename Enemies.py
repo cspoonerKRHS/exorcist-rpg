@@ -1,7 +1,7 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, images, detectField, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
         for image in images:
             self.surfaces += [pygame.image.load(image)]
@@ -11,11 +11,14 @@ class Enemy():
         self.waitMax = waitMax
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
+        self.radius = self.rect2.width/2
         self.speed = speed
         self.place(position)
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
+        self.detect = [detectField]
+        self.rect2 = self.detect.get_rect()
         
     def  __str__(self):
         return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -64,5 +67,19 @@ class Enemy():
     def melee(self, other):
         print "trying to melee other", str(other)
         
-    def playerDetect(self, other):
+    def playerDetect(self, other, field):
         print "trying to detect player", str(other)
+        if (self.rect2.right > other.rect.left 
+            and self.rect2.left < other.rect.right):
+            
+            if (self.rect2.bottom > other.rect.top and 
+                self.rect2.top < other.rect.bottom):
+                
+                if (self.distToPoint(other.rect.center)
+                    < self.radius + other.rect): 
+                     
+                    self.speed[0] = self.speed[0] * -1
+                    self.speed[1] = self.speed[1] * -1
+                    other.speed[0] = other.speed[0] * -1
+                    other.speed[1] = other.speed[1] * -1
+        
