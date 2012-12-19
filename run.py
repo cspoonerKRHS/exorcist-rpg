@@ -90,6 +90,8 @@ for y, line in enumerate(newlines):
             fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/snow.png" )]
         if c == "r":
             wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
+        if c == "d":
+            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
             
 #----Done with file---
 # Menu
