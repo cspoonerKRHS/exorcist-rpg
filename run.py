@@ -54,7 +54,7 @@ healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [
 healthbar_background.place([640, 10])
 
 if pygame.mixer:
-    song = pygame.mixer.music.load('rcs/sounds/soundtracks/02.Plutonium_Telecom-Attempt_3.ogg')
+    song = pygame.mixer.music.load('rcs/sounds/soundtracks/RPG_Soundtrack.ogg')
 if pygame.mixer:    
     pygame.mixer.music.play()
     
