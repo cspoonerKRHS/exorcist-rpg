@@ -25,7 +25,7 @@ screen = pygame.display.set_mode(screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(["rcs/imgs/player/player.png"], 2, screenSize, [100, 100])
-enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], [0,0], screenSize, 10)]
+enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], "enemydetect.png", [0,0], screenSize, 10)]
 blocks = []
 fblocks = []
 wblocks = []
@@ -90,6 +90,8 @@ for y, line in enumerate(newlines):
             fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/snow.png" )]
         if c == "r":
             wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
+        if c == "d":
+            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
             
 #----Done with file---
 # Menu
