@@ -26,7 +26,7 @@ playerimgs += ["rcs/imgs/player/player.png"]
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(playerimgs, 2, screenSize, [100, 100])
-enemies = [Enemy(["rcs/imgs/enemies/enemy.png"], "enemydetect.png", [0,0], screenSize, 10)]
+enemies = []
 blocks = []
 fblocks = []
 wblocks = []
@@ -158,8 +158,8 @@ while True:
                 if event.key == pygame.K_s:
                     player.direction("stop down")
                     
-        if random.randint(1, 100) < maxEnemies -len(enemies):
-            enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+        if random.randint(1, 100) < maxEnemies - len(enemies):
+           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
