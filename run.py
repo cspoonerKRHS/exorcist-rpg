@@ -177,7 +177,7 @@ while True:
             enemy.move()
             sword.attack(enemy)
             enemy.attack(player)
-            enemy.playerDetect(player)
+#            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
         
         # Blitting
