@@ -91,7 +91,7 @@ for y, line in enumerate(newlines):
         if c == "r":
             wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
         if c == "d":
-            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
             
 #----Done with file---
 # Menu
@@ -177,6 +177,10 @@ while True:
             enemy.attack(player)
 #            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
+        for block in blocks:
+            block.wallCollide(player)
+#            block.wallCollide(enemies)
+        
         
         # Blitting
         screen.fill(bgColor)
