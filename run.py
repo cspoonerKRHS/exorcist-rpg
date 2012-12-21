@@ -22,7 +22,7 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 playerimgs = []
-playerimgs += ["rcs/imgs/player/player.png"]
+playerimgs += ["rcs/imgs/player/player2.png"]
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(playerimgs, 2, screenSize, [100, 100])
@@ -92,7 +92,7 @@ for y, line in enumerate(newlines):
         if c == "r":
             wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
         if c == "d":
-            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
             
 #----Done with file---
 # Menu
@@ -179,6 +179,10 @@ while True:
             enemy.attack(player)
 #            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
+        for block in blocks:
+            block.wallCollide(player)
+#            block.wallCollide(enemies)
+        
         
         # Blitting
         screen.fill(bgColor)
