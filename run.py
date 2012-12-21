@@ -22,10 +22,9 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 playerimgs = []
-playerimgs += ["rcs/imgs/player/player.png"]
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-player = Player(playerimgs, 2, screenSize, [100, 100])
+player = Player(2, screenSize, [100, 100])
 enemies = []
 blocks = []
 fblocks = []
@@ -165,8 +164,7 @@ while True:
         # Stuff that objects do
         player.move()
         player.wallCollide()
-        # Player animation's
-        player.diranimate(["rcs/imgs/player/player_walk1.png", "rcs/imgs/player/player_walk2.png"], "down")
+        
         # boss.attack(player)
         # boss.playerDetect(player)
         # boss.move

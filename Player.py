@@ -1,10 +1,15 @@
 import pygame, math, sys, random
 
 class Player():
-    def __init__(self, images, speed, screenSize, position):
+    def __init__(self, speed, screenSize, position):
         self.surfaces = []
+        self.frontimgs = ["rcs/imgs/player/player.png","rcs/imgs/player/player_walk1.png","rcs/imgs/player/player.png_walk2"]
+        self.rightimgs = ["rcs/imgs/player/player_right.png","rcs/imgs/player/player_right_walk1.png","rcs/imgs/player/player.png_right_walk2"]
+        self.leftimgs = ["rcs/imgs/player/player_left.png","rcs/imgs/player/player_left_walk1.png","rcs/imgs/player/player.png_left_walk2"]
+        self.backimgs = ["rcs/imgs/player/player_back.png","rcs/imgs/player/player_back_walk1.png","rcs/imgs/player/player.png_back_walk2"]
+
         for image in images:
-            self.surfaces += [pygame.image.load(image)]
+            self.surfaces += [pygame.image.load(self.imgs)]
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
         self.surface = self.surfaces[self.frame]
@@ -48,17 +53,12 @@ class Player():
         elif dir == "stop right":
             self.speed[0] = 0
             self.dir = "none"
-     
-    def diranimate(self, imgs,dir):
-        if self.dir == dir:
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-                # self.living = False
-                self.surface = self.surfaces[self.frame]
         
     def move(self):
+        if self.dir == "up":
+            self.images
+        
+        
         self.rect = self.rect.move(self.speed) 
     
     def animate(self, imgs):
