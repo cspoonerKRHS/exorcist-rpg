@@ -6,6 +6,7 @@ from Screen import Screen
 from Menu import Button
 from Bosses import Boss
 from Block import Block
+from pygame.locals import*
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -21,10 +22,10 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-playerimgs = []
+
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-player = Player(2, screenSize, [100, 100])
+player = Player(2, screenSize, [200, 200])
 enemies = []
 blocks = []
 fblocks = []
@@ -165,6 +166,7 @@ while True:
         player.move()
         player.wallCollide()
         
+        
         # boss.attack(player)
         # boss.playerDetect(player)
         # boss.move
@@ -197,6 +199,6 @@ while True:
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  
         screen.blit(energybar_background.surface, energybar_background.rect)  
-        screen.blit(energybar.surface, energybar.rect)  
+        screen.blit(energybar.surface, energybar.rect)    
         pygame.display.flip()
         clk.tick(90)
