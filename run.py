@@ -66,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map2.lvl", "r")
+file = open("map3.lvl", "r")
 lines = file.readlines()
 file.close()
 
@@ -93,6 +93,8 @@ for y, line in enumerate(newlines):
             wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
         if c == "d":
             fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
+        if c == "f":
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wdirt.png" )]
             
 #----Done with file---
 # Menu
@@ -139,23 +141,23 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
-                elif event.key == pygame.K_d:
+                elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     player.direction("right")
-                elif event.key == pygame.K_w:
+                elif event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("up")
-                elif event.key == pygame.K_s:
+                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
                     
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     player.direction("stop right")
-                if event.key == pygame.K_w:
+                if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("stop up")
-                if event.key == pygame.K_s:
+                if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
         if random.randint(1, 100) < maxEnemies - len(enemies):
