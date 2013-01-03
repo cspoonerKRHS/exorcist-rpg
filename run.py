@@ -82,19 +82,19 @@ for line in lines:
 for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
-            blocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/cobblestone.png" )]
+            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png" )]
         if c == " ":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/grass.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png" )]
         if c == "c":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wood.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" )]
         if c == "s":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/snow.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png" )]
         if c == "r":
-            wblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/water2.png" )]
+            wblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/water2.png" )]
         if c == "d":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/dirt.png" )]
         if c == "f":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/sstone.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/sstone.png" )]
             
 #----Done with file---
 # Menu
