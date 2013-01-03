@@ -94,7 +94,7 @@ for y, line in enumerate(newlines):
         if c == "d":
             fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/dirt.png" )]
         if c == "f":
-            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/wdirt.png" )]
+            fblocks += [Block([(x*20)+10, (y*20)+10], screenSize,"rcs/imgs/block/sstone.png" )]
             
 #----Done with file---
 # Menu
