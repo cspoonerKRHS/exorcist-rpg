@@ -7,8 +7,14 @@ class Player():
         "rcs/imgs/player/player_right.png","rcs/imgs/player/player_right_walk1.png","rcs/imgs/player/player_right_walk2.png", 
         "rcs/imgs/player/player_left.png","rcs/imgs/player/player_left_walk1.png","rcs/imgs/player/player_left_walk2.png", 
         "rcs/imgs/player/player_back.png","rcs/imgs/player/player_back_walk1.png","rcs/imgs/player/player_back_walk2.png"]
-        for self.imgs in self.imgs:
-            self.surfaces += [pygame.image.load(self.imgs)]
+        for img in self.imgs:
+            surf = pygame.image.load(img)
+            surf = pygame.transform.scale(surf, (16,50))
+            self.surfaces += [surf]
+        self.frontimgs = self.imgs[0:3]
+        self.rightimgs = self.imgs[3:6]
+        self.leftimgs = self.imgs[6:9]
+        self.backimgs = self.imgs[9:12]
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
         self.surface = self.surfaces[self.frame]
@@ -43,7 +49,6 @@ class Player():
             self.moving = True
         elif dir == "stop up":
             self.speed[1] = 0
-            self.dir = "none"
             self.moving = False
         elif dir == "down":
             self.speed[1] = self.maxSpeed
@@ -51,7 +56,6 @@ class Player():
             self.moving = True
         elif dir == "stop down":
             self.speed[1] = 0
-            self.dir = "none"
             self.moving = False
         elif dir == "left":
             self.speed[0] = -self.maxSpeed
@@ -59,7 +63,6 @@ class Player():
             self.moving = True
         elif dir == "stop left":
             self.speed[0] = 0
-            self.dir = "none"
             self.moving = False
         elif dir == "right":
             self.speed[0] = self.maxSpeed
@@ -67,76 +70,33 @@ class Player():
             self.moving = True
         elif dir == "stop right":
             self.speed[0] = 0
-            self.dir = "none"
             self.moving = False
         
     def move(self):
+        
         if self.dir == "up":
-            print "\n \n"
-            if self.waitCount < self.waitMax:
-                self.waitCount += 1
-            else:
-                self.waitCount = 0
-                if self.moving == True:
-                    if not self.frameran1:
-                        self.frame = 10
-                        self.frameran1 = True
-                    if self.frame == 10:
-                        self.frame = 11
-                    elif self.frame == 11:
-                        self.frame = 10    
-                if not self.moving:
-                    self.frame = 9
-                    self.frameran1 = False
-        elif self.dir == "down":
-            if self.waitCount < self.waitMax:
-                self.waitCount += 1
-            else:
-                self.waitCount = 0
-                if self.moving == True:
-                    if not self.frameran2:
-                        self.frame = 1
-                        self.frameran2 = True
-                    if self.frame == 1:
-                        self.frame = 2
-                    elif self.frame == 2:
-                        self.frame = 1    
-                if not self.moving:
-                    self.frame = 0
-                    self.frameran2 = False
-        elif self.dir == "left":
-            if self.waitCount < self.waitMax:
-                self.waitCount += 1
-            else:
-                self.waitCount = 0
-                if self.moving == True:
-                    if not self.frameran3:
-                        self.frame = 7
-                        self.frameran3 = True
-                    if self.frame == 7:
-                        self.frame = 8
-                    elif self.frame == 8:
-                        self.frame = 7    
-                if not self.moving:
-                    self.frame = 6
-                    self.frameran3 = False
-        elif self.dir == "right":
-            if self.waitCount < self.waitMax:
-                self.waitCount += 1
-            else:
-                self.waitCount = 0
-                if self.moving == True:
-                    if not self.frameran4:
-                        self.frame = 4
-                        self.frameran4 = True
-                    if self.frame == 4:
-                        self.frame = 5
-                    elif self.frame == 5:
-                        self.frame = 4    
-                if not self.moving:
-                    self.frame = 3 
-                    self.frameran4 = False
-  
+            self.imgs = self.backimgs
+        if self.dir == "down":
+            self.imgs = self.frontimgs
+        if self.dir == "left":
+            self.imgs = self.leftimgs
+        if self.dir == "right":
+            self.imgs = self.rightimgs  
+        
+        if self.waitCount < self.waitMax:
+            self.waitCount += 1
+        else:
+            self.waitCount = 0
+            if self.moving == True:
+                if self.frame == 0:
+                    self.frame = 1
+                elif self.frame == 1:
+                    self.frame = 2
+                elif self.frame == 2:
+                    self.frame = 1    
+            if not self.living:
+                self.frame = 0
+        
         self.surface = self.surfaces[self.frame]            
         self.rect = self.rect.move(self.speed) 
         
