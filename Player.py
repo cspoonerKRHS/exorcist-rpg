@@ -3,18 +3,20 @@ import pygame, math, sys, random
 class Player():
     def __init__(self, speed, screenSize, pos):
         self.surfaces = []
-        self.imgs = ["rcs/imgs/player/player.png","rcs/imgs/player/player_walk1.png","rcs/imgs/player/player_walk2.png", 
+        imgs = ["rcs/imgs/player/player.png","rcs/imgs/player/player_walk1.png","rcs/imgs/player/player_walk2.png", 
         "rcs/imgs/player/player_right.png","rcs/imgs/player/player_right_walk1.png","rcs/imgs/player/player_right_walk2.png", 
         "rcs/imgs/player/player_left.png","rcs/imgs/player/player_left_walk1.png","rcs/imgs/player/player_left_walk2.png", 
         "rcs/imgs/player/player_back.png","rcs/imgs/player/player_back_walk1.png","rcs/imgs/player/player_back_walk2.png"]
-        for img in self.imgs:
+        for img in imgs:
+            print img
             surf = pygame.image.load(img)
             surf = pygame.transform.scale(surf, (16,50))
             self.surfaces += [surf]
-        self.frontimgs = self.imgs[0:3]
-        self.rightimgs = self.imgs[3:6]
-        self.leftimgs = self.imgs[6:9]
-        self.backimgs = self.imgs[9:12]
+        self.frontimgs = self.surfaces[0:3]
+        self.rightimgs = self.surfaces[3:6]
+        self.leftimgs = self.surfaces[6:9]
+        self.backimgs = self.surfaces[9:12]
+        self.surfaces = self.frontimgs
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
         self.surface = self.surfaces[self.frame]
@@ -75,13 +77,13 @@ class Player():
     def move(self):
         
         if self.dir == "up":
-            self.imgs = self.backimgs
+            self.surfaces = self.backimgs
         if self.dir == "down":
-            self.imgs = self.frontimgs
+            self.surfaces = self.frontimgs
         if self.dir == "left":
-            self.imgs = self.leftimgs
+            self.surfaces = self.leftimgs
         if self.dir == "right":
-            self.imgs = self.rightimgs  
+            self.surfaces = self.rightimgs  
         
         if self.waitCount < self.waitMax:
             self.waitCount += 1

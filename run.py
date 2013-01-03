@@ -66,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map3.lvl", "r")
+file = open("map2.lvl", "r")
 lines = file.readlines()
 file.close()
 
