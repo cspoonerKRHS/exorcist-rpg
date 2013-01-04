@@ -12,10 +12,14 @@ class Player():
             surf = pygame.image.load(img)
             surf = pygame.transform.scale(surf, (16,50))
             self.surfaces += [surf]
-        self.frontimgs = self.surfaces[0:3]
-        self.rightimgs = self.surfaces[3:6]
-        self.leftimgs = self.surfaces[6:9]
-        self.backimgs = self.surfaces[9:12]
+        self.frontstill = self.surfaces[0:1]
+        self.frontimgs = self.surfaces[1:3]
+        self.backstill = self.surfaces[3:4]
+        self.rightimgs = self.surfaces[4:6]
+        self.leftstill = self.surfaces[6:7]
+        self.leftimgs = self.surfaces[7:9]
+        self.rightstill = self.surfaces[9:10]
+        self.backimgs = self.surfaces[10:12]
         self.surfaces = self.frontimgs
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
@@ -25,12 +29,8 @@ class Player():
         self.place(pos)
         self.speed = [0,0]
         self.waitCount = 0
-        self.waitMax = 1
+        self.waitMax = 4
         self.placed = False
-        self.frameran1 = False
-        self.frameran2 = False
-        self.frameran3 = False
-        self.frameran4 = False
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
@@ -51,6 +51,7 @@ class Player():
             self.moving = True
         elif dir == "stop up":
             self.speed[1] = 0
+            self.dir = "stop up"
             self.moving = False
         elif dir == "down":
             self.speed[1] = self.maxSpeed
@@ -58,6 +59,7 @@ class Player():
             self.moving = True
         elif dir == "stop down":
             self.speed[1] = 0
+            self.dir = "stop down"
             self.moving = False
         elif dir == "left":
             self.speed[0] = -self.maxSpeed
@@ -65,6 +67,7 @@ class Player():
             self.moving = True
         elif dir == "stop left":
             self.speed[0] = 0
+            self.dir = "stop left"
             self.moving = False
         elif dir == "right":
             self.speed[0] = self.maxSpeed
@@ -72,6 +75,7 @@ class Player():
             self.moving = True
         elif dir == "stop right":
             self.speed[0] = 0
+            self.dir = "stop right"
             self.moving = False
         
     def move(self):
@@ -84,20 +88,27 @@ class Player():
             self.surfaces = self.leftimgs
         if self.dir == "right":
             self.surfaces = self.rightimgs  
+        if self.dir == "stop up":
+            self.surfaces = self.backstill
+        if self.dir == "stop down":
+            self.surfaces = self.frontstill
+        if self.dir == "stop left":
+            self.surfaces = self.leftstill
+        if self.dir == "stop right":
+            self.surfaces = self.rightstill    
+        
+        if self.frame > len(self.surfaces)-1:
+            self.frame = len(self.surfaces)-1
         
         if self.waitCount < self.waitMax:
             self.waitCount += 1
         else:
             self.waitCount = 0
-            if self.moving == True:
-                if self.frame == 0:
-                    self.frame = 1
-                elif self.frame == 1:
-                    self.frame = 2
-                elif self.frame == 2:
-                    self.frame = 1    
-            if not self.living:
+            if self.frame == len(self.surfaces)-1:
                 self.frame = 0
+            else:
+                self.frame += 1
+                    
         
         self.surface = self.surfaces[self.frame]            
         self.rect = self.rect.move(self.speed) 
