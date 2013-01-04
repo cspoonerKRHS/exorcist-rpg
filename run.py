@@ -26,7 +26,9 @@ screen = pygame.display.set_mode(screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(2, screenSize, [200, 200])
-enemies = []
+enemies = [Enemy(["rcs/imgs/enemies/enemywalkdown1.png",
+                    "rcs/imgs/enemies/enemywalkdown2.png",
+                    "rcs/imgs/enemies/enemywalkdown3.png"], [0,3], screenSize, 1)]
 blocks = []
 fblocks = []
 wblocks = []
