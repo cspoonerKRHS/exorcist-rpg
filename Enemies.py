@@ -6,7 +6,7 @@ class Enemy():
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         self.frame = 0
-        self.maxFrame = len(self.surfaces)-1
+        self.maxFrame = len(self.surfaces) - 1
         self.waitCount = 0
         self.waitMax = waitMax
         self.surface = self.surfaces[self.frame]
