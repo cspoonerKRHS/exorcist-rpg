@@ -26,10 +26,7 @@ screen = pygame.display.set_mode(screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(2, screenSize, [200, 200])
-enemies = [Enemy(["rcs/imgs/enemies/enemydetect.png"], [0,3], screenSize, 1)]
-#"rcs/imgs/enemies/enemywalkdown1.png",
-#                    "rcs/imgs/enemies/enemywalkdown2.png",
-#                    "rcs/imgs/enemies/enemywalkdown3.png"
+enemies = []
 blocks = []
 fblocks = []
 wblocks = []
@@ -69,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map2.lvl", "r")
+file = open("map3.lvl", "r")
 lines = file.readlines()
 file.close()
 
