@@ -26,10 +26,7 @@ screen = pygame.display.set_mode(screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(2, screenSize, [200, 200])
-enemies = [Enemy(["rcs/imgs/enemies/enemydetect.png"], [0,3], screenSize, 1)]
-#"rcs/imgs/enemies/enemywalkdown1.png",
-#                    "rcs/imgs/enemies/enemywalkdown2.png",
-#                    "rcs/imgs/enemies/enemywalkdown3.png"
+enemies = []
 blocks = []
 fblocks = []
 wblocks = []
@@ -69,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map2.lvl", "r")
+file = open("map3.lvl", "r")
 lines = file.readlines()
 file.close()
 
@@ -85,19 +82,19 @@ for line in lines:
 for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
-            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png" )]
+            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png",(10,10))]
         if c == " ":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png",(10,10))]
         if c == "c":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" ),(10,10)]
         if c == "s":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png",(10,10))]
         if c == "r":
-            wblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/water2.png" )]
+            wblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/water2.png",(10,10))]
         if c == "d":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/dirt.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/dirt.png",(10,10))]
         if c == "f":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/sstone.png" )]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/sstone.png",(10,10))]
             
 #----Done with file---
 # Menu

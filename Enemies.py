@@ -63,3 +63,29 @@ class Enemy():
     
     def melee(self, other):
         print "trying to melee other", str(other)
+    
+    def playerDetect(self, image, other):
+        print "detecting player"
+        pygame.image.load(image)
+        
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            
+            if (self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom):
+                
+                if (self.distToPoint(other.rect.center)
+                    < self.radius + other.radius):
+                    pass
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
