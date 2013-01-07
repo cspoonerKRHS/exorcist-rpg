@@ -1,7 +1,7 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, images, detectImage, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
         for image in images:
             self.surfaces += [pygame.image.load(image)]
@@ -64,7 +64,7 @@ class Enemy():
     def melee(self, other):
         print "trying to melee other", str(other)
     
-    def playerDetect(self, image, other):
+    def playerDetect(self, Detectimage, other):
         print "detecting player"
         pygame.image.load(image)
         
@@ -77,15 +77,3 @@ class Enemy():
                 if (self.distToPoint(other.rect.center)
                     < self.radius + other.radius):
                     pass
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
