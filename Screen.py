@@ -72,5 +72,23 @@ class Screen():
             self.rect.topleft = [0, -2500]
             self.living = False           
             return True
-        return False    
+        return False   
+            
+    def lanimate(self):
+        if self.waitCount < self.waitMax:
+            self.waitCount += 1
+        else:
+            self.waitCount = 0
+            if self.frame == 1:
+                self.frame += 1
+            if self.frame == 2:
+                self.frame += 1
+            if self.frame == 3:
+                self.frame -= 1
+                self.neg = True
+            else:
+                self.frame = 0
+                # self.living = False
+            self.surface = self.surfaces[self.frame]
+
 		
