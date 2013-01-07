@@ -22,7 +22,7 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-
+loading = Screen(["rcs/imgs/menu/loading1.png", "rcs/imgs/menu/loading1.png", "rcs/imgs/menu/loading1.png"], [0,0], screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(2, screenSize, [200, 200])
@@ -86,7 +86,7 @@ for y, line in enumerate(newlines):
         if c == " ":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png",(10,10))]
         if c == "c":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png",(10,10))]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" ),(10,10)]
         if c == "s":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png",(10,10))]
         if c == "r":
