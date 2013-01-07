@@ -48,54 +48,48 @@ class Player():
         if dir == "up":
             self.speed[1] = -self.maxSpeed
             self.dir = "up"
-            self.moving = True
         elif dir == "stop up":
             self.speed[1] = 0
             self.dir = "stop up"
-            self.moving = False
         elif dir == "down":
             self.speed[1] = self.maxSpeed
             self.dir = "down"
-            self.moving = True
         elif dir == "stop down":
             self.speed[1] = 0
             self.dir = "stop down"
-            self.moving = False
         elif dir == "left":
             self.speed[0] = -self.maxSpeed
             self.dir = "left"
-            self.moving = True
         elif dir == "stop left":
             self.speed[0] = 0
             self.dir = "stop left"
-            self.moving = False
         elif dir == "right":
             self.speed[0] = self.maxSpeed
             self.dir = "right"
-            self.moving = True
         elif dir == "stop right":
             self.speed[0] = 0
             self.dir = "stop right"
-            self.moving = False
         
     def move(self):
+        if self.speed == [0,0]:
+            if self.dir == "stop up":
+                self.surfaces = self.backstill
+            if self.dir == "stop down":
+                self.surfaces = self.frontstill
+            if self.dir == "stop left":
+                self.surfaces = self.leftstill
+            if self.dir == "stop right":
+                self.surfaces = self.rightstill    
+        else:
+            if self.dir == "up":
+                self.surfaces = self.backimgs
+            if self.dir == "down":
+                self.surfaces = self.frontimgs
+            if self.dir == "left":
+                self.surfaces = self.leftimgs
+            if self.dir == "right":
+                self.surfaces = self.rightimgs  
         
-        if self.dir == "up":
-            self.surfaces = self.backimgs
-        if self.dir == "down":
-            self.surfaces = self.frontimgs
-        if self.dir == "left":
-            self.surfaces = self.leftimgs
-        if self.dir == "right":
-            self.surfaces = self.rightimgs  
-        if self.dir == "stop up":
-            self.surfaces = self.backstill
-        if self.dir == "stop down":
-            self.surfaces = self.frontstill
-        if self.dir == "stop left":
-            self.surfaces = self.leftstill
-        if self.dir == "stop right":
-            self.surfaces = self.rightstill    
         
         if self.frame > len(self.surfaces)-1:
             self.frame = len(self.surfaces)-1

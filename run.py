@@ -153,11 +153,11 @@ while True:
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
-                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     player.direction("stop right")
-                if event.key == pygame.K_w or event.key == pygame.K_UP:
+                elif event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("stop up")
-                if event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
         if random.randint(1, 100) < maxEnemies - len(enemies):
