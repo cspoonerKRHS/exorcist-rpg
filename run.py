@@ -22,7 +22,7 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-loading = Screen(["rcs/imgs/menu/loading1.png", "rcs/imgs/menu/loading1.png", "rcs/imgs/menu/loading1.png"], [0,0], screenSize)
+loading = Screen(["rcs/imgs/menu/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/menu/loading1.png"], [0,0], screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 player = Player(2, screenSize, [200, 200])
