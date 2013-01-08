@@ -22,10 +22,9 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-loading = Screen(["rcs/imgs/menu/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/menu/loading1.png"], [0,0], screenSize)
+loading = Screen(["rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png"], [0,0], screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-player = Player(2, screenSize, [200, 200])
 enemies = []
 blocks = []
 fblocks = []
@@ -131,10 +130,13 @@ while True:
 
         singleplayer.update((200, 10, 10))
         exit.update((200, 10, 10))
+        loading.lanimate()
         
         screen.fill(bgColor)
+        screen.blit(loading.surface, loading.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
+        player = Player(2, screenSize, [200, 200])
         pygame.display.flip()
     # Game    
     while run:

@@ -80,9 +80,9 @@ class Screen():
             self.waitCount += 1
         else:
             self.waitCount = 0
-            if self.frame == 0 and self.neg not True:
+            if self.frame == 0 and self.neg == False:
                 self.frame += 1
-            if self.frame == 1 and self.neg not True:
+            if self.frame == 1 and self.neg == False:
                 self.frame += 1
             if self.frame == 2:
                 self.frame -= 1
