@@ -161,7 +161,7 @@ while True:
                     player.direction("stop down")
                     
         if random.randint(1, 100) < maxEnemies - len(enemies):
-           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
