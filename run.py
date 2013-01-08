@@ -66,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map3.lvl", "r")
+file = open("map.lvl", "r")
 lines = file.readlines()
 file.close()
 
@@ -83,10 +83,12 @@ for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
             blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png",(10,10))]
+        if c == "o":
+            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/incobblestone.png",(10,10))]
         if c == " ":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png",(10,10))]
         if c == "c":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" ),(10,10)]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png",(10,10))]
         if c == "s":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png",(10,10))]
         if c == "r":
