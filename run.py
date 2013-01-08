@@ -6,14 +6,16 @@ from Screen import Screen
 from Menu import Button
 from Bosses import Boss
 from Block import Block
+from Counter import Counter
 from pygame.locals import*
 
 if pygame.mixer:
     pygame.mixer.init()
 
 pygame.init()
-
 maxEnemies = 5
+
+pygame.time.set_timer(USEREVENT+1, 1000)
 
 clk = pygame.time.Clock()
 screenWidth = 800
@@ -22,7 +24,9 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-loading = Screen(["rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png"], [0,0], screenSize)
+loader = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize)
+screen.blit(loader.surface, loader.rect)
+
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
@@ -32,7 +36,7 @@ wblocks = []
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
-
+counter = Counter([45,25], screenSize)
 
 healthbar_imgs = []
 for i in range(100, 0, -5):
@@ -100,7 +104,7 @@ for y, line in enumerate(newlines):
 while True:
     while not run:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.QUIT: sys.exit()   
             elif event.type == pygame.KEYDOWN:
                 if (event.key == pygame.K_UP or event.key == pygame.K_w) and not singleplayer.highlighted:
                     singleplayer.highlighted = True
@@ -130,10 +134,8 @@ while True:
 
         singleplayer.update((200, 10, 10))
         exit.update((200, 10, 10))
-        loading.lanimate()
         
         screen.fill(bgColor)
-        screen.blit(loading.surface, loading.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
         player = Player(2, screenSize, [200, 200])
@@ -142,6 +144,8 @@ while True:
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
+            if event.type == USEREVENT+1:
+                counter.increase() 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")

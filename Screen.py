@@ -3,7 +3,7 @@ import pygame, math, time
 class Screen():
 
     # Methods or Functions
-    def __init__(self, images, speed, screenSize, waitMax = 1000):
+    def __init__(self, images, speed, screenSize, waitMax = 10):
         self.surfaces = []
         for image in images:
             self.surfaces += [pygame.image.load(image)]
