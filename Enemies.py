@@ -66,7 +66,7 @@ class Enemy():
     
     def playerDetect(self, Detectimage, other):
         print "detecting player"
-        pygame.image.load(image)
+        pygame.image.load(Detectimage)
         
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):

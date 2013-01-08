@@ -104,7 +104,7 @@ for y, line in enumerate(newlines):
 while True:
     while not run:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()   
+            if event.type == pygame.QUIT: sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if (event.key == pygame.K_UP or event.key == pygame.K_w) and not singleplayer.highlighted:
                     singleplayer.highlighted = True
@@ -166,8 +166,8 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-        if random.randint(1, 100) < maxEnemies - len(enemies):
-           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
+#        if random.randint(1, 100) < maxEnemies - len(enemies):
+#           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
