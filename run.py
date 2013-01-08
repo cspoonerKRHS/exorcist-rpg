@@ -22,10 +22,11 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-loading = Screen(["rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/screens/loading1.png"], [0,0], screenSize)
+loading = Screen(["rcs/imgs/menu/loading1.png", "rcs/imgs/screens/loading1.png", "rcs/imgs/menu/loading1.png"], [0,0], screenSize)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-enemies = []
+player = Player(2, screenSize, [200, 200])
+enemies = Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)
 blocks = []
 fblocks = []
 wblocks = []
@@ -65,7 +66,7 @@ bgColor = red, green, blue
 run = False
 #---build from file----
 
-file = open("map.lvl", "r")
+file = open("map3.lvl", "r")
 lines = file.readlines()
 file.close()
 
@@ -82,12 +83,10 @@ for y, line in enumerate(newlines):
     for x, c in enumerate(line):
         if c == "w":
             blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png",(10,10))]
-        if c == "o":
-            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/incobblestone.png",(10,10))]
         if c == " ":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png",(10,10))]
         if c == "c":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png",(10,10))]
+            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" ),(10,10)]
         if c == "s":
             fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png",(10,10))]
         if c == "r":
@@ -132,13 +131,10 @@ while True:
 
         singleplayer.update((200, 10, 10))
         exit.update((200, 10, 10))
-        loading.lanimate()
         
         screen.fill(bgColor)
-        screen.blit(loading.surface, loading.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
-        player = Player(2, screenSize, [200, 200])
         pygame.display.flip()
     # Game    
     while run:
@@ -164,8 +160,8 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-        if random.randint(1, 100) < maxEnemies - len(enemies):
-           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
+#        if random.randint(1, 100) < maxEnemies - len(enemies):
+#           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
