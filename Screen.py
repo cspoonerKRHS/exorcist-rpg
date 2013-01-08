@@ -22,6 +22,7 @@ class Screen():
         self.ran = False
         self.living = False
         self.value = 0
+        self.neg = False
 
 
     def place(self, pt):
@@ -79,13 +80,17 @@ class Screen():
             self.waitCount += 1
         else:
             self.waitCount = 0
-            if self.frame == 1:
+            if self.frame == 0 and self.neg == False:
+                self.frame += 1
+            if self.frame == 1 and self.neg == False:
                 self.frame += 1
             if self.frame == 2:
-                self.frame += 1
-            if self.frame == 3:
                 self.frame -= 1
                 self.neg = True
+            if self.frame == 1 and self.neg == True:
+                self.frame -= 1
+                self.neg = False
+
             else:
                 self.frame = 0
                 # self.living = False
