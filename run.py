@@ -24,9 +24,7 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-loader = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize)
-screen.blit(loader.surface, loader.rect)
-
+background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
@@ -136,6 +134,7 @@ while True:
         exit.update((200, 10, 10))
         
         screen.fill(bgColor)
+        screen.blit(background.surface, background.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
         player = Player(2, screenSize, [200, 200])
