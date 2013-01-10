@@ -21,8 +21,9 @@ clk = pygame.time.Clock()
 screenWidth = 800
 screenHeight = 600
 
-xbox = pygame.joystick.Joystick(0)
-xbox.init()
+if pygame.joystick.init():
+    xbox = pygame.joystick.Joystick(0)
+    xbox.init()
 
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
