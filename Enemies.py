@@ -66,20 +66,20 @@ class Enemy():
     def melee(self, other):
         print "trying to melee other", str(other)
     
-    def playerDetect(self, player):
-        print "detecting player"
+#    def playerDetect(self, player):
+#        print "detecting player"
         
-        if distToPoint
-        
-        
+#        if distToPoint
         
         
-        if (self.rect.right > other.rect.left 
-            and self.rect.left < other.rect.right):
+        
+        
+#        if (self.rect.right > other.rect.left 
+#            and self.rect.left < other.rect.right):
             
-            if (self.rect.bottom > other.rect.top and 
-                self.rect.top < other.rect.bottom):
+#            if (self.rect.bottom > other.rect.top and 
+#                self.rect.top < other.rect.bottom):
                 
-                if (self.distToPoint(other.rect.center)
-                    < self.radius + other.radius):
-                    pass
+#                if (self.distToPoint(other.rect.center)
+#                    < self.radius + other.radius):
+#                    pass
