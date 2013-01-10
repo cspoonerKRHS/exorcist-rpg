@@ -21,6 +21,9 @@ clk = pygame.time.Clock()
 screenWidth = 800
 screenHeight = 600
 
+xbox = pygame.joystick.Joystick(0)
+xbox.init()
+
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
@@ -164,6 +167,26 @@ while True:
                     player.direction("stop up")
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
+                    
+                    
+            if event.type == pygame.JOYAXISMOTION:
+                if event.axis == 0:
+                    if event.value < -0.4:
+                        player.direction("left")
+                    elif event.value > 0.4:
+                        player.direction("right")
+                    else: 
+                        player.direction("stop left")  
+
+            if event.type == pygame.JOYAXISMOTION:
+                if event.axis == 1:
+                    if event.value < -0.4:
+                        player.direction("up")
+                    elif event.value > 0.4:
+                        player.direction("down")
+                    else: 
+                        player.direction("stop up")
+                            
                     
 #        if random.randint(1, 100) < maxEnemies - len(enemies):
 #           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
