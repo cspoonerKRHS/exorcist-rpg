@@ -27,7 +27,7 @@ screen = pygame.display.set_mode(screenSize)
 background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-enemies = []
+enemies = Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png", [0,3], screenSize, 1)
 blocks = []
 fblocks = []
 wblocks = []
@@ -179,13 +179,13 @@ while True:
         # boss.move
         # boss.collide(player)
         boss.collideWall()
-        for enemy in enemies:
-            enemy.collideWall()
-            enemy.move()
-            sword.attack(enemy)
-            enemy.attack(player)
+#        for enemy in enemies:
+#            enemy.collideWall()
+#            enemy.move()
+#            sword.attack(enemy)
+#            enemy.attack(player)
 #            enemy.playerDetect(player)
-            player.enemyCollide(enemy, healthbar)
+#            player.enemyCollide(enemy, healthbar)
         for block in blocks:
             block.wallCollide(player)
 #            block.wallCollide(enemies)
@@ -200,8 +200,8 @@ while True:
         for block in wblocks:
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
-        for enemey in enemies:
-            screen.blit(enemy.surface, enemy.rect)
+#        for enemey in enemies:
+#            screen.blit(enemy.surface, enemy.rect)
         # screen.blit(boss.surface, boss.rect)  
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  
