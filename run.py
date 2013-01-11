@@ -8,7 +8,7 @@ from Bosses import Boss
 from Block import Block
 #from Counter import Counter
 from pygame.locals import*
-from Map import Map
+from Map import level
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -30,7 +30,7 @@ singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
 
-map = Map("map1.lvl", "map1.tng")
+map = level("map2.lvl", "map1.tng", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
@@ -134,8 +134,8 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-        if block.decect == True:
-           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"],                     "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
+#        if block.decect == True:
+#           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"],                     "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
@@ -155,18 +155,14 @@ while True:
             enemy.attack(player)
 #            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
-        for block in blocks:
-            block.wallCollide(player)
-#            block.wallCollide(enemies)
-        
         
         # Blitting
         screen.fill(bgColor)
-        for block in blocks:
+        for block in map.blocks:
             screen.blit(block.surface, block.rect)
-        for block in fblocks:
+        for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in wblocks:
+        for block in map.blocks:
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         for enemey in enemies:
