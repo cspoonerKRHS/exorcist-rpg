@@ -134,8 +134,9 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-#        if block.decect == True:
-#           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"],                     "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
+        for block in map.blocks:
+            if dblock.nspawn == True:
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
