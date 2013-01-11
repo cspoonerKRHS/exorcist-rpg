@@ -9,6 +9,7 @@ class Block():
         self.rect = self.surface.get_rect(centerx=pos[0], centery=pos[1])
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
+        self.go = True
             
     def place(self, pt):
         self.rect.center = (pt)

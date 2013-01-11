@@ -6,8 +6,9 @@ from Screen import Screen
 from Menu import Button
 from Bosses import Boss
 from Block import Block
-from Counter import Counter
+#from Counter import Counter
 from pygame.locals import*
+from Map import level
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -21,25 +22,20 @@ clk = pygame.time.Clock()
 screenWidth = 800
 screenHeight = 600
 
-pygame.joystick.init()
-if pygame.joystick.get_count() != 0:
-    xbox = pygame.joystick.Joystick(0)
-    xbox.init()
-
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
-enemies = Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png", [0,3], screenSize, 1)
-blocks = []
-fblocks = []
-wblocks = []
+enemies = []
+
+map = level("map3.lvl", "map1.tng", screenSize)
+
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
-counter = Counter([45,25], screenSize)
+#counter = Counter([45,25], screenSize)
 
 healthbar_imgs = []
 for i in range(100, 0, -5):
@@ -70,39 +66,7 @@ blue = 0
 bgColor = red, green, blue
 
 run = False
-#---build from file----
 
-file = open("map3.lvl", "r")
-lines = file.readlines()
-file.close()
-
-newlines = []
-
-for line in lines:
-    newline = ""
-    for character in line:
-        if character != "\n":
-            newline += character
-    newlines += [newline]
-    
-for y, line in enumerate(newlines):
-    for x, c in enumerate(line):
-        if c == "w":
-            blocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/cobblestone.png",(10,10))]
-        if c == " ":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/grass.png",(10,10))]
-        if c == "c":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/wood.png" ),(10,10)]
-        if c == "s":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/snow.png",(10,10))]
-        if c == "r":
-            wblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/water2.png",(10,10))]
-        if c == "d":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/dirt.png",(10,10))]
-        if c == "f":
-            fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/sstone.png",(10,10))]
-            
-#----Done with file---
 # Menu
 while True:
     while not run:
@@ -148,8 +112,8 @@ while True:
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-            if event.type == USEREVENT+1:
-                counter.increase() 
+#            if event.type == USEREVENT+1:
+#                counter.increase() 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
@@ -170,63 +134,40 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-                    
-            if event.type == pygame.JOYAXISMOTION:
-                if event.axis == 0:
-                    if event.value < -0.4:
-                        player.direction("left")
-                    elif event.value > 0.4:
-                        player.direction("right")
-                    else: 
-                        player.direction("stop left")  
-
-            if event.type == pygame.JOYAXISMOTION:
-                if event.axis == 1:
-                    if event.value < -0.4:
-                        player.direction("up")
-                    elif event.value > 0.4:
-                        player.direction("down")
-                    else: 
-                        player.direction("stop up")
-                            
-                    
-#        if random.randint(1, 100) < maxEnemies - len(enemies):
-#           enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], "\rcs\imgs\enemies\enemyshootdetect.png" [0,3], screenSize, 1)]
+        for block in map.blocks:
+            if dblock.nspawn == True:
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
         player.move()
         player.wallCollide()
-        
+   
         
         # boss.attack(player)
         # boss.playerDetect(player)
         # boss.move
         # boss.collide(player)
         boss.collideWall()
-#        for enemy in enemies:
-#            enemy.collideWall()
-#            enemy.move()
-#            sword.attack(enemy)
-#            enemy.attack(player)
+        for enemy in enemies:
+            enemy.collideWall()
+            enemy.move()
+            sword.attack(enemy)
+            enemy.attack(player)
 #            enemy.playerDetect(player)
-#            player.enemyCollide(enemy, healthbar)
-        for block in blocks:
-            block.wallCollide(player)
-#            block.wallCollide(enemies)
-        
+            player.enemyCollide(enemy, healthbar)
         
         # Blitting
         screen.fill(bgColor)
-        for block in blocks:
+        for block in map.blocks:
             screen.blit(block.surface, block.rect)
-        for block in fblocks:
+        for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in wblocks:
+        for block in map.blocks:
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
-#        for enemey in enemies:
-#            screen.blit(enemy.surface, enemy.rect)
+        for enemey in enemies:
+            screen.blit(enemy.surface, enemy.rect)
         # screen.blit(boss.surface, boss.rect)  
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  
