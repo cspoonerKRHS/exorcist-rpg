@@ -76,6 +76,11 @@ class Enemy():
     def playerDetect(self, player):
         if distToPoint((player.rect.center)
                         < detectRadius):
+            
+            
+            
+            
+            
             print "DETECTING PLAYER"
             
         
