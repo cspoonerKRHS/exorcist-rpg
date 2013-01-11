@@ -18,6 +18,7 @@ class Enemy():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
+        self.health = 10
         
     def  __str__(self):
         return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
