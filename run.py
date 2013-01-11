@@ -30,7 +30,7 @@ singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
 
-map = level("map2.lvl", "map1.tng", screenSize)
+map = level("map3.lvl", "map1.tng", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
