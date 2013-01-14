@@ -8,7 +8,6 @@ class Player():
         "rcs/imgs/player/player_left.png","rcs/imgs/player/player_left_walk1.png","rcs/imgs/player/player_left_walk2.png", 
         "rcs/imgs/player/player_back.png","rcs/imgs/player/player_back_walk1.png","rcs/imgs/player/player_back_walk2.png"]
         for img in imgs:
-            print img
             surf = pygame.image.load(img)
             surf = pygame.transform.scale(surf, (16,50))
             self.surfaces += [surf]
@@ -36,6 +35,7 @@ class Player():
         self.living = True
         self.dir = "none"
         self.moving = False
+        self.living = True
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)

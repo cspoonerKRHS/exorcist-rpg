@@ -34,7 +34,7 @@ map = level("map3.lvl", "map1.tng", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
-sword = Sword(["rcs/imgs/sword/sword.png"], [0,0], screenSize, 10)
+sword = Sword(screenSize)
 #counter = Counter([45,25], screenSize)
 
 healthbar_imgs = []
@@ -123,6 +123,9 @@ while True:
                     player.direction("up")
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
+                if event.key == pygame.K_j:
+                    sword.rect.clamp_ip(player.rect)
+                    sword.living = True
                     
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
@@ -133,16 +136,21 @@ while True:
                     player.direction("stop up")
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
+                if event.key == pygame.K_j:
+                    sword.rect.clamp_ip(player.rect)
+                    sword.living = False    
                     
-        for block in map.blocks:
-            if dblock.nspawn == True:
-                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+        # for block in map.dblocks:
+            # if block.nspawn == True:
+                # enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
         player.move()
         player.wallCollide()
-   
+        for block in map.dblocks:
+            block.Collide(player)
+        
         
         # boss.attack(player)
         # boss.playerDetect(player)
@@ -163,9 +171,12 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in map.blocks:
+        for block in map.dblocks:
             screen.blit(block.surface, block.rect)
+            print "??????????????", block.rect.center
         screen.blit(player.surface, player.rect)  
+        if sword.living == True:
+            screen.blit(sword.surface, sword.rect)  
         for enemey in enemies:
             screen.blit(enemy.surface, enemy.rect)
         # screen.blit(boss.surface, boss.rect)  

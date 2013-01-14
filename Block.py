@@ -10,14 +10,24 @@ class Block():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.go = True
+        self.nspawn = False
             
     def place(self, pt):
         self.rect.center = (pt)
 
-    def wallCollide(self, other):
+    def playerCollide(self, other):
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
                     other.speed[0] = other.speed[0] = 0
-                    other.speed[1] = other.speed[1] = 0    
+                    other.speed[1] = other.speed[1] = 0
+                    
+    def Collide(self, other):
+        if self.go == True:
+            if (self.rect.right > other.rect.left 
+                and self.rect.left < other.rect.right):
+                if (self.rect.bottom > other.rect.top and 
+                    self.rect.top < other.rect.bottom): 
+                        self.nspawn = True
+                        self.go = False
