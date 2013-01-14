@@ -1,13 +1,13 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, detectImage, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         self.frame = 0
-        self.detectField = detectImage
-        self.detectRect = self.detectField.get_rect()
+#        self.detectField = pygame.image.load(detectImage)
+#        self.detectRect = self.detectField.get_rect()
         self.maxFrame = len(self.surfaces) - 1
         self.waitCount = 0
         self.waitMax = waitMax
@@ -47,7 +47,13 @@ class Enemy():
     
     def distToPoint(self, pt):
         print "I am this far from it."
-    
+        x1 = self.rect.center[0]
+        x2 = pt[0]
+        y1 = self.rect.center[1]
+        y2 = pt[1]
+        return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
+        
+         
     def collideWall(self):
         print "trying to hit edges of screen", self.screenWidth, self.screenHeight
         if (self.rect.left < 0 
@@ -67,11 +73,16 @@ class Enemy():
     def melee(self, other):
         print "trying to melee other", str(other)
     
-#    def playerDetect(self, player):
-#        print "detecting player"
-        
-#        if distToPoint
-        
+    def playerDetect(self, player):
+        if distToPoint((player.rect.center)
+                        < detectRadius):
+            
+            
+            
+            
+            
+            print "DETECTING PLAYER"
+            
         
         
         
