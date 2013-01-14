@@ -6,6 +6,7 @@ class level():
         self.blocks = []
         self.fblocks = []
         self.wblocks = []
+        self.dblocks = []
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
         geofile.close()
