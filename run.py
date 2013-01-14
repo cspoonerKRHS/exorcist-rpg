@@ -134,8 +134,8 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                     
-        for block in map.blocks:
-            if dblock.nspawn == True:
+        for block in map.dblocks:
+            if block.nspawn == True:
                 enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
