@@ -41,8 +41,7 @@ class level():
                     self.fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/sstone.png",(10,10))]
                 if c == "o":
                     self.fblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/incobblestone.png",(10,10))]
-                if c == "p":
-                    self.dblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/spawnspace.png",(10,10))]
+                
                 
                 
                     
@@ -52,19 +51,19 @@ class level():
         lines = thingfile.readlines()
         thingfile.close() 
         
-    def wallCollide(self, other):
-        if (self.rect.right > other.rect.left 
-            and self.rect.left < other.rect.right):
-            if (self.rect.bottom > other.rect.top and 
-                self.rect.top < other.rect.bottom): 
-                    other.speed[0] = other.speed[0] = 0
-                    other.speed[1] = other.speed[1] = 0 
+        newlines = []
+        
+        for line in lines:
+            newline = ""
+            for character in line:
+                if character != "\n":
+                    newline += character
+            newlines += [newline]
+            
+        for y, line in enumerate(newlines):
+            for x, c in enumerate(line):
+                if c == "p":
+                    self.dblocks += [Block([(x*10)+5, (y*10)+5], screenSize,"rcs/imgs/block/spawnspace.png",(10,10))]
                     
-    def Collide(self, other):
-        if self.go == True:
-            if (self.rect.right > other.rect.left 
-                and self.rect.left < other.rect.right):
-                if (self.rect.bottom > other.rect.top and 
-                    self.rect.top < other.rect.bottom): 
-                        self.nspawn = True
-                        self.go = False
+
+                    

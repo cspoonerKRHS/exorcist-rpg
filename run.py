@@ -142,7 +142,9 @@ while True:
         # Stuff that objects do
         player.move()
         player.wallCollide()
-   
+        for block in map.dblocks:
+            block.Collide(player)
+        
         
         # boss.attack(player)
         # boss.playerDetect(player)
@@ -163,8 +165,9 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in map.blocks:
+        for block in map.dblocks:
             screen.blit(block.surface, block.rect)
+            print "??????????????", block.rect.center
         screen.blit(player.surface, player.rect)  
         for enemey in enemies:
             screen.blit(enemy.surface, enemy.rect)
