@@ -140,9 +140,9 @@ while True:
                     sword.rect.clamp_ip(player.rect)
                     sword.living = False    
                     
-        # for block in map.dblocks:
-            # if block.nspawn == True:
-                # enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+        for block in map.dblocks:
+            if block.nspawn == True:
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
             
             
         # Stuff that objects do
@@ -173,7 +173,6 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.dblocks:
             screen.blit(block.surface, block.rect)
-            print "??????????????", block.rect.center
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
             screen.blit(sword.surface, sword.rect)  
