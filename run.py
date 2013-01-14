@@ -138,7 +138,7 @@ while True:
                 if event.key == pygame.K_j:
                     sword.living = False    
                     
-        sword.rect.clamp_ip(player.rect)
+        sword.rect.center = player.rect.midleft
         
         # for block in map.dblocks:
             # if block.nspawn == True:
