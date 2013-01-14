@@ -21,16 +21,20 @@ class Enemy():
         self.health = 10
         
     def  __str__(self):
-        return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
+        pass
+#        return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
-        print "I've moved to", pt
+        pass
+#        print "I've moved to", pt
         
     def dir(self, dir):
-        print "I have change direction" 
+        pass
+#        print "I have change direction" 
         
     def move(self):
-        print "I've moved", self.speed
+        pass
+#        print "I've moved", self.speed
         self.rect = self.rect.move(self.speed)
         
         if self.waitCount < self.waitMax:
@@ -46,7 +50,7 @@ class Enemy():
         
     
     def distToPoint(self, pt):
-        print "I am this far from it."
+#        print "I am this far from it."
         x1 = self.rect.center[0]
         x2 = pt[0]
         y1 = self.rect.center[1]
@@ -55,7 +59,7 @@ class Enemy():
         
          
     def collideWall(self):
-        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
+#        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
         if (self.rect.left < 0 
             or self.rect.right > self.screenWidth):
                 self.speed[0] = self.speed[0]*-1
@@ -65,23 +69,27 @@ class Enemy():
    
 
     def attack(self, other):
-        print "trying to hit other", str(other)
+        pass
+#        print "trying to hit other", str(other)
     
     def shoot(self, other):
-        print "trying to shoot other", str(other)
+        pass
+#        print "trying to shoot other", str(other)
     
     def melee(self, other):
-        print "trying to melee other", str(other)
+        pass
+#        print "trying to melee other", str(other)
     
     def playerDetect(self, player):
         if distToPoint((player.rect.center)
                         < detectRadius):
+                            pass
             
             
             
             
             
-            print "DETECTING PLAYER"
+#            print "DETECTING PLAYER"
             
         
         
