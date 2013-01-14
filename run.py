@@ -124,7 +124,6 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
                 if event.key == pygame.K_j:
-                    sword.rect.clamp_ip(player.rect)
                     sword.living = True
                     
             if event.type == pygame.KEYUP:
@@ -137,9 +136,10 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                 if event.key == pygame.K_j:
-                    sword.rect.clamp_ip(player.rect)
                     sword.living = False    
                     
+        sword.rect.clamp_ip(player.rect)
+        
         # for block in map.dblocks:
             # if block.nspawn == True:
                 # enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
