@@ -81,8 +81,12 @@ class Enemy():
 #        print "trying to melee other", str(other)
     
     def playerDetect(self, player):
-        if distToPoint((player.rect.center)
+        if distToPoint(player.rect.center
                         < detectRadius):
+                
+                            
+                            
+                            
                             pass
             
             
