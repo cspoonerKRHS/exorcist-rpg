@@ -63,7 +63,7 @@ class Enemy():
                 self.speed[0] = self.speed[0]*-1
         if (self.rect.top < 0 
             or self.rect.bottom >self.screenHeight):
-                self.speed[1] = self.speed[1]*-1
+                self.speed[1] = self.speed[1]* (-1)
    
 
     def attack(self, other):
