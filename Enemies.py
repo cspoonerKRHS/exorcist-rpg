@@ -6,8 +6,6 @@ class Enemy():
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         self.frame = 0
-        self.detectField = pygame.image.load(detectImage)
-        self.detectRect = self.detectField.get_rect()
         self.maxFrame = len(self.surfaces) - 1
         self.waitCount = 0
         self.waitMax = waitMax
@@ -65,7 +63,7 @@ class Enemy():
                 self.speed[0] = self.speed[0]*-1
         if (self.rect.top < 0 
             or self.rect.bottom >self.screenHeight):
-                self.speed[1] = self.speed[1]*-1
+                self.speed[1] = self.speed[1]* (-1)
    
 
     def attack(self, other):
@@ -79,11 +77,12 @@ class Enemy():
     def melee(self, other):
         pass
 #        print "trying to melee other", str(other)
-    
+ 
     def playerDetect(self, player):
         if distToPoint(player.rect.center
                         < detectRadius):
-            if 
+            if self.rect.center[0] < player.rect.center[0]:
+                self.speed[0] = 5
                         
             pass
             
