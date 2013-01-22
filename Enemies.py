@@ -23,7 +23,7 @@ class Enemy():
 #        return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
-        pass
+        self.rect.center = pt
 #        print "I've moved to", pt
         
     def dir(self, dir):
