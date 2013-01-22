@@ -148,16 +148,16 @@ while True:
                     
         sword.rect.center = player.rect.midleft
         
-        # for block in map.dblocks:
-            # if block.nspawn == True:
-                # enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+        for block in map.dblocks:
+            if block.playerDetect(player):
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], block.rect.center, screenSize, 1)]
             
             
         # Stuff that objects do
         player.move()
         player.wallCollide()
-        for block in map.dblocks:
-            block.Collide(player)
+        for block in map.blocks:
+            block.playerCollide(player)
         
         
         # boss.attack(player)
@@ -170,8 +170,9 @@ while True:
             enemy.move()
             sword.attack(enemy)
             enemy.attack(player)
-#            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
+            if enemy.living:
+                enemies.remove(enemy)   
         
         # Blitting
         screen.fill(bgColor)
@@ -179,7 +180,7 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in map.dblocks:
+        for block in map.dblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:

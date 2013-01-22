@@ -6,7 +6,7 @@ class Sword():
         imgs = ["rcs/imgs/sword/swordfront.png"]
         for img in imgs:
             surf = pygame.image.load(img)
-            surf = pygame.transform.scale(surf, (16,50))
+            surf = pygame.transform.scale(surf, (8,25))
             self.surfaces += [surf]
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
@@ -23,10 +23,9 @@ class Sword():
         return "I'm a sword " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
-        print "I've moved to", pt
-    
+        pass
     def distToPoint(self, pt):
-        print "I am this far from it."
+        pass
 
     def attack(self, other):
         if (self.rect.right > other.rect.left 
