@@ -31,7 +31,6 @@ class Enemy():
 #        print "I have change direction" 
         
     def move(self):
-        pass
 #        print "I've moved", self.speed
         self.rect = self.rect.move(self.speed)
         
@@ -63,7 +62,7 @@ class Enemy():
                 self.speed[0] = self.speed[0]*-1
         if (self.rect.top < 0 
             or self.rect.bottom >self.screenHeight):
-                self.speed[1] = self.speed[1]* (-1)
+                self.speed[1] = self.speed[1]* -1
    
 
     def attack(self, other):
@@ -83,24 +82,9 @@ class Enemy():
                         < detectRadius):
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
-                        
-            pass
-            
-            
-            
-            
-            
-#            print "DETECTING PLAYER"
-            
-        
-        
-        
-#        if (self.rect.right > other.rect.left 
-#            and self.rect.left < other.rect.right):
-            
-#            if (self.rect.bottom > other.rect.top and 
-#                self.rect.top < other.rect.bottom):
-                
-#                if (self.distToPoint(other.rect.center)
-#                    < self.radius + other.radius):
-#                    pass
+            if self.rect.center[0] > player.rect.centr[0]:
+                self.speed[0] = -5
+            if self.rect.center[1] < player.rect.center[1]:
+                self.speed[1] = 5
+            if self.rect.center[1] > player.rect.center [1]:
+                self.speed[1] = -5
