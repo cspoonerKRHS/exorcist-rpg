@@ -60,6 +60,14 @@ if pygame.mixer:
 if pygame.mixer:    
     pygame.mixer.music.play()
     
+def distToPoint(self, pt):
+    x1 = self.rect.center[0]
+    x2 = pt[0]
+    y1 = self.rect.center[1]
+    y2 = pt[1]
+    return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
+        
+    
 red = 0
 green = 0
 blue = 0
@@ -140,16 +148,16 @@ while True:
                     
         sword.rect.center = player.rect.midleft
         
-        # for block in map.dblocks:
-            # if block.nspawn == True:
-                # enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [0,3], screenSize, 1)]
+        for block in map.dblocks:
+            if block.playerDetect(player):
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], block.rect.center, screenSize, 1)]
             
             
         # Stuff that objects do
         player.move()
         player.wallCollide()
-        for block in map.dblocks:
-            block.Collide(player)
+        for block in map.blocks:
+            block.playerCollide(player)
         
         
         # boss.attack(player)
@@ -162,7 +170,6 @@ while True:
             enemy.move()
             sword.attack(enemy)
             enemy.attack(player)
-#            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
             if enemy.living:
                 enemies.remove(enemy)   
