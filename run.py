@@ -164,6 +164,8 @@ while True:
             enemy.attack(player)
 #            enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
+            if enemy.living:
+                enemies.remove(enemy)   
         
         # Blitting
         screen.fill(bgColor)
@@ -171,7 +173,7 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.fblocks:
             screen.blit(block.surface, block.rect)
-        for block in map.dblocks:
+        for block in map.dblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
