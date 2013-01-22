@@ -6,8 +6,8 @@ class Enemy():
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         self.frame = 0
-#        self.detectField = pygame.image.load(detectImage)
-#        self.detectRect = self.detectField.get_rect()
+        self.detectField = pygame.image.load(detectImage)
+        self.detectRect = self.detectField.get_rect()
         self.maxFrame = len(self.surfaces) - 1
         self.waitCount = 0
         self.waitMax = waitMax
@@ -83,11 +83,9 @@ class Enemy():
     def playerDetect(self, player):
         if distToPoint(player.rect.center
                         < detectRadius):
-                
-                            
-                            
-                            
-                            pass
+            if 
+                        
+            pass
             
             
             
