@@ -17,6 +17,7 @@ class Enemy():
         self.screenHeight = screenSize[1]
         self.living = True
         self.health = 10
+        self.detectRadius = 100
         
     def  __str__(self):
         pass
@@ -78,11 +79,10 @@ class Enemy():
 #        print "trying to melee other", str(other)
  
     def playerDetect(self, player):
-        if distToPoint(player.rect.center
-                        < detectRadius):
+        if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
-            if self.rect.center[0] > player.rect.centr[0]:
+            if self.rect.center[0] > player.rect.center[0]:
                 self.speed[0] = -5
             if self.rect.center[1] < player.rect.center[1]:
                 self.speed[1] = 5
