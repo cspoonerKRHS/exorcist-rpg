@@ -156,7 +156,6 @@ while True:
         # boss.playerDetect(player)
         # boss.move
         # boss.collide(player)
-        boss.collideWall()
         for enemy in enemies:
             enemy.collideWall()
             enemy.move()
