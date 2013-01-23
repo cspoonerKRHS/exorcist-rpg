@@ -150,7 +150,7 @@ while True:
         
         for block in map.dblocks:
             if block.playerDetect(player):
-                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], block.rect.center, screenSize, 1)]
+                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [3,3], screenSize, block.rect.center, 1)]
             
             
         # Stuff that objects do
@@ -171,7 +171,7 @@ while True:
             sword.attack(enemy)
             enemy.attack(player)
             player.enemyCollide(enemy, healthbar)
-            if enemy.living:
+            if not enemy.living:
                 enemies.remove(enemy)   
         
         # Blitting
