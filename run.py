@@ -151,6 +151,7 @@ while True:
         for block in map.dblocks:
             if block.playerDetect(player):
                 enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [3,3], screenSize, block.rect.center, 1)]
+                
             
             
         # Stuff that objects do
@@ -171,8 +172,9 @@ while True:
             enemy.attack(player)
             player.enemyCollide(enemy, healthbar)
             if not enemy.living:
-                enemies.remove(enemy)   
-        
+                enemies.remove(enemy) 
+                  
+        print len(enemies)
         # Blitting
         screen.fill(bgColor)
         for block in map.blocks:
@@ -184,7 +186,7 @@ while True:
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
             screen.blit(sword.surface, sword.rect)  
-        for enemey in enemies:
+        for enemy in enemies:
             screen.blit(enemy.surface, enemy.rect)
         # screen.blit(boss.surface, boss.rect)  
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
