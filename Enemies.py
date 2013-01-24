@@ -3,8 +3,21 @@ import pygame, math, sys, random
 class Enemy():
     def __init__(self, images, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
+        image = ["rsc/enemywalkup1.png", "rsc/enemywalkup2.png", "rsc/enemywalk3.png", 
+            "rsc/enemywalkdown1.png", "rsc/enemywalkdown2.png", "rsc/enemywalkdown3.png",
+            "rsc/enemywalkleft1.png", "rsc/enemywalkleft2.png", "rsc/enemywalkleft3.png", 
+            "rsc/enemywalkright1.png", "rsc/enemywalkright2.png", "rsc/enemywalkright3.png"]
         for image in images:
             self.surfaces += [pygame.image.load(image)]
+        
+#        self.frontstill = self.surfaces[0:1]
+        self.frontimgs = self.surfaces[0:2]
+#        self.backstill = self.surfaces[3:4]
+        self.rightimgs = self.surfaces[3:5]
+#        self.leftstill = self.surfaces[6:7]
+        self.leftimgs = self.surfaces[6:8]
+#        self.rightstill = self.surfaces[9:10]
+        self.backimgs = self.surfaces[9:11]
         self.frame = 0
         self.maxFrame = len(self.surfaces) - 1
         self.waitCount = 0
