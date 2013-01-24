@@ -2,7 +2,13 @@ import pygame, math, sys
 from Block import Block
 
 class level():
-    def __init__(self, geoMap, thingMap, screenSize):
+    def __init__(self, level, screenSize):
+        self.load(level)
+        
+        
+    def load(self, level)
+        geofile="/rsc/maps/"+ level +".lvl"
+        thingfile="/rsc/maps/"+ level +".tng"
         self.blocks = []
         self.fblocks = []
         self.wblocks = []
