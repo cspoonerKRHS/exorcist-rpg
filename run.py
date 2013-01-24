@@ -106,7 +106,7 @@ while True:
         screen.blit(background.surface, background.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
-        player = Player(2, screenSize, [200, 200])
+        player = Player(10, screenSize, [200, 200])
         pygame.display.flip()
     # Game    
     while run:
@@ -160,7 +160,7 @@ while True:
         for enemy in enemies:
             enemy.collideWall()
             enemy.move()
-            sword.attack(enemy)
+            sword.attack(enemy, player)
             enemy.attack(player)
             enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
