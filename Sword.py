@@ -8,9 +8,9 @@ class Sword():
             surf = pygame.image.load(img)
             surf = pygame.transform.scale(surf, (8,25))
             self.surfaces += [surf]
-        self.front = self.surfaces[0]
-        self.left = self.surfaces[1]
-        self.right = self.surfaces[2]
+        self.front = [self.surfaces[0]]
+        self.left = [self.surfaces[1]]
+        self.right = [self.surfaces[2]]
         self.surface = self.front  
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
@@ -54,7 +54,6 @@ class Sword():
                 # self.frame += 1
 
         self.surface = self.surfaces[self.frame]            
-        self.rect = self.rect.move(self.speed) 
         
         if self.living == True:
             if (self.rect.right > other.rect.left 
