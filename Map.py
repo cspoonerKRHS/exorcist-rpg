@@ -6,7 +6,7 @@ class level():
         self.load(level)
         
         
-    def load(self, level)
+    def load(self, level):
         geofile="/rsc/maps/"+ level +".lvl"
         thingfile="/rsc/maps/"+ level +".tng"
         self.blocks = []
