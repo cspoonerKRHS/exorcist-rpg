@@ -60,5 +60,7 @@ class Sword():
                 and self.rect.left < other.rect.right):
                     if (self.rect.bottom > other.rect.top and 
                         self.rect.top < other.rect.bottom):
-                        other.living += 1
+                        other.health -= 1
+					if other.health == 0:
+						other.living = False
                    
