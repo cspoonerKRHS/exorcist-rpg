@@ -3,10 +3,11 @@ import pygame, math, sys, random
 class Enemy():
     def __init__(self, images, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
-        image = ["rsc/enemywalkup1.png", "rsc/enemywalkup2.png", "rsc/enemywalk3.png", 
-            "rsc/enemywalkdown1.png", "rsc/enemywalkdown2.png", "rsc/enemywalkdown3.png",
-            "rsc/enemywalkleft1.png", "rsc/enemywalkleft2.png", "rsc/enemywalkleft3.png", 
-            "rsc/enemywalkright1.png", "rsc/enemywalkright2.png", "rsc/enemywalkright3.png"]
+        image = ["rcs/imgs/enemies/enemywalkup1.png", "rcs/imgs/enemies/enemywalkup2.png", "rcs/imgs/enemies/enemywalk3.png", 
+            "rcs/imgs/enemies/enemywalkdown1.png", "rcs/imgs/enemies/enemywalkdown2.png", "rcs/imgs/enemies/enemywalkdown3.png",
+            "rcs/imgs/enemies/enemywalkleft1.png", "rcs/imgs/enemies/enemywalkleft2.png", "rcs/imgs/enemies/enemywalkleft3.png", 
+            "rcs/imgs/enemies/enemywalkright1.png", "rcs/imgs/enemies/enemywalkright2.png", "rcs/imgs/enemies/enemywalkright3.png",
+            "rcs/imgs/enemies/enemy.png"]
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         
@@ -18,13 +19,17 @@ class Enemy():
         self.leftimgs = self.surfaces[6:8]
 #        self.rightstill = self.surfaces[9:10]
         self.backimgs = self.surfaces[9:11]
+#        self.attackimg = self.surfaces[12]
+        self.surfaces = self.frontimgs
         self.frame = 0
         self.maxFrame = len(self.surfaces) - 1
-        self.waitCount = 0
-        self.waitMax = waitMax
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.speed = speed
+        self.waitCount = 0
+        self.waitMax = waitMax
+
+
         self.place(position)
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
@@ -41,7 +46,30 @@ class Enemy():
 #        print "I've moved to", pt
         
     def dir(self, dir):
-        pass
+        if dir == "up":
+            self.speed[1] = -self.maxSpeed
+            self.dir = "up"
+        elif dir == "stop up":
+            self.speed[1] = 0
+            self.dir = "stop up"
+        elif dir == "down":
+            self.speed[1] = self.maxSpeed
+            self.dir = "down"
+        elif dir == "stop down":
+            self.speed[1] = 0
+            self.dir = "stop down"
+        elif dir == "left":
+            self.speed[0] = -self.maxSpeed
+            self.dir = "left"
+        elif dir == "stop left":
+            self.speed[0] = 0
+            self.dir = "stop left"
+        elif dir == "right":
+            self.speed[0] = self.maxSpeed
+            self.dir = "right"
+        elif dir == "stop right":
+            self.speed[0] = 0
+            self.dir = "stop right"
 #        print "I have change direction" 
         
     def move(self):
