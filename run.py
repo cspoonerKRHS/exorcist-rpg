@@ -8,7 +8,7 @@ from Bosses import Boss
 from Block import Block
 from Counter import Counter
 from pygame.locals import*
-from Map import level
+from Map import Level
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -30,7 +30,7 @@ singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
 
-map = level("map1", screenSize)
+map = Level("map1", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])

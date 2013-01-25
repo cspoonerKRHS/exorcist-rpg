@@ -1,7 +1,7 @@
 import pygame, math, sys
 from Block import Block
 
-class level():
+class Level():
     def __init__(self, level, screenSize):
         self.screenSize = screenSize
         self.screenWidth = screenSize[0]
@@ -12,6 +12,7 @@ class level():
     def load(self, level):
         geoMap="rcs/maps/"+ level +".lvl"
         thingMap="rcs/maps/"+ level +".tng"
+        self.level = level0
         self.blocks = []
         self.fblocks = []
         self.wblocks = []
@@ -71,6 +72,11 @@ class level():
             for x, c in enumerate(line):
                 if c == "p":
                     self.dblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/spawnspace.png",(10,10))]
+                if c == "N":
+                    self.mblocks += [self.levelLoader("N")]
                     
 
-                    
+    def levelLoader(self, dir):
+        if self.level == "map1":
+            if self.dir == "N":
+                return Block(
