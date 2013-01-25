@@ -6,7 +6,7 @@ from Screen import Screen
 from Menu import Button
 from Bosses import Boss
 from Block import Block
-#from Counter import Counter
+from Counter import Counter
 from pygame.locals import*
 from Map import level
 
@@ -30,12 +30,12 @@ singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
 
-map = level("map3.lvl", "map1.tng", screenSize)
+map = level("map1", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
 sword = Sword(screenSize)
-#counter = Counter([45,25], screenSize)
+counter = Counter([45,25], screenSize) 
 
 healthbar_imgs = []
 for i in range(100, 0, -5):
