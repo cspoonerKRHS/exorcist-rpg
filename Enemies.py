@@ -15,7 +15,7 @@ class Enemy():
         self.place(position)
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
-        self.living = True
+        self.living = 0
         self.health = 10
         self.detectRadius = 100
         

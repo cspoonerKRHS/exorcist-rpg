@@ -6,7 +6,7 @@ class Sword():
         imgs = ["rcs/imgs/sword/swordfront.png", "rcs/imgs/sword/swordleft.png", "rcs/imgs/sword/swordright.png"]
         for img in imgs:
             surf = pygame.image.load(img)
-            surf = pygame.transform.scale(surf, (8,25))
+            # surf = pygame.transform.scale(surf, (8,25))
             self.surfaces += [surf]
         self.front = [self.surfaces[0]]
         self.left = [self.surfaces[1]]
@@ -60,5 +60,5 @@ class Sword():
                 and self.rect.left < other.rect.right):
                     if (self.rect.bottom > other.rect.top and 
                         self.rect.top < other.rect.bottom):
-                        other.living = False
+                        other.living += 1
                    
