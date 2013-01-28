@@ -12,7 +12,7 @@ class Level():
     def load(self, level):
         geoMap="rcs/maps/"+ level +".lvl"
         thingMap="rcs/maps/"+ level +".tng"
-        self.level = level0
+        self.level = level
         self.blocks = []
         self.fblocks = []
         self.wblocks = []
@@ -79,4 +79,4 @@ class Level():
     def levelLoader(self, dir):
         if self.level == "map1":
             if self.dir == "N":
-                return Block(
+                return Block
