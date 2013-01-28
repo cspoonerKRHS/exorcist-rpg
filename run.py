@@ -142,7 +142,7 @@ while True:
         
         for block in map.dblocks:
             if block.playerDetect(player):
-                enemies += [Enemy(["rcs/imgs/enemies/enemy.png"], [3,3], screenSize, block.rect.center, 1)]
+                enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
                 
             
             
