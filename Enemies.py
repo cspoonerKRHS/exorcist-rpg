@@ -1,7 +1,7 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
         images = ["rcs/imgs/enemies/enemywalkup1.png", "rcs/imgs/enemies/enemywalkup2.png", "rcs/imgs/enemies/enemywalk3.png", 
             "rcs/imgs/enemies/enemywalkdown1.png", "rcs/imgs/enemies/enemywalkdown2.png", "rcs/imgs/enemies/enemywalkdown3.png",
