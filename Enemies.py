@@ -10,7 +10,6 @@ class Enemy():
             "rcs/imgs/enemies/enemy.png"]
         for image in images:
             self.surfaces += [pygame.image.load(image)]
-        
         self.frontimgs = self.surfaces[0:2]
         self.rightimgs = self.surfaces[3:5]
         self.leftimgs = self.surfaces[6:8]
@@ -24,12 +23,10 @@ class Enemy():
         self.speed = speed
         self.waitCount = 0
         self.waitMax = waitMax
-
-
         self.place(position)
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
-        self.living = 0
+        self.living = True
         self.health = 10
         self.detectRadius = 100
         
@@ -66,23 +63,34 @@ class Enemy():
         elif dir == "stop right":
             self.speed[0] = 0
             self.dir = "stop right"
-#        print "I have change direction" 
         
     def move(self):
 #        print "I've moved", self.speed
-        self.rect = self.rect.move(self.speed)
-        
+        if self.dir == "up":
+            if self.dir == "up":
+                self.surfaces = self.backimgs
+            if self.dir == "down":
+                self.surfaces = self.frontimgs
+            if self.dir == "left":
+                self.surfaces = self.leftimgs
+            if self.dir == "right":
+                self.surfaces = self.rightimgs
+                
+        if self.frame > len(self.surfaces)-1:
+            self.frame = len(self.surfaces)-1
+
         if self.waitCount < self.waitMax:
             self.waitCount += 1
+        
         else:
             self.waitCount = 0
-            
-            if self.frame < self.maxFrame:
-                self.frame += 1 
-            else:
+            if self.frame == len(self.surfaces)-1:
                 self.frame = 0
-            self.surface = self.surfaces[self.frame]
-        
+            else:
+                self.frame += 1
+                
+        self.surface = self.surfaces[self.frame]
+        self.rect = self.rect.move(self.speed) 
     
     def distToPoint(self, pt):
 #        print "I am this far from it."
@@ -104,18 +112,19 @@ class Enemy():
    
 
     def attack(self, other):
-        pass
 #        print "trying to hit other", str(other)
+        pass
     
     def shoot(self, other):
-        pass
 #        print "trying to shoot other", str(other)
+        pass
     
     def melee(self, other):
-        pass
 #        print "trying to melee other", str(other)
+        pass
  
     def playerDetect(self, player):
+#        print "trying to detect" + player
         if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
