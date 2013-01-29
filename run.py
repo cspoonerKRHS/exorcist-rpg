@@ -151,6 +151,8 @@ while True:
         player.wallCollide()
         for block in map.blocks:
             block.playerCollide(player)
+        for block in map.mblocks:
+            block.playerCollide(player)
         
         
         # boss.attack(player)
@@ -175,6 +177,8 @@ while True:
         for block in map.fblocks:
             screen.blit(block.surface, block.rect)
         for block in map.dblocks:   
+            screen.blit(block.surface, block.rect)
+        for block in map.mblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
