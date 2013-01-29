@@ -124,7 +124,7 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
                 if event.key == pygame.K_j:
-                    sword.living = True
+                    sword.slashing = True
                     
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
@@ -136,15 +136,17 @@ while True:
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
                 if event.key == pygame.K_j:
-                    sword.living = False    
+                    sword.slashing = False  
+                    sword.living = False
                     
-        sword.rect.center = player.rect.midleft
         
         for block in map.dblocks:
             if block.playerDetect(player):
                 enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
                 
             
+        if sword.slashing:
+            sword.slash(player)
             
         # Stuff that objects do
         player.move()
@@ -162,7 +164,7 @@ while True:
         for enemy in enemies:
             enemy.collideWall()
             enemy.move()
-            sword.attack(enemy, player)
+            # sword.attack(enemy, player)
             enemy.attack(player)
             enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)

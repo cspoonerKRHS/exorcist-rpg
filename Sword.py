@@ -6,19 +6,33 @@ class Sword():
         imgs = ["rcs/imgs/sword/swordfront.png", "rcs/imgs/sword/swordleft.png", "rcs/imgs/sword/swordright.png"]
         for img in imgs:
             surf = pygame.image.load(img)
-            # surf = pygame.transform.scale(surf, (8,25))
+            
             self.surfaces += [surf]
-        self.front = [self.surfaces[0]]
-        self.left = [self.surfaces[1]]
-        self.right = [self.surfaces[2]]
-        self.surface = self.front  
+        
+        front = [self.surfaces[0]]
+        self.front =[]
+        for img in front:
+            self.front += [pygame.transform.scale(img, (8,25))]
+        
+        left = [self.surfaces[1]]
+        self.left = []
+        for img in front:
+            self.left += [pygame.transform.scale(img, (25,8))]
+            
+        right = [self.surfaces[2]]
+        self.right = []
+        for img in front:
+            self.right += [pygame.transform.scale(img, (25,8))]
+              
         self.frame = 0
+        self.surfaces = self.front
         self.maxFrame = len(self.surfaces)-1
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = False
+        self.slashing = False
         if pygame.mixer:
             self.bounceSound = pygame.mixer.Sound("bounce.wav")
         self.place = False    
@@ -30,6 +44,16 @@ class Sword():
         pass
     def distToPoint(self, pt):
         pass
+        
+    def slash(self, player):
+        self.living = True
+        if player.dir == "down" or player.dir == "stop down":
+            self.dir = "down"
+            self.sufaces = self.front
+            self.rect.center = player.rect.center
+            self.rect.center[1] + 20
+            
+            
        
     def attack(self, other, other2):
         if other2.dir == "up":
