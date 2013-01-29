@@ -5,8 +5,7 @@ class Sword():
         self.surfaces = []
         imgs = ["rcs/imgs/sword/swordfront.png", "rcs/imgs/sword/swordleft.png", "rcs/imgs/sword/swordright.png"]
         for img in imgs:
-            surf = pygame.image.load(img)
-            
+            surf = pygame.image.load(img)  
             self.surfaces += [surf]
         
         front = [self.surfaces[0]]
@@ -46,13 +45,25 @@ class Sword():
         pass
         
     def slash(self, player):
-        self.living = True
+        self.slashing = True
         if player.dir == "down" or player.dir == "stop down":
             self.dir = "down"
             self.sufaces = self.front
             self.rect.center = player.rect.center
             self.rect.center[1] + 20
-            
+            self.living = True
+        if player.dir == "left" or player.dir == "stop left":
+            self.dir = "left"
+            self.sufaces = self.left
+            self.rect.center = player.rect.center
+            self.rect.center[1] + 20
+            self.living = True
+        if player.dir == "right" or player.dir == "stop right":
+            self.dir = "right"
+            self.sufaces = self.right
+            self.rect.center = player.rect.center
+            self.rect.center[1] + 20
+            self.living = True    
             
        
     def attack(self, other, other2):
