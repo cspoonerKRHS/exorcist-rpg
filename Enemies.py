@@ -1,9 +1,9 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, images, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, speed, screenSize, position, waitMax = 1000):
         self.surfaces = []
-        image = ["rcs/imgs/enemies/enemywalkup1.png", "rcs/imgs/enemies/enemywalkup2.png", "rcs/imgs/enemies/enemywalk3.png", 
+        images = ["rcs/imgs/enemies/enemywalkup1.png", "rcs/imgs/enemies/enemywalkup2.png", "rcs/imgs/enemies/enemywalk3.png", 
             "rcs/imgs/enemies/enemywalkdown1.png", "rcs/imgs/enemies/enemywalkdown2.png", "rcs/imgs/enemies/enemywalkdown3.png",
             "rcs/imgs/enemies/enemywalkleft1.png", "rcs/imgs/enemies/enemywalkleft2.png", "rcs/imgs/enemies/enemywalkleft3.png", 
             "rcs/imgs/enemies/enemywalkright1.png", "rcs/imgs/enemies/enemywalkright2.png", "rcs/imgs/enemies/enemywalkright3.png",
@@ -11,15 +11,11 @@ class Enemy():
         for image in images:
             self.surfaces += [pygame.image.load(image)]
         
-#        self.frontstill = self.surfaces[0:1]
         self.frontimgs = self.surfaces[0:2]
-#        self.backstill = self.surfaces[3:4]
         self.rightimgs = self.surfaces[3:5]
-#        self.leftstill = self.surfaces[6:7]
         self.leftimgs = self.surfaces[6:8]
-#        self.rightstill = self.surfaces[9:10]
         self.backimgs = self.surfaces[9:11]
-#        self.attackimg = self.surfaces[12]
+        self.attackimg = self.surfaces[12]
         self.surfaces = self.frontimgs
         self.frame = 0
         self.maxFrame = len(self.surfaces) - 1
