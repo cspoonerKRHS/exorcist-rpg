@@ -16,34 +16,45 @@ class Boss():
         self.living = True
         
     def  __str__(self):
-        return "I'm a Bosses " + str(self.rect.center) + str(self.speed) + str(self.living)
+        # return "I'm a Bosses " + str(self.rect.center) + str(self.speed) + str(self.living)
+		pass
      
     def place(self, pt):
-        print "I've moved to", pt
+        # print "I've moved to", pt
+		pass
         
     def dir(self, dir):
-        print "I have change direction"
+        # print "I have change direction"
+		pass
         
     def move(self):
-        print "I've moved", self.speed
+        # print "I've moved", self.speed
+		pass
     
     def distToPoint(self, pt):
-        print "I am this far from it."
+        # print "I am this far from it."
+		pass
     
     def collide(self, other):
-        print "trying to hit other", self.screenHeight
+        # print "trying to hit other", self.screenHeight
+		pass
     
     def collideWall(self):
-        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
+        # print "trying to hit edges of screen", self.screenWidth, self.screenHeight
+		pass
         
     def playerDetect(self, other):
-        print "rying to detect player", str(other)
+        # print "rying to detect player", str(other)
+		pass
         
     def attack(self, other):
-        print "trying to hit other", str(other)
+        # print "trying to hit other", str(other)
+		pass
     
     def shoot(self, other):
-        print "trying to shoot other", str(other)
+        # print "trying to shoot other", str(other)
+		pass
     
     def melee(self, other):
-        print "trying to melee other", str(other)        
+        # print "trying to melee other", str(other)
+		pass

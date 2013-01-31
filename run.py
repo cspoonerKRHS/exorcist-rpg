@@ -171,7 +171,7 @@ while True:
             if not enemy.living:
                 enemies.remove(enemy) 
                   
-        print len(enemies)
+        # print len(enemies)
         # Blitting
         screen.fill(bgColor)
         for block in map.blocks:
