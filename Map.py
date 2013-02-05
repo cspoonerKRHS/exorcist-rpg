@@ -34,8 +34,14 @@ class Level():
             
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
-                if c == "w":
+                if c == "W":
                     self.blocks += [Block([(x*10)+5, (y*10)+5], 
+                                           self.screenSize,
+                                           "rcs/imgs/block/cobblestone.png",
+                                           (10,10)
+                                           )]
+                if c == "w":
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
                                            "rcs/imgs/block/cobblestone.png",
                                            (10,10)
@@ -47,7 +53,11 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "c":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/wood.png" ,(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.screenSize,
+                    "rcs/imgs/block/wood.png" ,
+                    (10,10)
+                    )]
                 if c == "s":
                     self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/snow.png",(10,10))]
                 if c == "r":
