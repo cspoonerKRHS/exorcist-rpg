@@ -30,6 +30,14 @@ class Block():
                 self.rect.top < other.rect.bottom): 
                     other.speed[0] = other.speed[0] = 0
                     other.speed[1] = other.speed[1] = 0
+    
+    def enemyCollide(self, other, bounce):
+        if (self.rect.right > other.rect.left 
+            or self.rect.left < other.rect.right):
+                other.bounce("X")
+        if (self.rect.bottom > other.rect.top or 
+            self.rect.top < other.rect.bottom): 
+                other.bounce("Y")
                     
     def playerDetect(self, other):
         if self.go == True:

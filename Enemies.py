@@ -134,3 +134,26 @@ class Enemy():
                 self.speed[1] = 5
             if self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
+            if self.rect.center[0] == player.rect.center[0]:
+                self.speed[0] = 0
+            if self.rect.center[1] == player.rect.center[1]:
+                self.speed[1] = 0
+                
+    def enemyCollide(self, other):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom):
+               
+                    self.speed[0] = self.speed[0] * -1
+                    self.speed[1] = self.speed[1] * -1
+                    other.speed[0] = other.speed[0] * -1
+                    other.speed[1] = other.speed[1] * -1'
+                    
+    def bounce(self)
+        if self.bounce == "X"
+            self.speed[0] = self.speed[0]*-1
+        if self.bounce == "Y"
+            self.speed[1] = self.speed[1]*-1
+        
+        
