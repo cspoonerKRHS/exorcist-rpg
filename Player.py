@@ -13,11 +13,11 @@ class Player():
             self.surfaces += [surf]
         self.frontstill = self.surfaces[0:1]
         self.frontimgs = self.surfaces[1:3]
-        self.backstill = self.surfaces[3:4]
+        self.rightstill = self.surfaces[3:4]
         self.rightimgs = self.surfaces[4:6]
         self.leftstill = self.surfaces[6:7]
         self.leftimgs = self.surfaces[7:9]
-        self.rightstill = self.surfaces[9:10]
+        self.backstill = self.surfaces[9:10]
         self.backimgs = self.surfaces[10:12]
         self.surfaces = self.frontimgs
         self.frame = 0
