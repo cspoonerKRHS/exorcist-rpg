@@ -168,6 +168,7 @@ while True:
             enemy.attack(player)
             enemy.playerDetect(player)
             player.enemyCollide(enemy, healthbar)
+            enemy.enemyCollide(enemy)
             if not enemy.living:
                 enemies.remove(enemy) 
                   
