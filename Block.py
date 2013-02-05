@@ -31,7 +31,7 @@ class Block():
                     other.speed[0] = other.speed[0] = 0
                     other.speed[1] = other.speed[1] = 0
     
-    def enemyCollide(self, other, bounce):
+    def enemyCollide(self, other):
         if (self.rect.right > other.rect.left 
             or self.rect.left < other.rect.right):
                 other.bounce("X")

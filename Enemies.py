@@ -148,12 +148,12 @@ class Enemy():
                     self.speed[0] = self.speed[0] * -1
                     self.speed[1] = self.speed[1] * -1
                     other.speed[0] = other.speed[0] * -1
-                    other.speed[1] = other.speed[1] * -1'
+                    other.speed[1] = other.speed[1] * -1
                     
-    def bounce(self)
-        if self.bounce == "X"
+    def bounce(self, bounce):
+        if bounce == "X":
             self.speed[0] = self.speed[0]*-1
-        if self.bounce == "Y"
+        if bounce == "Y":
             self.speed[1] = self.speed[1]*-1
         
         
