@@ -155,6 +155,10 @@ while True:
             block.playerCollide(player)
         for block in map.mblocks:
             block.playerCollide(player)
+        for block in map.blocks:
+            for enemy in enemies:
+                if block.distToPoint(enemy.rect.center) < 75:
+                    block.enemyCollide(enemy)
         
         
         # boss.attack(player)
