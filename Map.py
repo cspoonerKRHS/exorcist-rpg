@@ -37,13 +37,13 @@ class Level():
                 if c == "W":
                     self.blocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
-                                           "rcs/imgs/block/cobblestone.png",
+                                           "rcs/imgs/block/cobblestonepath.png",
                                            (10,10)
                                            )]
                 if c == "w":
                     self.fblocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
-                                           "rcs/imgs/block/cobblestone.png",
+                                           "rcs/imgs/block/cobblestonepath.png",
                                            (10,10)
                                            )]
                 if c == " ":
