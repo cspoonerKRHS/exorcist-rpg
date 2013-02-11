@@ -48,7 +48,7 @@ class Sword():
             self.dir = "down"
             self.sufaces = self.front
             center = player.rect.center
-            center = (center[0], center[1] + 20)
+            center = (center[0]-7, center[1] + 20)
         if player.dir == "up" or player.dir == "stop up":
             self.dir = "up"
             self.sufaces = self.front
@@ -56,14 +56,14 @@ class Sword():
             center = (center[0], center[1] - 20)
         if player.dir == "right" or player.dir == "stop right":
             self.dir = "right"
-            self.sufaces = self.left
+            self.sufaces = self.right
             center =  player.rect.center
-            center = (center[0] + 18, center[1])
+            center = (center[0]+18, center[1])
         if player.dir == "left" or player.dir == "stop left":
             self.dir = "left"
-            self.sufaces = self.right
+            self.sufaces = self.left
             center = player.rect.center
-            center = (center[0] - 18, center[1])
+            center = (center[0]-18, center[1])
         
         self.surface = self.sufaces[self.frame]  
         self.rect = self.surface.get_rect(center = center)

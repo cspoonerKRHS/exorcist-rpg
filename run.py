@@ -150,6 +150,7 @@ while True:
         # Stuff that objects do
         player.move()
         player.wallCollide()
+        healthbar.animate()
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:

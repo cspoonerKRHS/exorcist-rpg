@@ -36,6 +36,7 @@ class Player():
         self.dir = "none"
         self.moving = False
         self.living = True
+        self.hit = False
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -120,13 +121,19 @@ class Player():
             or self.rect.right > self.screenWidth):
             self.speed[1] = self.speed[1] = 0
             self.speed[0] = self.speed[0] = 0
+    def update(self):
+        if effect.hit == True:
+            effect.upframe = False
         
     def enemyCollide(self, other, effect):
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
                 if (self.rect.bottom > other.rect.top and 
                     self.rect.top < other.rect.bottom):
-                    pass
+                    effect.upframe = True
+                    effect.hit = True
+                    
+                        
                     
     def blockCollide(self, other):
         if (self.rect.right > other.rect.left 
