@@ -155,5 +155,9 @@ class Enemy():
             self.speed[0] = self.speed[0]*-1
         if bounce == "Y":
             self.speed[1] = self.speed[1]*-1
+        if bounce == "s":
+            self.speed[1] = self.speed[1] = 3
+            self.speed[1] = self.speed[1] = 3
+ 
         
         
