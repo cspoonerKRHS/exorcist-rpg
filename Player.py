@@ -33,7 +33,7 @@ class Player():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
-        self.dir = "none"
+        self.dir = "down"
         self.moving = False
         self.living = True
         self.hit = False
@@ -121,8 +121,8 @@ class Player():
             or self.rect.right > self.screenWidth):
             self.speed[1] = self.speed[1] = 0
             self.speed[0] = self.speed[0] = 0
-    def update(self):
-        if effect.hit == True:
+    def update(self, effect):
+        if self.hit == True:
             effect.upframe = False
         
     def enemyCollide(self, other, effect):
@@ -131,7 +131,7 @@ class Player():
                 if (self.rect.bottom > other.rect.top and 
                     self.rect.top < other.rect.bottom):
                     effect.upframe = True
-                    effect.hit = True
+                    self.hit = True
                     
                         
                     

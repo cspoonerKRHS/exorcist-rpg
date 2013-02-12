@@ -46,26 +46,26 @@ class Sword():
     def slash(self, player):
         if player.dir == "down" or player.dir == "stop down":
             self.dir = "down"
-            self.sufaces = self.front
+            self.surfaces = self.front
             center = player.rect.center
             center = (center[0]-7, center[1] + 20)
         if player.dir == "up" or player.dir == "stop up":
             self.dir = "up"
-            self.sufaces = self.front
+            self.surfaces = self.front
             center = player.rect.center
             center = (center[0], center[1] - 20)
         if player.dir == "right" or player.dir == "stop right":
             self.dir = "right"
-            self.sufaces = self.right
+            self.surfaces = self.right
             center =  player.rect.center
             center = (center[0]+18, center[1])
         if player.dir == "left" or player.dir == "stop left":
             self.dir = "left"
-            self.sufaces = self.left
+            self.surfaces = self.left
             center = player.rect.center
             center = (center[0]-18, center[1])
         
-        self.surface = self.sufaces[self.frame]  
+        self.surface = self.surfaces[self.frame]  
         self.rect = self.surface.get_rect(center = center)
         print self.surface
        

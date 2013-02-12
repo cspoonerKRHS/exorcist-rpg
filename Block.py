@@ -47,8 +47,8 @@ class Block():
         return False
 
     
-#-------------infinite spawn-----------        
-#    def playerDetect(self, other):
-#        if self.distToPoint(other.rect.center) < self.radius:
-#            return True
-#        return False
+    #-------------infinite spawn-----------        
+    # def playerDetect(self, other):
+        # if self.distToPoint(other.rect.center) < self.radius:
+           # return True
+        # return False

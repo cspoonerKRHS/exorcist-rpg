@@ -28,7 +28,10 @@ class Screen():
 
     def place(self, pt):
         self.rect = self.rect.move(pt)
-
+        
+    def check(self, effect):    
+        if self.frame == self.maxFrame:
+            effect.living = False
         
     def move(self):
         self.rect = self.rect.move(self.speed)

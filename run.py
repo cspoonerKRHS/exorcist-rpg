@@ -26,6 +26,7 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
+death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
@@ -123,7 +124,7 @@ while True:
                     player.direction("up")
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
-                if event.key == pygame.K_j:
+                if event.key == pygame.K_j or event.key == pygame.K_SPACE:
                     sword.living = True
                     
             if event.type == pygame.KEYUP:
@@ -135,7 +136,7 @@ while True:
                     player.direction("stop up")
                 elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
-                if event.key == pygame.K_j:  
+                if event.key == pygame.K_j or event.key == pygame.K_SPACE:  
                     sword.living = False
                     
         
@@ -150,7 +151,9 @@ while True:
         # Stuff that objects do
         player.move()
         player.wallCollide()
+        healthbar.check(player)
         healthbar.animate()
+        player.update(healthbar)
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:
@@ -197,5 +200,7 @@ while True:
         screen.blit(healthbar.surface, healthbar.rect)  
         screen.blit(energybar_background.surface, energybar_background.rect)  
         screen.blit(energybar.surface, energybar.rect)    
+        if player.living == False:
+            screen.blit(death.surface, death.rect)
         pygame.display.flip()
         clk.tick(90)
