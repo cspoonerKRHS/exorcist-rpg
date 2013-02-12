@@ -106,7 +106,7 @@ while True:
         screen.blit(background.surface, background.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
-        player = Player(10, screenSize, [200, 200])
+        player = Player(10, screenSize, [360, 10])
         pygame.display.flip()
     # Game    
     while run:
@@ -156,9 +156,8 @@ while True:
             block.playerCollide(player)
         for block in map.blocks:
             for enemy in enemies:
-                if block.distToPoint(enemy.rect.center) < 75:
-                    block.enemyCollide(enemy)
-        
+                if block.distToPoint(enemy.rect.center) < 29:
+                    block.enemyCollide(enemy)      
         
         # boss.attack(player)
         # boss.playerDetect(player)
