@@ -67,7 +67,6 @@ class Sword():
         
         self.surface = self.surfaces[self.frame]  
         self.rect = self.surface.get_rect(center = center)
-        print self.surface
        
     def attack(self, other, other2):
         if other2.dir == "up":
