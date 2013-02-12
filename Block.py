@@ -16,7 +16,6 @@ class Block():
         self.rect.center = (pt)
         
     def distToPoint(self, pt):
-#        print "I am this far from it."
         x1 = self.rect.center[0]
         x2 = pt[0]
         y1 = self.rect.center[1]
@@ -32,11 +31,11 @@ class Block():
                     other.speed[1] = other.speed[1] = 0
     
     def enemyCollide(self, other):
-        if (self.rect.right > other.rect.left 
-            or self.rect.left < other.rect.right):
+        if (self.rect.right > other.rect.left-50 
+            or self.rect.left < other.rect.right-50):
                 other.bounce("X")
-        if (self.rect.bottom > other.rect.top or 
-            self.rect.top < other.rect.bottom): 
+        if (self.rect.bottom > other.rect.top-50 or 
+            self.rect.top < other.rect.bottom-50): 
                 other.bounce("Y")
                     
     def playerDetect(self, other):
