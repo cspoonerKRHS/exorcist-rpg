@@ -30,6 +30,7 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
+# hurt = (["rcs/imgs"])
 
 map = Level("map1", screenSize)
 
@@ -144,6 +145,8 @@ while True:
             if block.playerDetect(player):
                 enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
                 
+        for block in map.kblocks:
+            block.deathplayerCollide(player, healthbar)        
             
         if sword.living:
             sword.slash(player)
@@ -157,8 +160,6 @@ while True:
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:
-            block.playerCollide(player)
-        for block in map.kblocks:
             block.playerCollide(player)
         for block in map.blocks:
             for enemy in enemies:
