@@ -76,11 +76,23 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "f":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/sstone.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/sstone.png",
+                                            (10,10)
+                                            )]
                 if c == "o":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/incobblestone.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/incobblestone.png",
+                                            (10,10)
+                                            )]
                 if c == "b":
-                    self.blocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/lava.png",(10,10))]
+                    self.dblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/lava.png",
+                                            (10,10)
+                                            )]
                 
                 
                 
