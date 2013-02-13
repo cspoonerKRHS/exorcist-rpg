@@ -17,6 +17,7 @@ class Level():
         self.fblocks = []
         self.wblocks = []
         self.dblocks = []
+        self.kblocks = []
         self.mblocks = []
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -43,7 +44,7 @@ class Level():
                 if c == "w":
                     self.fblocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
-                                           "rcs/imgs/block/cobblestonepath.png",
+                                           "rcs/imgs/block/cobblestone.png",
                                            (10,10)
                                            )]
                 if c == " ":
@@ -54,20 +55,45 @@ class Level():
                                             )]
                 if c == "c":
                     self.fblocks += [Block([(x*10)+5, (y*10)+5],
-                    self.screenSize,
-                    "rcs/imgs/block/wood.png" ,
-                    (10,10)
-                    )]
+                                            self.screenSize,
+                                            "rcs/imgs/block/wood.png",
+                                            (10,10)
+                                            )]
                 if c == "s":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/snow.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/snow.png",
+                                            (10,10)
+                                            )]
                 if c == "r":
-                    self.blocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/water2.png",(10,10))]
+                    self.blocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,                                            "rcs/imgs/block/water2.png",
+                                            (10,10)
+                                            )]
                 if c == "d":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/dirt.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/dirt.png",
+                                            (10,10)
+                                            )]
                 if c == "f":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/sstone.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/sstone.png",
+                                            (10,10)
+                                            )]
                 if c == "o":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/incobblestone.png",(10,10))]
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/incobblestone.png",
+                                            (10,10)
+                                            )]
+                if c == "b":
+                    self.kblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/lava.png",
+                                            (10,10)
+                                            )]
                 
                 
                 
