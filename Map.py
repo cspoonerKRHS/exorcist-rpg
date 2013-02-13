@@ -17,6 +17,7 @@ class Level():
         self.fblocks = []
         self.wblocks = []
         self.dblocks = []
+        self.kblocks = []
         self.mblocks = []
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -88,7 +89,7 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "b":
-                    self.dblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.kblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/lava.png",
                                             (10,10)

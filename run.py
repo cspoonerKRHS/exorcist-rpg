@@ -158,7 +158,13 @@ while True:
             block.playerCollide(player)
         for block in map.mblocks:
             block.playerCollide(player)
+        for block in map.kblocks:
+            block.playerCollide(player)
         for block in map.blocks:
+            for enemy in enemies:
+                if block.distToPoint(enemy.rect.center) < 20:
+                    block.enemyCollide(enemy)
+        for block in map.kblocks:
             for enemy in enemies:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
@@ -189,6 +195,8 @@ while True:
         for block in map.dblocks:   
             screen.blit(block.surface, block.rect)
         for block in map.mblocks:   
+            screen.blit(block.surface, block.rect)
+        for block in map.kblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
