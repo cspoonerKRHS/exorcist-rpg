@@ -29,15 +29,15 @@ class Enemy():
         self.living = True
         self.health = 10
         self.detectRadius = 100
-        
+
     def  __str__(self):
         pass
 #        return "I'm a Enemy " + str(self.rect.center) + str(self.speed) + str(self.living)
-     
+
     def place(self, pt):
         self.rect.center = pt
 #        print "I've moved to", pt
-        
+
     def dir(self, dir):
         if dir == "up":
             self.speed[1] = -self.maxSpeed
@@ -63,7 +63,7 @@ class Enemy():
         elif dir == "stop right":
             self.speed[0] = 0
             self.dir = "stop right"
-        
+
     def move(self):
 #        print "I've moved", self.speed
         if self.dir == "up":
@@ -91,7 +91,7 @@ class Enemy():
                 
         self.surface = self.surfaces[self.frame]
         self.rect = self.rect.move(self.speed) 
-    
+
     def distToPoint(self, pt):
 #        print "I am this far from it."
         x1 = self.rect.center[0]
@@ -99,8 +99,7 @@ class Enemy():
         y1 = self.rect.center[1]
         y2 = pt[1]
         return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
-        
-         
+
     def collideWall(self):
 #        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
         if (self.rect.left < 0 
@@ -109,20 +108,19 @@ class Enemy():
         if (self.rect.top < 0 
             or self.rect.bottom >self.screenHeight):
                 self.speed[1] = self.speed[1]* -1
-   
 
     def attack(self, other):
 #        print "trying to hit other", str(other)
         pass
-    
+
     def shoot(self, other):
 #        print "trying to shoot other", str(other)
         pass
-    
+
     def melee(self, other):
 #        print "trying to melee other", str(other)
         pass
- 
+
     def playerDetect(self, player):
 #        print "trying to detect" + player
         if self.distToPoint(player.rect.center) < self.detectRadius:
@@ -138,26 +136,19 @@ class Enemy():
                 self.speed[0] = 0
             if self.rect.center[1] == player.rect.center[1]:
                 self.speed[1] = 0
-                
+
     def enemyCollide(self, other):
-        if (self.rect.right > other.rect.left 
-            and self.rect.left < other.rect.right):
-            if (self.rect.bottom > other.rect.top and 
+        if (self.rect.right > other.rect.left
+            or self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top or
                 self.rect.top < other.rect.bottom):
-               
                     self.speed[0] = self.speed[0] * -1
                     self.speed[1] = self.speed[1] * -1
                     other.speed[0] = other.speed[0] * -1
                     other.speed[1] = other.speed[1] * -1
-                    
+
     def bounce(self, bounce):
         if bounce == "X":
             self.speed[0] = self.speed[0]*-1
         if bounce == "Y":
             self.speed[1] = self.speed[1]*-1
-        if bounce == "s":
-            self.speed[1] = self.speed[1] = 3
-            self.speed[1] = self.speed[1] = 3
- 
-        
-        
