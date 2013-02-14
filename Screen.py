@@ -100,5 +100,6 @@ class Screen():
                 self.frame = 0
                 # self.living = False
             self.surface = self.surfaces[self.frame]
+            
 
 		
