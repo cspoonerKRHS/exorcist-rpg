@@ -24,10 +24,14 @@ class Screen():
         self.value = 0
         self.neg = False
         self.upframe = False
+        self.countframe = 0
 
 
     def place(self, pt):
         self.rect = self.rect.move(pt)
+        
+    def place2(self, other):
+        self.rect.center = other.rect.center     
         
     def check(self, effect):    
         if self.frame == self.maxFrame:
@@ -44,7 +48,7 @@ class Screen():
     def animate(self):
         if self.upframe == True:
             if self.frame < self.maxFrame:
-                self.frame += 1
+                self.frame += self.countframe
             else:
                 self.frame = 0
             self.upframe = False
@@ -100,5 +104,6 @@ class Screen():
                 self.frame = 0
                 # self.living = False
             self.surface = self.surfaces[self.frame]
+            
 
 		

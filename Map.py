@@ -116,7 +116,11 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "p":
-                    self.dblocks += [Block([(x*10)+5, (y*10)+5], self.screenSize,"rcs/imgs/block/spawnspace.png",(10,10))]
+                    self.dblocks += [Block([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10)
+                                            )]
                 if c == "N":
                     self.mblocks += [Block([(x*10)+5, (y*10)+5], 
                                             self.screenSize,

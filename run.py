@@ -30,7 +30,7 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
-# hurt = (["rcs/imgs"])
+hurt = Screen(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
 map = Level("map1", screenSize)
 
@@ -147,10 +147,11 @@ while True:
                 
         for block in map.kblocks:
             block.deathplayerCollide(player, healthbar)        
-            
         if sword.living:
             sword.slash(player)
-            
+        if player.hurt == True:
+            hurt.living = True
+        hurt.place2(player)
         # Stuff that objects do
         player.move()
         player.wallCollide()
@@ -208,8 +209,10 @@ while True:
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  
         screen.blit(energybar_background.surface, energybar_background.rect)  
-        screen.blit(energybar.surface, energybar.rect)    
+        screen.blit(energybar.surface, energybar.rect) 
+        if hurt.living == True:
+            screen.blit(hurt.surface, hurt.rect)
         if player.living == False:
-            screen.blit(death.surface, death.rect)
+            screen.blit(death.surface, death.rect)    
         pygame.display.flip()
         clk.tick(90)
