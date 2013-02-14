@@ -54,7 +54,15 @@ class Screen():
             self.upframe = False
             self.surface = self.surfaces[self.frame]
             
-
+    def animate2(self, other):
+        if self.upframe == True:
+            if self.frame + self.countframe <= self.maxFrame:
+                self.frame += self.countframe
+            else:
+                other.living = False
+            self.upframe = False
+            self.surface = self.surfaces[self.frame]
+            
     def update(self, other):
         if self.frame < self.maxFrame and self.select == True:
             self.frame += 1

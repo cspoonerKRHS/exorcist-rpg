@@ -31,16 +31,15 @@ class Block():
                     other.speed[1] = other.speed[1] = 0
                     
     def deathplayerCollide(self, other, effect):
-        other.hurt = False
-        if (self.rect.right > other.rect.left 
+        other.nodamage = False
+       if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
                     if other.nodamage == 0:
                         effect.upframe = True
-                        effect.countframe = 5
+                        effect.countframe = 1
                         other.hit = True  
-                    other.hurt = True 
                     other.nodamage += 1
                     if other.nodamage == 50:
                         other.nodamage = 0    

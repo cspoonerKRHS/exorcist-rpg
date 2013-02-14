@@ -156,7 +156,7 @@ while True:
         player.move()
         player.wallCollide()
         healthbar.check(player)
-        healthbar.animate()
+        healthbar.animate2(player)
         player.update(healthbar)
         for block in map.blocks:
             block.playerCollide(player)
