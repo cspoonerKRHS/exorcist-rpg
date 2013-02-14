@@ -38,31 +38,15 @@ class Enemy():
         self.rect.center = pt
 #        print "I've moved to", pt
 
-    def dir(self, dir):
-        if dir == "up":
-            self.speed[1] = -self.maxSpeed
+    def dir(self, speed):
+        if speed[1] < 0:
             self.dir = "up"
-        elif dir == "stop up":
-            self.speed[1] = 0
-            self.dir = "stop up"
-        elif dir == "down":
-            self.speed[1] = self.maxSpeed
+        elif speed[1] > 0:
             self.dir = "down"
-        elif dir == "stop down":
-            self.speed[1] = 0
-            self.dir = "stop down"
-        elif dir == "left":
-            self.speed[0] = -self.maxSpeed
+        elif speed[0] < 0:
             self.dir = "left"
-        elif dir == "stop left":
-            self.speed[0] = 0
-            self.dir = "stop left"
-        elif dir == "right":
-            self.speed[0] = self.maxSpeed
+        elif speed[0] > 0:
             self.dir = "right"
-        elif dir == "stop right":
-            self.speed[0] = 0
-            self.dir = "stop right"
 
     def move(self):
 #        print "I've moved", self.speed
