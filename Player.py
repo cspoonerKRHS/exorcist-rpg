@@ -134,6 +134,7 @@ class Player():
                     self.rect.top < other.rect.bottom):
                     if self.nodamage == 0:
                         effect.upframe = True
+                        effect.countframe = 1
                         self.hit = True    
                     self.nodamage += 1
                     if self.nodamage == 50:

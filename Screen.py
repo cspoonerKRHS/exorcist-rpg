@@ -24,6 +24,7 @@ class Screen():
         self.value = 0
         self.neg = False
         self.upframe = False
+        self.countframe = 0
 
 
     def place(self, pt):
@@ -44,7 +45,7 @@ class Screen():
     def animate(self):
         if self.upframe == True:
             if self.frame < self.maxFrame:
-                self.frame += 1
+                self.frame += self.countframe
             else:
                 self.frame = 0
             self.upframe = False

@@ -36,9 +36,10 @@ class Block():
                 self.rect.top < other.rect.bottom): 
                     if other.nodamage == 0:
                         effect.upframe = True
+                        effect.countframe = 5
                         other.hit = True    
                     other.nodamage += 1
-                    if other.nodamage < 50:
+                    if other.nodamage == 50:
                         other.nodamage = 0                    
     
     def enemyCollide(self, other):
