@@ -30,6 +30,9 @@ class Screen():
     def place(self, pt):
         self.rect = self.rect.move(pt)
         
+    def place2(self, other):
+        self.rect.center = other.rect.center     
+        
     def check(self, effect):    
         if self.frame == self.maxFrame:
             effect.living = False

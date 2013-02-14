@@ -39,12 +39,14 @@ class Player():
         self.hit = False
         self.nodamage = 0
         self.hurt = False
+        self.ran2 = False
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
         self.rect = self.rect.move(pt)
+     
             
         
     def direction(self, dir):
@@ -138,9 +140,13 @@ class Player():
                         effect.countframe = 1
                         self.hit = True    
                         self.hurt = True
+                        self.ran2 = True
                     self.nodamage += 1
                     if self.nodamage == 50:
                         self.nodamage = 0
+        if self.ran2 == True:
+            other.hurt = False
+            self.ran2 = False
                     
                         
                     
