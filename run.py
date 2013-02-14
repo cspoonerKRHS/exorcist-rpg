@@ -146,7 +146,7 @@ while True:
                 enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
                 
         for block in map.kblocks:
-            block.deathplayerCollide(player)        
+            block.deathplayerCollide(player, healthbar)        
         if sword.living:
             sword.slash(player)
             
