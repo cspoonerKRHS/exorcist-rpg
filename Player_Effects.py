@@ -1,12 +1,14 @@
 import pygame, math, time
 
-class Screen():
+class Player_Effects():
 
     # Methods or Functions
-    def __init__(self, images, speed, screenSize, waitMax = 10):
-        self.surfaces = []
-        for image in images:
-            self.surfaces += [pygame.image.load(image)]
+    def __init__(self, imgs, speed, screenSize, waitMax = 10):
+        self.surfaces = []        
+        for img in imgs:
+            surf = pygame.image.load(img)
+            surf = pygame.transform.scale(surf, (16,50))
+            self.surfaces += [surf]
         self.frame = 0
         self.waitCount = 0
         self.waitMax = waitMax
@@ -47,7 +49,7 @@ class Screen():
             
     def animate(self):
         if self.upframe == True:
-            if self.frame + self.countframe <= self.maxFrame:
+            if self.frame < self.maxFrame:
                 self.frame += self.countframe
             else:
                 self.frame = 0
@@ -104,6 +106,3 @@ class Screen():
                 self.frame = 0
                 # self.living = False
             self.surface = self.surfaces[self.frame]
-            
-
-		

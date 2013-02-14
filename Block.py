@@ -11,7 +11,6 @@ class Block():
         self.screenHeight = screenSize[1]
         self.go = True
         self.radius = 50
-        self.ran2 = False
             
     def place(self, pt):
         self.rect.center = (pt)
@@ -32,6 +31,7 @@ class Block():
                     other.speed[1] = other.speed[1] = 0
                     
     def deathplayerCollide(self, other, effect):
+        other.hurt = False
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
@@ -40,14 +40,10 @@ class Block():
                         effect.upframe = True
                         effect.countframe = 5
                         other.hit = True  
-                        other.hurt = True 
-                        self.ran2 = True
+                    other.hurt = True 
                     other.nodamage += 1
                     if other.nodamage == 50:
                         other.nodamage = 0    
-        if self.ran2 == True:
-            other.hurt = False
-            self.ran2 = False
     
     def enemyCollide(self, other):
         if (self.rect.right > other.rect.left-50 
