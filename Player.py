@@ -38,6 +38,7 @@ class Player():
         self.living = True
         self.hit = False
         self.nodamage = 0
+        self.hurt = False
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -136,6 +137,7 @@ class Player():
                         effect.upframe = True
                         effect.countframe = 1
                         self.hit = True    
+                        self.hurt = True
                     self.nodamage += 1
                     if self.nodamage == 50:
                         self.nodamage = 0

@@ -37,7 +37,8 @@ class Block():
                     if other.nodamage == 0:
                         effect.upframe = True
                         effect.countframe = 5
-                        other.hit = True    
+                        other.hit = True  
+                        other.hurt = True                      
                     other.nodamage += 1
                     if other.nodamage == 50:
                         other.nodamage = 0                    
