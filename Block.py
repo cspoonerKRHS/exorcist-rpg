@@ -32,7 +32,7 @@ class Block():
                     
     def deathplayerCollide(self, other, effect):
         other.nodamage = False
-       if (self.rect.right > other.rect.left 
+        if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
