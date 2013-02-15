@@ -29,10 +29,18 @@ class Block():
                 self.rect.top < other.rect.bottom): 
                     other.speed[0] = other.speed[0] = 0
                     other.speed[1] = other.speed[1] = 0
+    
+    def lavaCollide(self, other):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom): 
+                    other.speed[0] = other.speed[0] *.8
+                    other.speed[1] = other.speed[1] *.8
                     
     def deathplayerCollide(self, other, effect):
         other.nodamage = False
-       if (self.rect.right > other.rect.left 
+        if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
