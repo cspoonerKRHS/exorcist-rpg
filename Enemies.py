@@ -110,16 +110,22 @@ class Enemy():
         if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
+                self.surfaces = self.rightimgs
             if self.rect.center[0] > player.rect.center[0]:
                 self.speed[0] = -5
+                self.surfaces = self.leftimgs
             if self.rect.center[1] < player.rect.center[1]:
                 self.speed[1] = 5
+                self.surfaces = self.downimgs
             if self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
+                self.surfaces = self.frontimgs
             if self.rect.center[0] == player.rect.center[0]:
                 self.speed[0] = 0
             if self.rect.center[1] == player.rect.center[1]:
                 self.speed[1] = 0
+            if self.rect.center[0] == player.rect.center[0] and self.rect.center[1] == player.rect.center[1]:
+                self.surfaces = self.attackimg
 
     def enemyCollide(self, other):
         if (self.rect.right > other.rect.left
