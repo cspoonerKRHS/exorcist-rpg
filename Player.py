@@ -138,10 +138,9 @@ class Player():
                     if self.nodamage == 0:
                         effect.upframe = True
                         effect.countframe = 1
-                        self.hit = True
-                    self.hurt = True    
+                        self.hit = True   
                     self.nodamage += 1
-                    if self.nodamage == 50:
+                    if self.nodamage == 25:
                         self.nodamage = 0
 
             
