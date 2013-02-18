@@ -108,7 +108,6 @@ class Player():
             else:
                 self.frame += 1
                     
-        
         self.surface = self.surfaces[self.frame]            
         self.rect = self.rect.move(self.speed) 
    
@@ -134,6 +133,7 @@ class Player():
     def update(self, effect):
         if self.hit == True:
             effect.upframe = False
+        self.slow = False    
         
     def enemyCollide(self, other, effect):
         self.hurt = False

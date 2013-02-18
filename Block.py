@@ -36,14 +36,8 @@ class Block():
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom):   
-                other.slow = True  
-                print "Taylor"
-        if not(self.rect.right > other.rect.left 
-            and self.rect.left < other.rect.right):
-            if not(self.rect.bottom > other.rect.top and 
-                self.rect.top < other.rect.bottom):   
-                other.slow = False                  
-    
+                other.slow = True   
+
     def deathplayerCollide(self, other, effect):
         other.hurt = False
         if (self.rect.right > other.rect.left 
