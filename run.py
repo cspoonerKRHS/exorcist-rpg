@@ -110,7 +110,7 @@ while True:
         screen.blit(background.surface, background.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
-        player = Player(10, screenSize, [360, 10])
+        player = Player(7, screenSize, [360, 10])
         pygame.display.flip()
     # Game    
     while run:
@@ -187,6 +187,7 @@ while True:
             player.enemyCollide(enemy, healthbar)
             enemy.enemyCollide(enemy)
             if not enemy.living:
+                player.hurt = False
                 enemies.remove(enemy) 
            
         # print len(enemies)
