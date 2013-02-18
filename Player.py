@@ -39,6 +39,7 @@ class Player():
         self.hit = False
         self.nodamage = 0
         self.hurt = False
+        self.slow = False
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -110,7 +111,13 @@ class Player():
         
         self.surface = self.surfaces[self.frame]            
         self.rect = self.rect.move(self.speed) 
-        
+   
+    def slowed(self):
+        if self.slow == True:
+            self.maxSpeed = 3
+        else:
+            self.maxSpeed = 7
+   
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
         x2 = pt[0]

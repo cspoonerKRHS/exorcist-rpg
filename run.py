@@ -158,6 +158,7 @@ while True:
         healthbar.check(player)
         healthbar.animate2(player)
         player.update(healthbar)
+        player.slowed()
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:

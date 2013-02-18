@@ -32,25 +32,31 @@ class Block():
                     other.speed[1] = other.speed[1] = 0
     
     def lavaCollide(self, other):      
-        other.maxSpeed = 7
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom):   
-                other.maxSpeed = 3         
+                other.slow = True  
+                print "Taylor"
+        if not(self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if not(self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom):   
+                other.slow = False                  
     
     def deathplayerCollide(self, other, effect):
-        self.nodamage = False
+        other.hurt = False
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
+                    # print "Taylor"
                     if other.nodamage == 0:
                         effect.upframe = True
                         effect.countframe = 1
                         other.hit = True  
                     self.nodamage += 1
-                    if self.nodamage == 5000000000000000000:
+                    if self.nodamage == 50:
                         self.nodamage = 0    
     
     def enemyCollide(self, other):
