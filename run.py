@@ -1,4 +1,4 @@
-import pygame, math, sys, random
+import pygame, math, sys, random, time
 from Player import Player
 from Enemies import Enemy
 from Sword import Sword
@@ -153,11 +153,11 @@ while True:
             sword.slash(player)
         hurt.place2(player)
         # Stuff that objects do
-        player.move()
         player.wallCollide()
         healthbar.check(player)
         healthbar.animate2(player)
-        player.update(healthbar)
+        player.update(healthbar)        
+        
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:
@@ -193,6 +193,10 @@ while True:
            
         # print len(enemies)
         # Blitting
+        
+        player.slowed()
+        player.move()
+        
         screen.fill(bgColor)
         for block in map.blocks:
             screen.blit(block.surface, block.rect)
