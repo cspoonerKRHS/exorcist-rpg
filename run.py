@@ -179,6 +179,7 @@ while True:
         # boss.move
         # boss.collide(player)
         for enemy in enemies:
+            enemy.direction()
             enemy.collideWall()
             enemy.move()
             sword.attack(enemy, player)
