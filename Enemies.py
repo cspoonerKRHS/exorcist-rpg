@@ -133,7 +133,7 @@ class Enemy():
             elif self.speed[1] > 0:
                 self.dir = "down"
         else:
-            elif self.speed[0] < 0:
+            if self.speed[0] < 0:
                 self.dir = "left"
             elif self.speed[0] > 0:
                 self.dir = "right"
