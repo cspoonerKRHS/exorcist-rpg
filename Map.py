@@ -37,10 +37,11 @@ class Level():
             newlines += [newline]
         
         
-        
+        count = 0
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 bstime = time.time()
+                count +=1
                 if c == "W":
                     self.blocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
@@ -105,11 +106,11 @@ class Level():
                 btime += [betime]
                 
                 
-        print btime
-        #averageTime = 0
+        averageTime = 0
         for t in btime:
             averageTime += t
         print averageTime/len(btime)
+        print count
                 
                 
          

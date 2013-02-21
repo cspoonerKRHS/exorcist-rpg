@@ -40,6 +40,7 @@ class Player():
         self.nodamage = 0
         self.hurt = False
         self.slow = False
+        self.key = 0
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
