@@ -34,10 +34,8 @@ exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
 keys = []
 
-keys += [Key(screenSize)]
+keys += [Key(screenSize, [200, 200])]
 
-for key in keys:
-    key.place([200, 200])
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
