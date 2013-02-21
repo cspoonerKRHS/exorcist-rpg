@@ -53,7 +53,7 @@ class Enemy():
 #        print "I've moved", self.speed
         if self.dir == "up":
             if self.dir == "up":
-                self.surfaces = self.backimgs
+                self.surfaces = self.downimgs
             if self.dir == "down":
                 self.surfaces = self.frontimgs
             if self.dir == "left":
@@ -111,16 +111,16 @@ class Enemy():
         if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
-                xdiff = math.abs(player.rect.center[0] - self.rect.center[0])
+                xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             if self.rect.center[0] > player.rect.center[0]:
                 self.speed[0] = -5
-                xdiff = math.abs(player.rect.center[0] - self.rect.center[0])
+                xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             if self.rect.center[1] < player.rect.center[1]:
                 self.speed[1] = 5
-                ydiff = math.abs(player.rect.center[1] - self.rect.center[1])
+                ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             if self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
-                ydiff = math.abs(player.rect.center[1] - self.rect.center[1])
+                ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             if self.rect.center[0] == player.rect.center[0]:
                 self.speed[0] = 0
                 xdiff = 0
