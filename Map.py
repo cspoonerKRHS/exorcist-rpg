@@ -135,10 +135,10 @@ class Level():
                                             (10,10), 
                                             self.levelLoader(c))]
                 if c == "k":
-                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.lblocks += [Block([(x*10)+10, (y*10)+10],
                                             self.screenSize,
                                             "rcs/imgs/block/keyhole.png",
-                                            (10,10)
+                                            (20,20)
                                             )]   
 
     def levelLoader(self, dir):
