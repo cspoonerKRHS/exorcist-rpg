@@ -112,31 +112,34 @@ class Enemy():
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
-            if self.rect.center[0] > player.rect.center[0]:
+            elif self.rect.center[0] > player.rect.center[0]:
                 self.speed[0] = -5
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
+            else:
+                self.speed[0] = 0
+                xdiff = 0
+            
             if self.rect.center[1] < player.rect.center[1]:
                 self.speed[1] = 5
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
-            if self.rect.center[1] > player.rect.center [1]:
+            elif self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
-            if self.rect.center[0] == player.rect.center[0]:
-                self.speed[0] = 0
-                xdiff = 0
-            if self.rect.center[1] == player.rect.center[1]:
+            else:
                 self.speed[1] = 0
                 ydiff = 0
-        if ydiff > xdiff:       
-            if self.speed[1] < 0:
-                self.dir = "up"
-            elif self.speed[1] > 0:
-                self.dir = "down"
-        else:
-            if self.speed[0] < 0:
-                self.dir = "left"
-            elif self.speed[0] > 0:
-                self.dir = "right"
+            
+            
+            if ydiff > xdiff:       
+                if self.speed[1] < 0:
+                    self.dir = "up"
+                elif self.speed[1] > 0:
+                    self.dir = "down"
+            else:
+                if self.speed[0] < 0:
+                    self.dir = "left"
+                elif self.speed[0] > 0:
+                    self.dir = "right"
 
     def enemyCollide(self, other):
         if (self.rect.right > other.rect.left
