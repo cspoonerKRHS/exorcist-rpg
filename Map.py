@@ -101,12 +101,7 @@ class Level():
                                             "rcs/imgs/block/pitcobblestone.png",
                                             (10,10)
                                             )]
-                if c == "k":
-                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
-                                            self.screenSize,
-                                            "rcs/imgs/block/keyhole.png",
-                                            (10,10)
-                                            )]
+                
                 
                 
                     
@@ -139,7 +134,12 @@ class Level():
                                             "rcs/imgs/block/spawnspace.png",
                                             (10,10), 
                                             self.levelLoader(c))]
-                    
+                if c == "k":
+                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/keyhole.png",
+                                            (10,10)
+                                            )]   
 
     def levelLoader(self, dir):
         if self.level == "map1":
