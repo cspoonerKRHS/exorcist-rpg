@@ -34,7 +34,7 @@ enemies = []
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-map = Level("map1", screenSize)
+map = Level("map2", screenSize)
 
 boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
 boss.place([300,500])
@@ -202,6 +202,8 @@ while True:
         for block in map.mblocks:   
             screen.blit(block.surface, block.rect)
         for block in map.kblocks:   
+            screen.blit(block.surface, block.rect)
+        for block in map.lblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
