@@ -1,4 +1,4 @@
-import pygame, math, sys, random, time
+import pygame, math, sys, random
 from Player import Player
 from Enemies import Enemy
 from Sword import Sword
@@ -10,7 +10,6 @@ from Counter import Counter
 from pygame.locals import*
 from Map import Level
 from Player_Effects import Player_Effects
-from Key import Key
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -32,10 +31,6 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
-keys = []
-
-keys += [Key(screenSize, [200, 200])]
-
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
@@ -158,15 +153,11 @@ while True:
             sword.slash(player)
         hurt.place2(player)
         # Stuff that objects do
+        player.move()
         player.wallCollide()
         healthbar.check(player)
         healthbar.animate2(player)
-        player.update(healthbar)  
-        for key in keys:
-            key.playerCollide(player)
-            if not key.living:
-                keys.remove(key)
-        
+        player.update(healthbar)
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:
@@ -188,7 +179,6 @@ while True:
         # boss.move
         # boss.collide(player)
         for enemy in enemies:
-            enemy.direction()
             enemy.collideWall()
             enemy.move()
             sword.attack(enemy, player)
@@ -202,10 +192,6 @@ while True:
            
         # print len(enemies)
         # Blitting
-        
-        player.slowed()
-        player.move()
-        
         screen.fill(bgColor)
         for block in map.blocks:
             screen.blit(block.surface, block.rect)
@@ -217,6 +203,8 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.kblocks:   
             screen.blit(block.surface, block.rect)
+        for block in map.lblocks:   
+            screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:
             screen.blit(sword.surface, sword.rect)  
@@ -227,8 +215,6 @@ while True:
         screen.blit(healthbar.surface, healthbar.rect)  
         screen.blit(energybar_background.surface, energybar_background.rect)  
         screen.blit(energybar.surface, energybar.rect) 
-        for key in keys:
-            screen.blit(key.surface, key.rect)
         if player.hurt == True:
             screen.blit(hurt.surface, hurt.rect)
         if player.living == False:

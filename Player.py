@@ -39,8 +39,6 @@ class Player():
         self.hit = False
         self.nodamage = 0
         self.hurt = False
-        self.slow = False
-        self.key = 0
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
@@ -109,15 +107,10 @@ class Player():
             else:
                 self.frame += 1
                     
+        
         self.surface = self.surfaces[self.frame]            
         self.rect = self.rect.move(self.speed) 
-   
-    def slowed(self):
-        if self.slow == True:
-            self.maxSpeed = 3
-        else:
-            self.maxSpeed = 7
-   
+        
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
         x2 = pt[0]
@@ -134,7 +127,6 @@ class Player():
     def update(self, effect):
         if self.hit == True:
             effect.upframe = False
-        self.slow = False    
         
     def enemyCollide(self, other, effect):
         self.hurt = False
