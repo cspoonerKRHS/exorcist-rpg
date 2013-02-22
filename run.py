@@ -10,6 +10,7 @@ from Counter import Counter
 from pygame.locals import*
 from Map import Level
 from Player_Effects import Player_Effects
+from Key import Key
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -31,8 +32,10 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
+keys = []
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
+keys += [Key(screenSize, [350, 200])]
 
 map = Level("map1", screenSize)
 
@@ -172,6 +175,16 @@ while True:
             for enemy in enemies:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
+        for block in map.lblocks:
+            block.keyCollide(player)
+            if block.living == False:
+                map.lblocks.remove(block)
+                
+        for key in keys:
+            key.playerCollide(player)
+            if not key.living:
+                keys.remove(key)
+                
         
         
         # boss.attack(player)
@@ -210,6 +223,8 @@ while True:
             screen.blit(sword.surface, sword.rect)  
         for enemy in enemies:
             screen.blit(enemy.surface, enemy.rect)
+        for key in keys:
+            screen.blit(key.surface, key.rect)
         # screen.blit(boss.surface, boss.rect)  
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  

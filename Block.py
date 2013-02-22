@@ -12,6 +12,7 @@ class Block():
         self.go = True
         self.radius = 50
         self.nodamage = False
+        self.living = True
             
     def place(self, pt):
         self.rect.center = (pt)
@@ -28,8 +29,14 @@ class Block():
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
-                    other.speed[0] = other.speed[0] = 0
-                    other.speed[1] = other.speed[1] = 0
+                other.speed[0] = other.speed[0] * -.8
+                other.speed[1] = other.speed[1] * -.8
+                
+                other.move()
+                other.move()
+                
+                other.speed[0] = other.speed[0] = 0
+                other.speed[1] = other.speed[1] = 0
     
     def lavaCollide(self, other):      
         if (self.rect.right > other.rect.left 
@@ -37,7 +44,24 @@ class Block():
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom):   
                 other.slow = True   
-
+    def keyCollide(self, other):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom): 
+                if other.key > 0:
+                    other.key += -1
+                    self.living = False
+                
+                other.speed[0] = other.speed[0] * -.8
+                other.speed[1] = other.speed[1] * -.8
+                
+                other.move()
+                other.move()
+                
+                other.speed[0] = other.speed[0] = 0
+                other.speed[1] = other.speed[1] = 0
+                    
     def deathplayerCollide(self, other, effect):
         other.hurt = False
         if (self.rect.right > other.rect.left 

@@ -39,6 +39,9 @@ class Player():
         self.hit = False
         self.nodamage = 0
         self.hurt = False
+        self.key = 0
+        self.pushed = False
+        self.pushCount = 0
         
     def  __str__(self):
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
