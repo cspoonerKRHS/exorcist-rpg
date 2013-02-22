@@ -125,6 +125,7 @@ class Enemy():
             elif self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
+            
             else:
                 self.speed[1] = 0
                 ydiff = 0
