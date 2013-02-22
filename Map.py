@@ -14,6 +14,7 @@ class Level():
         thingMap="rcs/maps/"+ level +".tng"
         self.level = level
         self.blocks = []
+        self.lblocks = []
         self.fblocks = []
         self.wblocks = []
         self.dblocks = []
@@ -38,7 +39,7 @@ class Level():
                 if c == "W":
                     self.blocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
-                                           "rcs/imgs/block/cobblestonepath.png",
+                                           "rcs/imgs/block/cobblestone.png",
                                            (10,10)
                                            )]
                 if c == "w":
@@ -95,12 +96,17 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "l":
-                    self.blocks += [Block([(x*10)+5, (y*10)+5],
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/pitcobblestone.png",
                                             (10,10)
                                             )]
-                
+                if c == "k":
+                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/keyhole.png",
+                                            (10,10)
+                                            )]
                 
                 
                     
