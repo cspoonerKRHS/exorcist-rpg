@@ -216,6 +216,8 @@ while True:
             screen.blit(block.surface, block.rect)
         for block in map.dblocks:   
             screen.blit(block.surface, block.rect)
+        for block in map.oblocks:   
+            screen.blit(block.surface, block.rect)
         for block in map.mblocks:   
             screen.blit(block.surface, block.rect)
         for block in map.kblocks:   

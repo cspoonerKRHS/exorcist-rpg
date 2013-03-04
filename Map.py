@@ -20,6 +20,7 @@ class Level():
         self.dblocks = []
         self.kblocks = []
         self.mblocks = []
+        self.oblocks = []
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
         geofile.close()
@@ -140,10 +141,10 @@ class Level():
                                             "rcs/imgs/block/keyhole.png",
                                             (10,10)
                                             )] 
-                if c == "k":
+                if c == "j":
                     self.oblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
-                                            "rcs/imgs/block/keyhole.png",
+                                            "rcs/imgs/block/spawnspace.png",
                                             (10,10)
                                             )]   
 
