@@ -139,6 +139,12 @@ class Level():
                                             self.screenSize,
                                             "rcs/imgs/block/keyhole.png",
                                             (10,10)
+                                            )] 
+                if c == "k":
+                    self.oblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/keyhole.png",
+                                            (10,10)
                                             )]   
 
     def levelLoader(self, dir):
