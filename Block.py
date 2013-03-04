@@ -91,8 +91,14 @@ class Block():
                 self.go = False
                 return True
         return False
+        
+    def keySpawn(self):
+        if self.go == True:
+           self.go = False
+           return True
+        return False
 
-    
+        
     #-------------infinite spawn-----------        
     # def playerDetect(self, other):
         # if self.distToPoint(other.rect.center) < self.radius:
