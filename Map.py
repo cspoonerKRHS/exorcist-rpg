@@ -144,7 +144,7 @@ class Level():
                 if c == "j":
                     self.oblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
-                                            "rcs/imgs/block/spawnspace.png",
+                                            "rcs\imgs\key\key.png",
                                             (10,10)
                                             )]   
 
