@@ -35,7 +35,6 @@ enemies = []
 keys = []
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
-keys += [Key(screenSize, [350, 200])]
 
 map = Level("map1", screenSize)
 
@@ -149,6 +148,9 @@ while True:
         for block in map.dblocks:
             if block.playerDetect(player):
                 enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
+        for block in map.oblocks:
+            if block.keySpawn:
+                keys += [Key(screenSize, block.rect.center)]
                 
         for block in map.kblocks:
             block.deathplayerCollide(player, healthbar)        
