@@ -148,9 +148,9 @@ class Level():
                                             (15,7)
                                             )]
                 if c == "h":
-                    self.oblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
-                                            "rcs\imgs\key\key.png",
+                                            "rcs\imgs\key\wall.png",
                                             (15,7)
                                             )]   
 
