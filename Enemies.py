@@ -51,15 +51,15 @@ class Enemy():
 
     def move(self):
 #        print "I've moved", self.speed
+        
         if self.dir == "up":
-            if self.dir == "up":
-                self.surfaces = self.downimgs
-            if self.dir == "down":
-                self.surfaces = self.frontimgs
-            if self.dir == "left":
-                self.surfaces = self.leftimgs
-            if self.dir == "right":
-                self.surfaces = self.rightimgs
+            self.surfaces = self.upimgs
+        if self.dir == "down":
+            self.surfaces = self.downimgs
+        if self.dir == "left":
+            self.surfaces = self.leftimgs
+        if self.dir == "right":
+            self.surfaces = self.rightimgs
                 
         if self.frame > len(self.surfaces)-1:
             self.frame = len(self.surfaces)-1
