@@ -97,6 +97,14 @@ class Block():
            self.go = False
            return True
         return False
+    
+    def playerKeyCollide(self, other):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and 
+                self.rect.top < other.rect.bottom):   
+                self.living = False
+                other.key += 1
 
         
     #-------------infinite spawn-----------        
