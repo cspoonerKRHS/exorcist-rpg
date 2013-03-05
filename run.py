@@ -148,9 +148,6 @@ while True:
         for block in map.dblocks:
             if block.playerDetect(player):
                 enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
-        for block in map.oblocks:
-            if block.keySpawn:
-                keys += [Key(screenSize, block.rect.center)]
                 
         for block in map.kblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -183,11 +180,10 @@ while True:
             block.keyCollide(player)
             if block.living == False:
                 map.lblocks.remove(block)
-                
-        for key in keys:
-            key.playerCollide(player)
-            if not key.living:
-                keys.remove(key)
+        for block in map.oblocks:
+            block.playerKeyCollide(player)
+            if not block.living:
+                map.oblocks.remove(block)
                 
         
         
