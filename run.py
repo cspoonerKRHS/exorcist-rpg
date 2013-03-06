@@ -1,6 +1,7 @@
 import pygame, math, sys, random
 from Player import Player
 from Enemies import Enemy
+from BlackEnemy import BlackEnemy
 from Sword import Sword
 from Screen import Screen
 from Menu import Button
@@ -32,6 +33,7 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 enemies = []
+darkEnemies = []
 keys = []
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
@@ -145,9 +147,12 @@ while True:
                     sword.living = False
                     
         
+        # for block in map.dblocks:
+            # if block.playerDetect(player):
+                # enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
         for block in map.dblocks:
             if block.playerDetect(player):
-                enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, 1)]        
                 
         for block in map.kblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -173,9 +178,9 @@ while True:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
         for block in map.kblocks:
-            for enemy in enemies:
-                if block.distToPoint(enemy.rect.center) < 20:
-                    block.enemyCollide(enemy)
+            for darkEnemy in darkEnemies:
+                if block.distToPoint(darkEnemy.rect.center) < 20:
+                    block.enemyCollide(darkEnemy)
         for block in map.lblocks:
             block.keyCollide(player)
             if block.living == False:
@@ -197,11 +202,22 @@ while True:
             sword.attack(enemy, player)
             enemy.attack(player)
             enemy.playerDetect(player)
-            player.enemyCollide(enemy, healthbar)
+            enemy.playerCollide(player, healthbar)
             enemy.enemyCollide(enemy)
             if not enemy.living:
                 player.hurt = False
                 enemies.remove(enemy) 
+        for darkEnemy in darkEnemies:
+            darkEnemy.collideWall()
+            darkEnemy.move()
+            sword.attack(darkEnemy, player)
+            darkEnemy.attack(player)
+            darkEnemy.playerDetect(player)
+            darkEnemy.playerCollide(player, healthbar)
+            darkEnemy.enemyCollide(darkEnemy)
+            if not darkEnemy.living:
+                player.hurt = False
+                darkEnemies.remove(darkEnemy)         
            
         # print len(enemies)
         # Blitting
@@ -225,6 +241,8 @@ while True:
             screen.blit(sword.surface, sword.rect)  
         for enemy in enemies:
             screen.blit(enemy.surface, enemy.rect)
+        for darkEnemy in darkEnemies:
+            screen.blit(darkEnemy.surface, darkEnemy.rect)    
         for key in keys:
             screen.blit(key.surface, key.rect)
         # screen.blit(boss.surface, boss.rect)  
@@ -235,6 +253,7 @@ while True:
         if player.hurt == True:
             screen.blit(hurt.surface, hurt.rect)
         if player.living == False:
-            screen.blit(death.surface, death.rect)    
+            # screen.blit(death.surface, death.rect)
+            player.living = True
         pygame.display.flip()
         clk.tick(90)
