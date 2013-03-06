@@ -102,6 +102,19 @@ class Level():
                                             "rcs/imgs/block/pitcobblestone.png",
                                             (10,10)
                                             )]
+                if c == "t":
+                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/pit2cobblestone.png",
+                                            (10,10)
+                                            )]
+                if c == "y":
+                    self.blocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/pit3cobblestone.png",
+                                            (10,10)
+                                            )]
+                
                 
                 
                 
@@ -150,8 +163,8 @@ class Level():
                 if c == "h":
                     self.lblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
-                                            "rcs\imgs\key\wall.png",
-                                            (15,7)
+                                            "rcs/imgs/block/wall.png",
+                                            (10,10)
                                             )]   
 
     def levelLoader(self, dir):
