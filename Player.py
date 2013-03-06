@@ -129,26 +129,7 @@ class Player():
             self.speed[0] = self.speed[0] = 0
     def update(self, effect):
         if self.hit == True:
-            effect.upframe = False
-        
-    def enemyCollide(self, other, effect):
-        self.hurt = False
-        if (self.rect.right > other.rect.left 
-            and self.rect.left < other.rect.right):
-                if (self.rect.bottom > other.rect.top and 
-                    self.rect.top < other.rect.bottom):
-                    self.hurt = True
-                    if self.nodamage == 0:
-                        effect.upframe = True
-                        effect.countframe = 1
-                        self.hit = True   
-                    self.nodamage += 1
-                    if self.nodamage == 25:
-                        self.nodamage = 0
-
-            
-                    
-                        
+            effect.upframe = False                        
                     
     def blockCollide(self, other):
         if (self.rect.right > other.rect.left 
