@@ -50,7 +50,6 @@ class Block():
             if (self.rect.bottom > other.rect.top and 
                 self.rect.top < other.rect.bottom): 
                 if other.key > 0:
-                    other.key += -1
                     self.living = False
                 
                 other.speed[0] = other.speed[0] * -.8
