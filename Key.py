@@ -8,10 +8,7 @@ class Key():
         imgs = ["rcs/imgs/key/key.png"]
         for img in imgs:
             surf = pygame.image.load(img)
-<<<<<<< HEAD
-=======
-            surf = pygame.transform.scale(surf, (15,15))
->>>>>>> origin/master
+
             self.surfaces += [surf]
         self.frame = 0
         self.maxFrame = len(self.surfaces)-1
@@ -31,10 +28,6 @@ class Key():
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
-<<<<<<< HEAD
-                self.rect.top < other.rect.bottom):   
-=======
-                self.rect.top < other.rect.bottom):    
->>>>>>> origin/master
+                self.rect.top < other.rect.bottom):  
                 self.living = False
                 other.key += 1

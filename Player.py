@@ -47,7 +47,7 @@ class Player():
         return "I'm a Player " + str(self.rect.center) + str(self.speed) + str(self.living)
      
     def place(self, pt):
-        self.rect = self.rect.move(pt)
+        self.rect.center = pt
      
             
         
