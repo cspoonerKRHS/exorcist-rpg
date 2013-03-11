@@ -147,14 +147,14 @@ while True:
                     sword.living = False
                     
         
-        # for block in map.dblocks:
-            # if block.playerDetect(player):
-                # enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
-        for block in map.dblocks:
+        for block in map.enemyblocks:
+            if block.playerDetect(player):
+                enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
+        for block in map.darkblocks:
             if block.playerDetect(player):
                 darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, 1)]        
                 
-        for block in map.kblocks:
+        for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
         if sword.living:
             sword.slash(player)
@@ -168,23 +168,32 @@ while True:
         for block in map.blocks:
             block.playerCollide(player)
         for block in map.mblocks:
-            block.playerCollide(player)
-        for block in map.mblocks:
-            block.playerCollide(player)
-#        for block in map.kblocks:
+            if block.playerCollide(player):
+                if ((block.dir == "N" and (player.dir == "up" or player.dir == "stop up"))
+                    or (block.dir == "S" and (player.dir == "down" or player.dir == "stop down"))
+                    or (block.dir == "E" and (player.dir == "right" or player.dir == "stop right"))
+                    or (block.dir == "W" and (player.dir == "left" or player.dir == "stop left"))):
+                    map.load(block.newMap)
+                    player.place(block.dest)
+                    for enemy in enemies:
+                        enemies.remove[enemy]
+                    for enemy in enemies:
+                        enemies.remove[enemies]
+                
+#        for block in map.killblocks:
 #            block.lavaCollide(player)
         for block in map.blocks:
             for enemy in enemies:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
-        for block in map.kblocks:
+        for block in map.killblocks:
             for darkEnemy in darkEnemies:
                 if block.distToPoint(darkEnemy.rect.center) < 20:
                     block.enemyCollide(darkEnemy)
-        for block in map.lblocks:
+        for block in map.lockblocks:
             block.keyCollide(player)
             if block.living == False:
-                map.lblocks.remove(block)
+                map.lockblocks.remove(block)
         for block in map.oblocks:
             block.playerKeyCollide(player)
             if not block.living:
@@ -224,17 +233,19 @@ while True:
         screen.fill(bgColor)
         for block in map.blocks:
             screen.blit(block.surface, block.rect)
-        for block in map.fblocks:
+        for block in map.floorblocks:
             screen.blit(block.surface, block.rect)
-        for block in map.dblocks:   
+        for block in map.darkblocks:   
+            screen.blit(block.surface, block.rect)
+        for block in map.enemyblocks:   
             screen.blit(block.surface, block.rect)
         for block in map.oblocks:   
             screen.blit(block.surface, block.rect)
         for block in map.mblocks:   
             screen.blit(block.surface, block.rect)
-        for block in map.kblocks:   
+        for block in map.killblocks:   
             screen.blit(block.surface, block.rect)
-        for block in map.lblocks:   
+        for block in map.lockblocks:   
             screen.blit(block.surface, block.rect)
         screen.blit(player.surface, player.rect)  
         if sword.living == True:

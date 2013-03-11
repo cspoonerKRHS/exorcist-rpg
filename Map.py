@@ -1,5 +1,6 @@
-import pygame, math, sys
+import pygame, math, sys, time
 from Block import Block
+from LevelBlock import LevelBlock
 
 class Level():
     def __init__(self, level, screenSize):
@@ -10,15 +11,17 @@ class Level():
         
         
     def load(self, level):
+        st = time.time()
         geoMap="rcs/maps/"+ level +".lvl"
         thingMap="rcs/maps/"+ level +".tng"
         self.level = level
         self.blocks = []
-        self.lblocks = []
-        self.fblocks = []
+        self.lockblocks = []
+        self.floorblocks = []
         self.wblocks = []
-        self.dblocks = []
-        self.kblocks = []
+        self.darkblocks = []
+        self.killblocks = []
+        self.enemyblocks = []
         self.mblocks = []
         self.oblocks = []
         geofile = open(geoMap, "r")
@@ -44,25 +47,25 @@ class Level():
                                            (10,10)
                                            )]
                 if c == "w":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5], 
                                            self.screenSize,
                                            "rcs/imgs/block/cobblestone.png",
                                            (10,10)
                                            )]
 #                if c == " ":
-#                    self.fblocks += [Block([(x*10)+5, (y*10)+5], 
+#                    self.floorblocks += [Block([(x*10)+5, (y*10)+5], 
 #                                            self.screenSize,
 #                                            "rcs/imgs/block/grass.png",
 #                                            (10,10)
 #                                            )]
                 if c == "c":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/wood.png",
                                             (10,10)
                                             )]
                 if c == "s":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/snow.png",
                                             (10,10)
@@ -73,37 +76,43 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "d":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/dirt.png",
                                             (10,10)
                                             )]
                 if c == "f":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/sstone.png",
                                             (10,10)
                                             )]
                 if c == "o":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/incobblestone.png",
                                             (10,10)
                                             )]
+                if c == "O":
+                    self.floorblocks += [Block([(x*10)+25, (y*10)+25],
+                                            self.screenSize,
+                                            "rcs/imgs/block/bigincobblestone.png",
+                                            (50,50)
+                                            )]
                 if c == "b":
-                    self.kblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.killblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/lava.png",
                                             (10,10)
                                             )]
                 if c == "l":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/pitcobblestone.png",
                                             (10,10)
                                             )]
                 if c == "t":
-                    self.fblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.floorblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/pit2cobblestone.png",
                                             (10,10)
@@ -137,19 +146,35 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "p":
-                    self.dblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.darkblocks += [Block([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10)
+                                            )]
+                if c == "r":
+                    self.enemyblocks += [Block([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
                                             "rcs/imgs/block/spawnspace.png",
                                             (10,10)
                                             )]
                 if c == "N":
-                    self.mblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
                                             "rcs/imgs/block/spawnspace.png",
                                             (10,10), 
-                                            self.levelLoader(c))]
+                                            self.levelLoader(c),
+                                            [(x*10)+5, self.screenSize[1]],
+                                            c)]
+                if c == "S":
+                    self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10), 
+                                            self.levelLoader(c),
+                                            [(x*10)+5, 0],
+                                            c)]
                 if c == "k":
-                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.lockblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/keyhole.png",
                                             (10,10)
@@ -161,15 +186,21 @@ class Level():
                                             (15,7)
                                             )]
                 if c == "h":
-                    self.lblocks += [Block([(x*10)+5, (y*10)+5],
+                    self.lockblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/wall.png",
                                             (10,10)
-                                            )]   
+                                            )] 
+        et = time.time()  
+        print(et-st)
 
     def levelLoader(self, dir):
         if self.level == "map1":
-            if self.dir == "N":
+            if dir == "N":
                 return "map2"
+                print "someting"
+        if self.level == "map2":
+            if dir == "S":
+                return "map1"
                 print "someting"
                
