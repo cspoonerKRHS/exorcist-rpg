@@ -72,7 +72,8 @@ class Level():
                                             )]
                 if c == "r":
                     self.blocks += [Block([(x*10)+5, (y*10)+5],
-                                            self.screenSize,                                            "rcs/imgs/block/water2.png",
+                                            self.screenSize,
+                                            "rcs/imgs/block/water2.png",
                                             (10,10)
                                             )]
                 if c == "d":
@@ -103,6 +104,12 @@ class Level():
                     self.killblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/lava.png",
+                                            (10,10)
+                                            )]
+                if c == "5":
+                    self.killblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/black.png",
                                             (10,10)
                                             )]
                 if c == "l":
@@ -191,15 +198,14 @@ class Level():
                                             "rcs/imgs/block/wall.png",
                                             (10,10)
                                             )] 
-        et = time.time()  
-        print(et-st)
+
 
     def levelLoader(self, dir):
         if self.level == "map1":
             if dir == "N":
-                return "map2"
+                return "map3"
                 print "someting"
-        if self.level == "map2":
+        if self.level == "map3":
             if dir == "S":
                 return "map1"
                 print "someting"
