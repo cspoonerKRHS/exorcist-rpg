@@ -1,7 +1,7 @@
 import pygame, math, sys, random
 
 class Enemy():
-    def __init__(self, speed, screenSize, position, waitMax = 1000):
+    def __init__(self, speed, screenSize, position, dif = 2, waitMax = 1000):
         self.surfaces = []
         images = ["rcs/imgs/enemies/enemywalkup1.png", "rcs/imgs/enemies/enemywalkup2.png", "rcs/imgs/enemies/enemywalk3.png", 
             "rcs/imgs/enemies/enemywalkdown1.png", "rcs/imgs/enemies/enemywalkdown2.png", "rcs/imgs/enemies/enemywalkdown3.png",
@@ -20,7 +20,7 @@ class Enemy():
         self.maxFrame = len(self.surfaces) - 1
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
-        self.speed = speed
+        self.speed = [speed[0]*dif, speed[1]*dif]
         self.waitCount = 0
         self.waitMax = waitMax
         self.place(position)
@@ -30,6 +30,8 @@ class Enemy():
         self.health = 10
         self.detectRadius = 100
         self.dir = "up"
+        self.playerDected = False
+        self.dif = dif
 
     def  __str__(self):
         pass
@@ -94,7 +96,7 @@ class Enemy():
                         other.hurt = True
                         if other.nodamage == 0:
                             effect.upframe = True
-                            effect.countframe = 1
+                            effect.countframe = 1*self.dif
                             other.hit = True   
                         other.nodamage += 1
                         if other.nodamage == 25:
@@ -123,26 +125,33 @@ class Enemy():
 
     def playerDetect(self, player):
 #        print "trying to detect" + player
+        self.playerDected = False
         if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
                 self.speed[0] = 5
+                self.playerDected = True
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             elif self.rect.center[0] > player.rect.center[0]:
                 self.speed[0] = -5
+                self.playerDected = True
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             else:
                 self.speed[0] = 0
+                self.playerDected = False
                 xdiff = 0
             
             if self.rect.center[1] < player.rect.center[1]:
                 self.speed[1] = 5
+                self.playerDected = True
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             elif self.rect.center[1] > player.rect.center [1]:
                 self.speed[1] = -5
+                self.playerDected = True
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             
             else:
                 self.speed[1] = 0
+                self.playerDected = False
                 ydiff = 0
             
             

@@ -2,8 +2,8 @@ import pygame, math, sys, random
 from Enemies import Enemy
 
 class BlackEnemy(Enemy):
-    def __init__(self, speed, screenSize, position, waitMax = 1000):
-        Enemy.__init__(self, speed, screenSize, position, waitMax)
+    def __init__(self, speed, screenSize, position, dif =2, waitMax = 1000):
+        Enemy.__init__(self, speed, screenSize, position, dif, waitMax)
         self.surfaces = []
         imgs = ["rcs/imgs/enemies/darkenemywalkup1.png", "rcs/imgs/enemies/darkenemywalkup2.png", "rcs/imgs/enemies/darkenemywalk3.png", 
             "rcs/imgs/enemies/darkenemywalkdown1.png", "rcs/imgs/enemies/darkenemywalkdown2.png", "rcs/imgs/enemies/darkenemywalkdown3.png",
@@ -25,6 +25,8 @@ class BlackEnemy(Enemy):
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.place(position)
+        self.fire = False
+        self.waitFire = 0
         
     def playerCollide(self, other, effect):
             other.hurt = False
@@ -35,8 +37,9 @@ class BlackEnemy(Enemy):
                         other.hurt = True
                         if other.nodamage == 0:
                             effect.upframe = True
-                            effect.countframe = 3
+                            effect.countframe = 2*self.dif
                             other.hit = True   
                         other.nodamage += 1
                         if other.nodamage == 25:
                             other.nodamage = 0    
+    
