@@ -32,6 +32,18 @@ background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
+opexit = Button("EXIT", [0,10], (20, 100, 20))
+option = Button("OPTIONS", [0,10], (20, 100, 20))
+aidif = Button("AI DIFFICULTY", [0,10], (20, 100, 20))
+easy = Button("EASY", [0,10], (20, 100, 20))
+normal = Button("NORMAL", [0,10], (20, 100, 20))
+hard = Button("HARD", [0,10], (20, 100, 20))
+option.place([250, 345])
+aidif.place([100, 100])
+easy.place([100, 200])
+normal.place([250, 200])
+hard.place([500, 200])
+opexit.place([600, 500])
 enemies = []
 darkEnemies = []
 keys = []
@@ -63,6 +75,8 @@ energybar.place([645,28])
 healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [0,0], screenSize)
 healthbar_background.place([640, 10])
 
+counter = Counter([45,25], screenSize)
+
 if pygame.mixer:
     song = pygame.mixer.music.load('rcs/sounds/soundtracks/RPG_Soundtrack.ogg')
 if pygame.mixer:    
@@ -74,48 +88,70 @@ blue = 0
 bgColor = red, green, blue
 
 run = False
+run2 = False
 
 # Menu
 while True:
-    while not run:
+    while not run and not run2:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_UP or event.key == pygame.K_w) and not singleplayer.highlighted:
-                    singleplayer.highlighted = True
-                    exit.highlighted = False
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_s and not exit.highlighted:
-                    exit.highlighted = True
-                    singleplayer.highlighted = False
-                elif event.key == pygame.K_SPACE and exit.highlighted == True:
-                    sys.exit()
-                elif event.key == pygame.K_SPACE and singleplayer.highlighted == True:
-                    run = True
-            elif event.type == pygame.MOUSEMOTION:
-                if singleplayer.collidePt(event.pos):
-                    singleplayer.highlighted = True
-                    exit.highlighted = False
-                elif exit.collidePt(event.pos):
-                    singleplayer.highlighted = False
-                    exit.highlighted = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if singleplayer.collidePt(event.pos):
                         singleplayer.clicked = True
-                        run = True
+                        run = True                     
+                    elif option.collidePt(event.pos):
+                        option.clicked = True
+                        run2 = True
                     elif exit.collidePt(event.pos):
                         exit.clicked = True
                         sys.exit()
 
         singleplayer.update((200, 10, 10))
+        option.update((200, 10, 10))
         exit.update((200, 10, 10))
         
         screen.fill(bgColor)
         screen.blit(background.surface, background.rect)
+        screen.blit(option.surface, option.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
         player = Player(7, screenSize, [360, 10])
         pygame.display.flip()
+        
+    while run2:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: sys.exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if opexit.collidePt(event.pos):
+                            opexit.clicked = True
+                            run2 = False
+                        if normal.collidePt(event.pos):
+                            normal.clicked = True
+                            dif = 2
+                        if easy.collidePt(event.pos):
+                            easy.clicked = True
+                            dif = 1        
+                        if hard.collidePt(event.pos):
+                            hard.clicked = True
+                            dif = 3
+                            
+            opexit.update((200, 10, 10))
+            easy.update((200, 10, 10))
+            normal.update((200, 10, 10))
+            hard.update((200, 10, 10))
+            aidif.update((200, 10, 10))
+            
+            screen.fill(bgColor)
+            screen.blit(opexit.surface, opexit.rect)
+            screen.blit(aidif.surface, aidif.rect)
+            screen.blit(easy.surface, easy.rect)
+            screen.blit(normal.surface, normal.rect)
+            screen.blit(hard.surface, hard.rect)
+            pygame.display.flip()
+
+            
     # Game    
     while run:
         for event in pygame.event.get():
@@ -149,10 +185,10 @@ while True:
         
         for block in map.enemyblocks:
             if block.playerDetect(player):
-                enemies += [Enemy([3,3], screenSize, block.rect.center, 1)]
+                enemies += [Enemy([3,3], screenSize, block.rect.center, dif, 1)]
         for block in map.darkblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, 1)]        
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1)]        
                 
         for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -175,10 +211,6 @@ while True:
                     or (block.dir == "W" and (player.dir == "left" or player.dir == "stop left"))):
                     map.load(block.newMap)
                     player.place(block.dest)
-                    for enemy in enemies:
-                        enemies.remove[enemy]
-                    for enemy in enemies:
-                        enemies.remove[enemies]
                 
 #        for block in map.killblocks:
 #            block.lavaCollide(player)
@@ -215,7 +247,8 @@ while True:
             enemy.enemyCollide(enemy)
             if not enemy.living:
                 player.hurt = False
-                enemies.remove(enemy) 
+                enemies.remove(enemy)
+                counter.increase()
         for darkEnemy in darkEnemies:
             darkEnemy.collideWall()
             darkEnemy.move()
@@ -226,7 +259,8 @@ while True:
             darkEnemy.enemyCollide(darkEnemy)
             if not darkEnemy.living:
                 player.hurt = False
-                darkEnemies.remove(darkEnemy)         
+                darkEnemies.remove(darkEnemy)   
+                counter.increase()               
            
         # print len(enemies)
         # Blitting
@@ -260,11 +294,12 @@ while True:
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  
         screen.blit(energybar_background.surface, energybar_background.rect)  
-        screen.blit(energybar.surface, energybar.rect) 
+        screen.blit(energybar.surface, energybar.rect)
+        screen.blit(counter.surface, counter.rect)
         if player.hurt == True:
             screen.blit(hurt.surface, hurt.rect)
         if player.living == False:
-            # screen.blit(death.surface, death.rect)
-            player.living = True
+            screen.blit(death.surface, death.rect)
+            # player.living = True
         pygame.display.flip()
         clk.tick(90)
