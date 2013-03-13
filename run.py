@@ -116,7 +116,7 @@ while True:
         screen.blit(option.surface, option.rect)
         screen.blit(singleplayer.surface, singleplayer.rect)
         screen.blit(exit.surface, exit.rect)
-        player = Player(7, screenSize, [360, 10])
+        player = Player(7, screenSize, [360, 510])
         pygame.display.flip()
         
     while run2:
