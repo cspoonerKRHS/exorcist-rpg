@@ -203,9 +203,9 @@ class Level():
     def levelLoader(self, dir):
         if self.level == "map1":
             if dir == "N":
-                return "map3"
+                return "map2"
                 print "someting"
-        if self.level == "map3":
+        if self.level == "map2":
             if dir == "S":
                 return "map1"
                 print "someting"
