@@ -107,6 +107,12 @@ class Level():
                                             "rcs/imgs/block/lava.png",
                                             (10,10)
                                             )]
+                if c == "B":
+                    self.killblocks += [Block([(x*10)+25, (y*10)+25],
+                                            self.screenSize,
+                                            "rcs/imgs/block/biglava.png",
+                                            (50,50)
+                                            )]
                 if c == "5":
                     self.killblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
@@ -187,7 +193,7 @@ class Level():
                                             "rcs/imgs/block/keyhole.png",
                                             (10,10)
                                             )] 
-                if c == "k":
+                if c == "K":
                     self.lock2blocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/2keyhole.png",
