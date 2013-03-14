@@ -17,6 +17,7 @@ class Level():
         self.level = level
         self.blocks = []
         self.lockblocks = []
+        self.lock2blocks = []
         self.floorblocks = []
         self.wblocks = []
         self.darkblocks = []
@@ -184,6 +185,12 @@ class Level():
                     self.lockblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/keyhole.png",
+                                            (10,10)
+                                            )] 
+                if c == "k":
+                    self.lock2blocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/2keyhole.png",
                                             (10,10)
                                             )] 
                 if c == "j":

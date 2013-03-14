@@ -226,6 +226,8 @@ while True:
                     block.enemyCollide(darkEnemy)
         for block in map.lockblocks:
             block.keyCollide(player)
+        for block in map.lock2blocks:
+            block.keyCollide(player)
             if block.living == False:
                 map.lockblocks.remove(block)
         for block in map.oblocks:
