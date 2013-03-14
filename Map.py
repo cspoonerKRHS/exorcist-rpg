@@ -186,6 +186,12 @@ class Level():
                                             "rcs/imgs/block/keyhole.png",
                                             (10,10)
                                             )] 
+                if c == "k":
+                    self.lock2blocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/2keyhole.png",
+                                            (10,10)
+                                            )] 
                 if c == "j":
                     self.oblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
