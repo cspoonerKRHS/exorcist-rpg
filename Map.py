@@ -17,6 +17,7 @@ class Level():
         self.level = level
         self.blocks = []
         self.lockblocks = []
+        self.lock2blocks = []
         self.floorblocks = []
         self.wblocks = []
         self.darkblocks = []
