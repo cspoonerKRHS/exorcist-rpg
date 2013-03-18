@@ -12,6 +12,7 @@ from pygame.locals import*
 from Map import Level
 from Player_Effects import Player_Effects
 from Key import Key
+from Score import Score
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -27,6 +28,10 @@ screenHeight = 600
 
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
+
+namept1 = Score([200, 200], screenSize)
+namept2 = Score([250, 200], screenSize)
+namept3 = Score([300, 200], screenSize)
 
 background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
@@ -91,10 +96,11 @@ bgColor = red, green, blue
 
 run = False
 run2 = False
+run3 = False
 
 # Menu
 while True:
-    while not run and not run2:
+    while not run and not run2 and not run3:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -121,7 +127,7 @@ while True:
         player = Player(7, screenSize, [360, 510])
         pygame.display.flip()
         
-    while run2:
+    while run2 and not run3:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -152,14 +158,14 @@ while True:
             screen.blit(normal.surface, normal.rect)
             screen.blit(hard.surface, hard.rect)
             pygame.display.flip()
-
+        
             
     # Game    
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-#            if event.type == USEREVENT+1:
-#                counter.increase() 
+            if event.type == USEREVENT+1:
+                counter.increase() 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
@@ -252,7 +258,6 @@ while True:
             if not enemy.living:
                 player.hurt = False
                 enemies.remove(enemy)
-                counter.increase()
         for darkEnemy in darkEnemies:
             darkEnemy.collideWall()
             darkEnemy.move()
@@ -303,7 +308,30 @@ while True:
         if player.hurt == True:
             screen.blit(hurt.surface, hurt.rect)
         if player.living == False:
-            screen.blit(death.surface, death.rect)
+            run3 = True
             # player.living = True
         pygame.display.flip()
         clk.tick(90)
+        
+        while run3:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT: sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                        # player.direction("left")
+                        pass
+                    elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                        # player.direction("right")
+                        pass
+                    elif event.key == pygame.K_w or event.key == pygame.K_UP:
+                        namept1.scroll("up")
+                    elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                        namept1.scroll("down")
+                    if event.key == pygame.K_j or event.key == pygame.K_SPACE:
+                        sword.living = True
+                                          
+            screen.fill(bgColor)
+            screen.blit(namept1.surface, namept1.rect)
+            screen.blit(namept2.surface, namept2.rect)
+            screen.blit(namept3.surface, namept3.rect)
+            pygame.display.flip()    

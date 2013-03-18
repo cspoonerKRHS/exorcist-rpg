@@ -54,7 +54,7 @@ class Projectile():
             or self.rect.bottom >self.screenHeight):
                 self.living = False
     
-    def otherCollide(self, other):
+    def otherCollide(self, other, effect):
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
