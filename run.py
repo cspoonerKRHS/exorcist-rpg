@@ -13,6 +13,8 @@ from Map import Level
 from Player_Effects import Player_Effects
 from Key import Key
 from Score import Score
+from HighScore import HighScore
+from HighScoreReader import HighScoreReader
 
 if pygame.mixer:
     pygame.mixer.init()
@@ -20,7 +22,8 @@ if pygame.mixer:
 pygame.init()
 maxEnemies = 5
 
-pygame.time.set_timer(USEREVENT+1, 1000)
+TIMEREVENT = USEREVENT+1
+pygame.time.set_timer(TIMEREVENT, 1000)
 
 clk = pygame.time.Clock()
 screenWidth = 800
@@ -30,9 +33,17 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 namept1 = Score([200, 200], screenSize)
+namept1.selected = True
 namept2 = Score([250, 200], screenSize)
 namept3 = Score([300, 200], screenSize)
+score1 = HighScore([500, 100], [""], screenSize)
+score2 = HighScore([500, 100], [""], screenSize)
+score3 = HighScore([500, 100], [""], screenSize)
+score4 = HighScore([500, 100], [""], screenSize)
+yourscore = HighScore([300, 300], [""], screenSize) 
+counter = Counter([45,25], screenSize)
 
+highscorereader = HighScoreReader("rcs/scores.txt", yourscore, counter)
 background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
 death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
@@ -81,8 +92,6 @@ energybar = Screen(energybar_imgs, [0, 0], screenSize)
 energybar.place([645,28])
 healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [0,0], screenSize)
 healthbar_background.place([640, 10])
-
-counter = Counter([45,25], screenSize)
 
 if pygame.mixer:
     song = pygame.mixer.music.load('rcs/sounds/soundtracks/RPG_Soundtrack.ogg')
@@ -164,8 +173,8 @@ while True:
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-            if event.type == USEREVENT+1:
-                counter.increase() 
+            # if event.type == TIMEREVENT:
+                # counter.increase() 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
@@ -258,6 +267,7 @@ while True:
             if not enemy.living:
                 player.hurt = False
                 enemies.remove(enemy)
+                counter.increase()
         for darkEnemy in darkEnemies:
             darkEnemy.collideWall()
             darkEnemy.move()
@@ -318,20 +328,43 @@ while True:
                 if event.type == pygame.QUIT: sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                        # player.direction("left")
-                        pass
+                        namept2.switch("left", namept1)
+                        namept3.switch("left", namept2)
                     elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                        # player.direction("right")
-                        pass
+                        namept2.switch("right", namept3)
+                        namept1.switch("right", namept2)
                     elif event.key == pygame.K_w or event.key == pygame.K_UP:
                         namept1.scroll("up")
+                        namept2.scroll("up")
+                        namept3.scroll("up")
                     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                         namept1.scroll("down")
-                    if event.key == pygame.K_j or event.key == pygame.K_SPACE:
-                        sword.living = True
-                                          
+                        namept2.scroll("down")
+                        namept3.scroll("down")
+                    elif event.key == pygame.K_RETURN:
+                        yourscore.run = True
+                        highscorereader.canSend = True
+                        namept1.living = False
+                        namept2.living = False
+                        namept3.living = False
+                    
+            characters =  str(namept1.character)+ str(namept2.character)+ str(namept3.character)      
+            namept1.update()                            
+            namept2.update()                            
+            namept3.update()
+            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
+            yourscore.update(characters)
             screen.fill(bgColor)
-            screen.blit(namept1.surface, namept1.rect)
-            screen.blit(namept2.surface, namept2.rect)
-            screen.blit(namept3.surface, namept3.rect)
+            screen.blit(highscorereader.surface, highscorereader.rect)
+            if namept1.living == True:
+                screen.blit(namept1.surface, namept1.rect)
+            if namept2.living == True:    
+                screen.blit(namept2.surface, namept2.rect)
+            if namept3.living == True:
+                screen.blit(namept3.surface, namept3.rect)
+            screen.blit(yourscore.surface, yourscore.rect)
+            screen.blit(score1.surface, score1.rect)
+            screen.blit(score2.surface, score2.rect)
+            screen.blit(score3.surface, score3.rect)
+            screen.blit(score4.surface, score4.rect)
             pygame.display.flip()    
