@@ -225,7 +225,8 @@ while True:
                 if ((block.dir == "N" and (player.dir == "up" or player.dir == "stop up"))
                     or (block.dir == "S" and (player.dir == "down" or player.dir == "stop down"))
                     or (block.dir == "E" and (player.dir == "right" or player.dir == "stop right"))
-                    or (block.dir == "W" and (player.dir == "left" or player.dir == "stop left"))):
+                    or (block.dir == "W" and (player.dir == "left" or player.dir == "stop left"))
+                    or (block.dir == "1" and (player.dir == "up" or player.dir == "stop up"))):
                     map.load(block.newMap)
                     player.place(block.dest)
                 

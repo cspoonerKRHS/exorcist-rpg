@@ -239,11 +239,11 @@ class Level():
                 return "map1"
                 print "someting"
         if self.level == "map4":
-            if dir == "1":
+            if dir == "2":
                 return "map2"
                 print "someting"
         if self.level == "map2":
-            if dir == "2":
+            if dir == "1":
                 return "map4"
                 print "someting"
                
