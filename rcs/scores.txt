@@ -3,4 +3,5 @@ Zer0|20000
 TAYD|2000
 aaaa|1800
 aaAA|1200
+lnbK|0
 CALB|-9000
