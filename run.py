@@ -37,9 +37,9 @@ namept1.selected = True
 namept2 = Score([250, 200], screenSize)
 namept3 = Score([300, 200], screenSize)
 score1 = HighScore([500, 100], [""], screenSize)
-score2 = HighScore([500, 100], [""], screenSize)
-score3 = HighScore([500, 100], [""], screenSize)
-score4 = HighScore([500, 100], [""], screenSize)
+score2 = HighScore([500, 200], [""], screenSize)
+score3 = HighScore([500, 300], [""], screenSize)
+score4 = HighScore([500, 400], [""], screenSize)
 yourscore = HighScore([300, 300], [""], screenSize) 
 counter = Counter([45,25], screenSize)
 
@@ -279,7 +279,7 @@ while True:
             if not darkEnemy.living:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
-                counter.increase()               
+                counter.increase(100)               
            
         # print len(enemies)
         # Blitting
@@ -343,19 +343,28 @@ while True:
                         namept3.scroll("down")
                     elif event.key == pygame.K_RETURN:
                         yourscore.run = True
+                        score1.run = True
+                        score2.run = True
+                        score3.run = True
+                        score4.run = True
                         highscorereader.canSend = True
                         namept1.living = False
                         namept2.living = False
                         namept3.living = False
+                        highscorereader.canRun = True
                     
             characters =  str(namept1.character)+ str(namept2.character)+ str(namept3.character)      
             namept1.update()                            
             namept2.update()                            
             namept3.update()
-            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
             yourscore.update(characters)
+            highscorereader.reload("rcs/scores.txt", yourscore, counter)
+            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
+            score1.update(score1.display)
+            score2.update(score2.display)
+            score3.update(score3.display)
+            score4.update(score4.display)
             screen.fill(bgColor)
-            screen.blit(highscorereader.surface, highscorereader.rect)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
             if namept2.living == True:    
