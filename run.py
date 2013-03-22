@@ -36,10 +36,11 @@ namept1 = Score([200, 200], screenSize)
 namept1.selected = True
 namept2 = Score([250, 200], screenSize)
 namept3 = Score([300, 200], screenSize)
+namept4 = Score([350, 200], screenSize)
 score1 = HighScore([500, 100], [""], screenSize)
-score2 = HighScore([500, 100], [""], screenSize)
-score3 = HighScore([500, 100], [""], screenSize)
-score4 = HighScore([500, 100], [""], screenSize)
+score2 = HighScore([500, 200], [""], screenSize)
+score3 = HighScore([500, 300], [""], screenSize)
+score4 = HighScore([500, 400], [""], screenSize)
 yourscore = HighScore([300, 300], [""], screenSize) 
 counter = Counter([45,25], screenSize)
 
@@ -280,7 +281,7 @@ while True:
             if not darkEnemy.living:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
-                counter.increase()               
+                counter.increase(100)               
            
         # print len(enemies)
         # Blitting
@@ -331,39 +332,55 @@ while True:
                     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         namept2.switch("left", namept1)
                         namept3.switch("left", namept2)
+                        namept4.switch("left", namept3)
                     elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                        namept3.switch("right", namept4)
                         namept2.switch("right", namept3)
                         namept1.switch("right", namept2)
                     elif event.key == pygame.K_w or event.key == pygame.K_UP:
                         namept1.scroll("up")
                         namept2.scroll("up")
                         namept3.scroll("up")
+                        namept4.scroll("up")
                     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                         namept1.scroll("down")
                         namept2.scroll("down")
                         namept3.scroll("down")
+                        namept4.scroll("down")
                     elif event.key == pygame.K_RETURN:
                         yourscore.run = True
+                        score1.run = True
+                        score2.run = True
+                        score3.run = True
+                        score4.run = True
                         highscorereader.canSend = True
                         namept1.living = False
                         namept2.living = False
                         namept3.living = False
+                        namept4.living = False
+                        highscorereader.canRun = True
                     
-            characters =  str(namept1.character)+ str(namept2.character)+ str(namept3.character)      
+            characters =  str(namept1.character)+ str(namept2.character)+ str(namept3.character)+ str(namept4.character)      
             namept1.update()                            
             namept2.update()                            
             namept3.update()
-            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
+            namept4.update()
             yourscore.update(characters)
+            highscorereader.reload("rcs/scores.txt", yourscore, counter)
+            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
+            score1.update(score1.display)
+            score2.update(score2.display)
+            score3.update(score3.display)
+            score4.update(score4.display)
             screen.fill(bgColor)
-            screen.blit(highscorereader.surface, highscorereader.rect)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
             if namept2.living == True:    
                 screen.blit(namept2.surface, namept2.rect)
             if namept3.living == True:
                 screen.blit(namept3.surface, namept3.rect)
-            screen.blit(yourscore.surface, yourscore.rect)
+            if namept4.living == True:
+                screen.blit(namept4.surface, namept4.rect)    
             screen.blit(score1.surface, score1.rect)
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
