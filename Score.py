@@ -13,6 +13,7 @@ class Score():
         self.selected = False
         self.living = True
         self.character = ""
+        self.waitCount = 0
             
     def place(self, pt):
         self.rect = self.rect.move(pt)
@@ -20,13 +21,18 @@ class Score():
     def scroll(self, dir):
         if self.living:
             if self.selected:
-                if self.char >= len(self.characters):
-                    self.char = 0
-                elif dir == "up":
-                    self.char -= 1
-                elif dir == "down":
-                    self.char += 1
-                self.surface = self.font.render(str(self.characters[self.char]), 1, (200, 20, 20))    
+                if self.waitCount < 20:
+                    self.waitCount +=1
+                else:    
+                    self.waitCount = 0
+                    if self.char >= len(self.characters):
+                        self.char = 0
+                    elif dir == "up":
+                        self.char -= 1
+                    elif dir == "down":
+                        self.char += 1
+                    if self.char <= len(self.characters):    
+                        self.surface = self.font.render(str(self.characters[self.char]), 1, (200, 20, 20))    
     def update(self):
         if self.living:
             if self.selected:

@@ -50,6 +50,7 @@ death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
 singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
 exit = Button("EXIT", [250,400], (200, 10, 10))
 opexit = Button("EXIT", [0,10], (20, 100, 20))
+hgexit = Button("EXIT", [0,10], (200, 10, 20))
 option = Button("OPTIONS", [0,10], (20, 100, 20))
 aidif = Button("AI DIFFICULTY", [0,10], (20, 100, 20))
 easy = Button("n00b", [0,10], (20, 100, 20))
@@ -61,11 +62,15 @@ easy.place([100, 200])
 normal.place([250, 200])
 hard.place([500, 200])
 opexit.place([600, 500])
+hgexit.place([600, 500])
 enemies = []
 darkEnemies = []
 keys = []
 
 dif = 2
+
+canScrollUp = False
+canScrollDown = False
 
 hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
@@ -328,6 +333,13 @@ while True:
         while run3:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if hgexit.collidePt(event.pos):
+                            hgexit.clicked = True
+                            run3 = False
+                            run = False
+                            run2 = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         namept2.switch("left", namept1)
@@ -338,15 +350,9 @@ while True:
                         namept2.switch("right", namept3)
                         namept1.switch("right", namept2)
                     elif event.key == pygame.K_w or event.key == pygame.K_UP:
-                        namept1.scroll("up")
-                        namept2.scroll("up")
-                        namept3.scroll("up")
-                        namept4.scroll("up")
+                        canScrollUp = True
                     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                        namept1.scroll("down")
-                        namept2.scroll("down")
-                        namept3.scroll("down")
-                        namept4.scroll("down")
+                        canScrollDown = True
                     elif event.key == pygame.K_RETURN:
                         yourscore.run = True
                         score1.run = True
@@ -359,8 +365,25 @@ while True:
                         namept3.living = False
                         namept4.living = False
                         highscorereader.canRun = True
-                    
+                
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_w or event.key == pygame.K_UP:
+                        canScrollUp = False
+                    elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                        canScrollDown = False
+            if canScrollUp == True:
+                namept1.scroll("up")
+                namept2.scroll("up")
+                namept3.scroll("up")
+                namept4.scroll("up")
+            if canScrollDown == True:
+                namept1.scroll("down")
+                namept2.scroll("down")
+                namept3.scroll("down")
+                namept4.scroll("down")
+                
             characters =  str(namept1.character)+ str(namept2.character)+ str(namept3.character)+ str(namept4.character)      
+            hgexit.update((200, 10, 10))
             namept1.update()                            
             namept2.update()                            
             namept3.update()
@@ -381,6 +404,7 @@ while True:
                 screen.blit(namept3.surface, namept3.rect)
             if namept4.living == True:
                 screen.blit(namept4.surface, namept4.rect)    
+            screen.blit(hgexit.surface, hgexit.rect)
             screen.blit(score1.surface, score1.rect)
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
