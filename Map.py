@@ -107,6 +107,12 @@ class Level():
                                             "rcs/imgs/block/lava.png",
                                             (10,10)
                                             )]
+                if c == "g":
+                    self.killblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/deadlava.png",
+                                            (10,10)
+                                            )]
                 if c == "B":
                     self.killblocks += [Block([(x*10)+25, (y*10)+25],
                                             self.screenSize,
