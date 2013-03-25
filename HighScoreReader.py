@@ -56,7 +56,7 @@ class HighScoreReader():
             f.close()
             
             
-    def send(self, txt, other1, other2, other3, other4):
+    def send(self, txt, other1, other2, other3, other4, other5, other6, other7, other8, other9, other10):
         if self.canSend == True:
             f = open(txt, 'r')
             self.scores = f.readlines()
@@ -83,6 +83,12 @@ class HighScoreReader():
             other2.display = (str(self.scores[1][0]) + ": " + str(self.scores[1][1]))
             other3.display = (str(self.scores[2][0]) + ": " + str(self.scores[2][1]))
             other4.display = (str(self.scores[3][0]) + ": " + str(self.scores[3][1]))
+            other5.display = (str(self.scores[4][0]) + ": " + str(self.scores[4][1]))
+            other6.display = (str(self.scores[5][0]) + ": " + str(self.scores[5][1]))
+            other7.display = (str(self.scores[6][0]) + ": " + str(self.scores[6][1]))
+            other8.display = (str(self.scores[7][0]) + ": " + str(self.scores[7][1]))
+            other9.display = (str(self.scores[8][0]) + ": " + str(self.scores[8][1]))
+            other10.display = (str(self.scores[9][0]) + ": " + str(self.scores[9][1]))
             
         
             # print str(self.scores[0][0])+ ":", str(self.scores[0][1]) 

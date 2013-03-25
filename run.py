@@ -32,90 +32,102 @@ screenHeight = 600
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
-namept1 = Score([200, 200], screenSize)
-namept1.selected = True
-namept2 = Score([250, 200], screenSize)
-namept3 = Score([300, 200], screenSize)
-namept4 = Score([350, 200], screenSize)
-score1 = HighScore([500, 100], [""], screenSize)
-score2 = HighScore([500, 200], [""], screenSize)
-score3 = HighScore([500, 300], [""], screenSize)
-score4 = HighScore([500, 400], [""], screenSize)
-yourscore = HighScore([300, 300], [""], screenSize) 
-counter = Counter([45,25], screenSize)
-
-highscorereader = HighScoreReader("rcs/scores.txt", yourscore, counter)
-background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
-death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
-singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
-exit = Button("EXIT", [250,400], (200, 10, 10))
-opexit = Button("EXIT", [0,10], (20, 100, 20))
-hgexit = Button("EXIT", [0,10], (200, 10, 20))
-option = Button("OPTIONS", [0,10], (20, 100, 20))
-aidif = Button("AI DIFFICULTY", [0,10], (20, 100, 20))
-easy = Button("n00b", [0,10], (20, 100, 20))
-normal = Button("NORMAL", [0,10], (20, 100, 20))
-hard = Button("EVIL", [0,10], (20, 100, 20))
-option.place([250, 345])
-aidif.place([100, 100])
-easy.place([100, 200])
-normal.place([250, 200])
-hard.place([500, 200])
-opexit.place([600, 500])
-hgexit.place([600, 500])
-enemies = []
-darkEnemies = []
-keys = []
-
-dif = 2
-
-canScrollUp = False
-canScrollDown = False
-
-hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
-
-map = Level("map1", screenSize)
-
-boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
-boss.place([300,500])
-sword = Sword(screenSize)
-counter = Counter([45,25], screenSize) 
-
-healthbar_imgs = []
-for i in range(100, 0, -5):
-    healthbar_imgs += ["rcs/imgs/stats_bar/health_bar_" + str(i) + "%.png"]
-    
-healthbar = Screen(healthbar_imgs, [0, 0], screenSize)
-healthbar.place([645,13])
-energybar_background = Screen(["rcs/imgs/stats_bar/energy_bar_background.png"], [0,0], screenSize)
-energybar_background.place([640, 25])
-energybar_imgs = ["rcs/imgs/stats_bar/nothing.png"]
-
-for i in range(5, 105, 5):
-    energybar_imgs += ["rcs/imgs/stats_bar/energy_bar_" + str(i) + "%.png"]
-    
-energybar = Screen(energybar_imgs, [0, 0], screenSize)
-energybar.place([645,28])
-healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [0,0], screenSize)
-healthbar_background.place([640, 10])
-
-if pygame.mixer:
-    song = pygame.mixer.music.load('rcs/sounds/soundtracks/RPG_Soundtrack.ogg')
-if pygame.mixer:    
-    pygame.mixer.music.play()
-    
-red = 0
-green = 0
-blue = 0
-bgColor = red, green, blue
-
 run = False
 run2 = False
 run3 = False
+run4 = False
 
-# Menu
 while True:
-    while not run and not run2 and not run3:
+    while not run and not run2 and not run3 and not run4:
+    
+        namept1 = Score([200, 200], screenSize)
+        namept1.selected = True
+        namept2 = Score([250, 200], screenSize)
+        namept3 = Score([300, 200], screenSize)
+        namept4 = Score([350, 200], screenSize)
+        score1 = HighScore([300, 50], [""], screenSize)
+        score2 = HighScore([300, 100], [""], screenSize)
+        score3 = HighScore([300, 150], [""], screenSize)
+        score4 = HighScore([300, 200], [""], screenSize)
+        score5 = HighScore([300, 250], [""], screenSize)
+        score6 = HighScore([300, 300], [""], screenSize)
+        score7 = HighScore([300, 350], [""], screenSize)
+        score8 = HighScore([300, 400], [""], screenSize)
+        score9 = HighScore([300, 450], [""], screenSize)
+        score10 = HighScore([300, 500], [""], screenSize)
+        yourscore = HighScore([300, 300], [""], screenSize) 
+        counter = Counter([45,25], screenSize)
+
+        highscorereader = HighScoreReader("rcs/scores.txt", yourscore, counter)
+        background = Screen(["rcs/imgs/screens/Background.png"], [0,0], screenSize, 10)
+        death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
+        singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
+        exit = Button("EXIT", [250,400], (200, 10, 10))
+        opexit = Button("EXIT", [0,10], (20, 100, 20))
+        hgexit = Button("EXIT", [0,10], (200, 10, 20))
+        option = Button("OPTIONS", [0,10], (20, 100, 20))
+        aidif = Button("AI DIFFICULTY", [0,10], (20, 100, 20))
+        easy = Button("n00b", [0,10], (20, 100, 20))
+        normal = Button("NORMAL", [0,10], (20, 100, 20))
+        hard = Button("EVIL", [0,10], (20, 100, 20))
+        option.place([250, 345])
+        aidif.place([100, 100])
+        easy.place([100, 200])
+        normal.place([250, 200])
+        hard.place([500, 200])
+        opexit.place([600, 500])
+        hgexit.place([600, 500])
+        enemies = []
+        darkEnemies = []
+        keys = []
+
+        dif = 2
+
+        canScrollUp = False
+        canScrollDown = False
+
+        hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
+
+        map = Level("map1", screenSize)
+
+        boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
+        boss.place([300,500])
+        sword = Sword(screenSize)
+        counter = Counter([45,25], screenSize) 
+
+        healthbar_imgs = []
+        for i in range(100, 0, -5):
+            healthbar_imgs += ["rcs/imgs/stats_bar/health_bar_" + str(i) + "%.png"]
+            
+        healthbar = Screen(healthbar_imgs, [0, 0], screenSize)
+        healthbar.place([645,13])
+        energybar_background = Screen(["rcs/imgs/stats_bar/energy_bar_background.png"], [0,0], screenSize)
+        energybar_background.place([640, 25])
+        energybar_imgs = ["rcs/imgs/stats_bar/nothing.png"]
+
+        for i in range(5, 105, 5):
+            energybar_imgs += ["rcs/imgs/stats_bar/energy_bar_" + str(i) + "%.png"]
+            
+        energybar = Screen(energybar_imgs, [0, 0], screenSize)
+        energybar.place([645,28])
+        healthbar_background = Screen(["rcs/imgs/stats_bar/healthbar_background.png"], [0,0], screenSize)
+        healthbar_background.place([640, 10])
+
+        if pygame.mixer:
+            song = pygame.mixer.music.load('rcs/sounds/soundtracks/RPG_Soundtrack.ogg')
+        if pygame.mixer:    
+            pygame.mixer.music.play()
+            
+        red = 0
+        green = 0
+        blue = 0
+        bgColor = red, green, blue
+        
+        run4 = True
+
+        # Menu
+
+    while run4 and not run and not run2 and not run3:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -340,6 +352,7 @@ while True:
                             run3 = False
                             run = False
                             run2 = False
+                            run4 = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         namept2.switch("left", namept1)
@@ -390,11 +403,17 @@ while True:
             namept4.update()
             yourscore.update(characters)
             highscorereader.reload("rcs/scores.txt", yourscore, counter)
-            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4)
+            highscorereader.send("rcs/scores.txt", score1, score2, score3, score4, score5, score6, score7, score8, score9, score10)
             score1.update(score1.display)
             score2.update(score2.display)
             score3.update(score3.display)
             score4.update(score4.display)
+            score5.update(score4.display)
+            score6.update(score4.display)
+            score7.update(score4.display)
+            score8.update(score4.display)
+            score9.update(score4.display)
+            score10.update(score4.display)
             screen.fill(bgColor)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
@@ -409,4 +428,10 @@ while True:
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
             screen.blit(score4.surface, score4.rect)
+            screen.blit(score5.surface, score5.rect)
+            screen.blit(score6.surface, score6.rect)
+            screen.blit(score7.surface, score7.rect)
+            screen.blit(score8.surface, score8.rect)
+            screen.blit(score9.surface, score9.rect)
+            screen.blit(score10.surface, score10.rect)
             pygame.display.flip()    
