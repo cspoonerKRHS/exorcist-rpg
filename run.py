@@ -79,7 +79,6 @@ while True:
         hgexit.place([600, 500])
         enemies = []
         darkEnemies = []
-        keys = []
 
         dif = 2
 
@@ -260,15 +259,18 @@ while True:
                     block.enemyCollide(darkEnemy)
         for block in map.lockblocks:
             block.keyCollide(player)
+            if block.living == False:
+                map.lockblocks.remove(block)
         for block in map.lock2blocks:
             block.keyCollide(player)
             if block.living == False:
-                map.lockblocks.remove(block)
+                map.lock2blocks.remove(block)
         for block in map.oblocks:
             block.playerKeyCollide(player)
             if not block.living:
                 map.oblocks.remove(block)
-                
+        
+        # print player.key        
         
         
         # boss.attack(player)
@@ -286,7 +288,7 @@ while True:
             if not enemy.living:
                 player.hurt = False
                 enemies.remove(enemy)
-                counter.increase()
+                counter.increase(100)
         for darkEnemy in darkEnemies:
             darkEnemy.collideWall()
             darkEnemy.move()
@@ -299,7 +301,8 @@ while True:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
                 counter.increase(100)               
-           
+      
+      
         # print len(enemies)
         # Blitting
         screen.fill(bgColor)
@@ -326,8 +329,8 @@ while True:
             screen.blit(enemy.surface, enemy.rect)
         for darkEnemy in darkEnemies:
             screen.blit(darkEnemy.surface, darkEnemy.rect)    
-        for key in keys:
-            screen.blit(key.surface, key.rect)
+        # for key in keys:
+            # screen.blit(key.surface, key.rect)
         # screen.blit(boss.surface, boss.rect)  
         screen.blit(healthbar_background.surface, healthbar_background.rect)  
         screen.blit(healthbar.surface, healthbar.rect)  

@@ -51,7 +51,7 @@ class Block():
                 self.rect.top < other.rect.bottom): 
                 if other.key > 0:
                     self.living = False
-                
+                    
                 other.speed[0] = other.speed[0] * -.8
                 other.speed[1] = other.speed[1] * -.8
                 
@@ -66,9 +66,7 @@ class Block():
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and 
-                self.rect.top < other.rect.bottom): 
-                    # print "Taylor"
-                    if other.nodamage == 0:
+                    if self.nodamage == 0:
                         effect.upframe = True
                         effect.countframe = 1
                         other.hit = True  
