@@ -201,6 +201,22 @@ class Level():
                                             self.levelLoader(c),
                                             [(x*10)+5, self.screenSize[1]],
                                             c)]
+                if c == "3":
+                    self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10), 
+                                            self.levelLoader(c),
+                                            [(x*10)+5, self.screenSize[1]],
+                                            c)]
+                if c == "4":
+                    self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10), 
+                                            self.levelLoader(c),
+                                            [(x*10)+5, self.screenSize[1]],
+                                            c)]
                 if c == "S":
                     self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
@@ -252,4 +268,13 @@ class Level():
             if dir == "1":
                 return "map4"
                 print "someting"
+        if self.level == "map4":
+            if dir == "3":
+                return "map5"
+                print "someting"
+        if self.level == "map5":
+            if dir == "4":
+                return "map4"
+                print "someting"
+                
                
