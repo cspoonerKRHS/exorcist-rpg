@@ -256,6 +256,9 @@ while True:
             for enemy in enemies:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
+                    
+        for block in map.hpblocks:
+            block.healthCollide(player, healthbar)
         for block in map.killblocks:
             for darkEnemy in darkEnemies:
                 if block.distToPoint(darkEnemy.rect.center) < 20:

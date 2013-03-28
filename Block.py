@@ -99,10 +99,19 @@ class Block():
     def playerKeyCollide(self, other):
         if (self.rect.right > other.rect.left 
             and self.rect.left < other.rect.right):
-            if (self.rect.bottom > other.rect.top and 
-                self.rect.top < other.rect.bottom):   
+            if (self.rect.bottom > other.rect.top 
+                and self.rect.top < other.rect.bottom):   
                 self.living = False
                 other.key += 1
+                
+    def healthCollide(self, other, effect):
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top 
+                and self.rect.top < other.rect.bottom):
+                effect.upframe = True
+                effect.countframe = -5
+            
 
         
     #-------------infinite spawn-----------        
