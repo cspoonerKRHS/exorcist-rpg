@@ -20,6 +20,7 @@ class Level():
         self.lock2blocks = []
         self.floorblocks = []
         self.wblocks = []
+        self.hpblocks = []
         self.darkblocks = []
         self.killblocks = []
         self.enemyblocks = []
@@ -177,6 +178,12 @@ class Level():
                                             "rcs/imgs/block/spawnspace.png",
                                             (10,10)
                                             )]
+                if c == "A":
+                    self.enemyblocks += [Block([(x*10)+5, (y*10)+5], 
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10)
+                                            )]
                 if c == "N":
                     self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
@@ -275,6 +282,10 @@ class Level():
         if self.level == "map5":
             if dir == "4":
                 return "map4"
+                print "someting"
+        if self.level == "map5":
+            if dir == "5":
+                return "map6"
                 print "someting"
                 
                
