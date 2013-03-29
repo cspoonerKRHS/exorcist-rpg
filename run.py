@@ -87,7 +87,7 @@ while True:
 
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-        map = Level("map6", screenSize)
+        map = Level("map5", screenSize)
 
         boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
         boss.place([300,500])
@@ -247,7 +247,8 @@ while True:
                     or (block.dir == "1" and (player.dir == "up" or player.dir == "stop up"))
                     or (block.dir == "2" and (player.dir == "down" or player.dir == "stop down"))
                     or (block.dir == "3" and (player.dir == "up" or player.dir == "stop up"))
-                    or (block.dir == "4" and (player.dir == "down" or player.dir == "stop down"))):
+                    or (block.dir == "4" and (player.dir == "down" or player.dir == "stop down"))
+                    or (block.dir == "6" and (player.dir == "up" or player.dir == "stop up"))):
                     map.load(block.newMap)
                     player.place(block.dest)
                 

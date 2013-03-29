@@ -179,10 +179,10 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "A":
-                    self.hpblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.hpblocks += [Block([(x*10)+10, (y*10)+10], 
                                             self.screenSize,
                                             "rcs/imgs/block/healthpack.png",
-                                            (10,10)
+                                            (20,20)
                                             )]
                 if c == "N":
                     self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
@@ -224,7 +224,7 @@ class Level():
                                             self.levelLoader(c),
                                             [(x*10)+5, self.screenSize[1]],
                                             c)]
-                if c == "S":
+                if c == "6":
                     self.mblocks += [LevelBlock([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
                                             "rcs/imgs/block/spawnspace.png",
@@ -284,7 +284,7 @@ class Level():
                 return "map4"
                 print "someting"
         if self.level == "map5":
-            if dir == "5":
+            if dir == "6":
                 return "map6"
                 print "someting"
                 
