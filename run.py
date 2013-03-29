@@ -63,8 +63,8 @@ while True:
         death = Screen(["rcs/imgs/screens/ending_screen.png"], [0,0], screenSize, 10)
         singleplayer = Button("SINGLEPLAYER", [250,300], (200, 10, 10))
         exit = Button("EXIT", [250,400], (200, 10, 10))
-        opexit = Button("EXIT", [0,10], (20, 100, 20))
-        hgexit = Button("EXIT", [0,10], (200, 10, 20))
+        opexit = Button("RETURN TO GAME", [0,10], (20, 100, 20))
+        hgexit = Button("RETURN TO GAME", [0,10], (200, 10, 20))
         option = Button("OPTIONS", [0,10], (20, 100, 20))
         aidif = Button("AI DIFFICULTY", [0,10], (20, 100, 20))
         easy = Button("n00b", [0,10], (20, 100, 20))
@@ -75,8 +75,8 @@ while True:
         easy.place([100, 200])
         normal.place([250, 200])
         hard.place([500, 200])
-        opexit.place([600, 500])
-        hgexit.place([600, 500])
+        opexit.place([400, 550])
+        hgexit.place([400, 550])
         enemies = []
         darkEnemies = []
 
@@ -256,6 +256,9 @@ while True:
             for enemy in enemies:
                 if block.distToPoint(enemy.rect.center) < 20:
                     block.enemyCollide(enemy)
+                    
+        for block in map.hpblocks:
+            block.healthCollide(player, healthbar)
         for block in map.killblocks:
             for darkEnemy in darkEnemies:
                 if block.distToPoint(darkEnemy.rect.center) < 20:
@@ -331,7 +334,9 @@ while True:
         for enemy in enemies:
             screen.blit(enemy.surface, enemy.rect)
         for darkEnemy in darkEnemies:
-            screen.blit(darkEnemy.surface, darkEnemy.rect)    
+            screen.blit(darkEnemy.surface, darkEnemy.rect)
+        for block in map.hpblocks:
+            screen.blit(block.surface, block.rect)
         # for key in keys:
             # screen.blit(key.surface, key.rect)
         # screen.blit(boss.surface, boss.rect)  
