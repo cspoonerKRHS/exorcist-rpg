@@ -179,9 +179,9 @@ class Level():
                                             (10,10)
                                             )]
                 if c == "A":
-                    self.enemyblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.hpblocks += [Block([(x*10)+5, (y*10)+5], 
                                             self.screenSize,
-                                            "rcs/imgs/block/spawnspace.png",
+                                            "rcs/imgs/block/healthpack.png",
                                             (10,10)
                                             )]
                 if c == "N":
