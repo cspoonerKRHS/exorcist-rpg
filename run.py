@@ -203,7 +203,8 @@ while True:
                     player.direction("down")
                 if event.key == pygame.K_j or event.key == pygame.K_SPACE:
                     sword.living = True
-                    
+                if event.key == pygame.K_g:
+                    healthbar.frame = 0
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
@@ -259,6 +260,8 @@ while True:
                     
         for block in map.hpblocks:
             block.healthCollide(player, healthbar)
+            if not block.living:
+                map.hpblocks.remove(block)
         for block in map.killblocks:
             for darkEnemy in darkEnemies:
                 if block.distToPoint(darkEnemy.rect.center) < 20:
