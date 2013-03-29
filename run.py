@@ -334,7 +334,9 @@ while True:
         for enemy in enemies:
             screen.blit(enemy.surface, enemy.rect)
         for darkEnemy in darkEnemies:
-            screen.blit(darkEnemy.surface, darkEnemy.rect)    
+            screen.blit(darkEnemy.surface, darkEnemy.rect)
+        for block in map.hpblocks:
+            screen.blit(block.surface, block.rect)
         # for key in keys:
             # screen.blit(key.surface, key.rect)
         # screen.blit(boss.surface, boss.rect)  
