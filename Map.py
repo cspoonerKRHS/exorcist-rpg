@@ -16,6 +16,7 @@ class Level():
         thingMap="rcs/maps/"+ level +".tng"
         self.level = level
         self.blocks = []
+        self.bossblocks = []
         self.lockblocks = []
         self.lock2blocks = []
         self.floorblocks = []
@@ -252,6 +253,12 @@ class Level():
                                             )]
                 if c == "h":
                     self.lockblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/wall.png",
+                                            (10,10)
+                                            )] 
+                 if c == "i":
+                    self.bossblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/wall.png",
                                             (10,10)
