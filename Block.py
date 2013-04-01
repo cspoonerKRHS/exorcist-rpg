@@ -13,6 +13,7 @@ class Block():
         self.radius = 50
         self.nodamage = False
         self.living = True
+        self.bul = False
             
     def place(self, pt):
         self.rect.center = (pt)
@@ -109,8 +110,10 @@ class Block():
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top 
                 and self.rect.top < other.rect.bottom):
+                self.bul = True
                 effect.upframe = True
                 effect.countframe = -5
+                self.bul = False 
             
 
         
