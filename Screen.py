@@ -56,26 +56,27 @@ class Screen():
             
     def animate2(self, other):
         if self.upframe == True:
-            if self.frame + self.countframe <= self.maxFrame:
+            self.value += 1
+            if self.frame + self.countframe <= self.maxFrame and self.frame + self.countframe >= 0:
                 self.frame += self.countframe
-            else:
+            elif self.frame == self.maxFrame:
                 other.living = False
+            else:
+                self.countframe -= self.value
             self.upframe = False
             self.surface = self.surfaces[self.frame]
             
-    def update(self, other):
-        if self.frame < self.maxFrame and self.select == True:
-            self.frame += 1
-            other.frame += 1
-        if self.frame == self.maxFrame and self.select == True or other.frame == other.maxFrame and other.select == True:
-           other.frame = 0
-           self.frame = 0
-        self.surface = self.surfaces[self.frame]
-        other.surface = other.surfaces[other.frame]
+    # def update(self, other):
+        # if self.frame < self.maxFrame and self.select == True:
+            # self.frame += 1
+            # other.frame += 1
+        # if self.frame == self.maxFrame and self.select == True or other.frame == other.maxFrame and other.select == True:
+           # other.frame = 0
+           # self.frame = 0
+        # self.surface = self.surfaces[self.frame]
+        # other.surface = other.surfaces[other.frame]
         
-    def reset(self):
-        self.frame = 0
-        self.value = 0
+
 
 
     def distToPoint(self, pt):

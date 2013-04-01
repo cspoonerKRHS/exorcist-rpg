@@ -79,6 +79,7 @@ while True:
         hgexit.place([400, 550])
         enemies = []
         darkEnemies = []
+        boss = []
 
         dif = 2
 
@@ -223,7 +224,12 @@ while True:
                 enemies += [Enemy([3,3], screenSize, block.rect.center, dif, 1)]
         for block in map.darkblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1)]        
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1)]    
+
+        for block in map.bossblocks:
+            if block.playerDetect(player):
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 4)]    
+
                 
         for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
