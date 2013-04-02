@@ -88,7 +88,7 @@ while True:
 
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-        map = Level("map5", screenSize)
+        map = Level("map6", screenSize)
 
         boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
         boss.place([300,500])
@@ -228,7 +228,7 @@ while True:
 
         for block in map.bossblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 4)]    
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)]    
 
                 
         for block in map.killblocks:

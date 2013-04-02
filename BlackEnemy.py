@@ -2,7 +2,7 @@ import pygame, math, sys, random
 from Enemies import Enemy
 
 class BlackEnemy(Enemy):
-    def __init__(self, speed, screenSize, position, dif =2, waitMax = 1000, scaleFactor = 1):
+    def __init__(self, speed, screenSize, position, dif =2, waitMax = 1000, scaleFactor = 1, health = 10):
         Enemy.__init__(self, speed, screenSize, position, dif, waitMax)
         self.surfaces = []
         imgs = ["rcs/imgs/enemies/darkenemywalkup1.png", "rcs/imgs/enemies/darkenemywalkup2.png", "rcs/imgs/enemies/darkenemywalk3.png", 
@@ -15,7 +15,7 @@ class BlackEnemy(Enemy):
             x = surf.get_width()
             y = surf.get_height()
             surf = pygame.transform.scale(surf, (x*scaleFactor,y*scaleFactor))
-            self.baseSurfaces += [surf]
+            self.surfaces += [surf]
         self.upimgs = self.surfaces[0:2]
         self.downimgs = self.surfaces[3:5]
         self.leftimgs = self.surfaces[6:8]
@@ -27,6 +27,7 @@ class BlackEnemy(Enemy):
         self.surface = self.surfaces[self.frame]
         self.rect = self.surface.get_rect()
         self.place(position)
+        self.health = health
         self.fire = False
         self.waitFire = 0
         
