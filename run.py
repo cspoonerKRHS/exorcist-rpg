@@ -18,7 +18,7 @@ from HighScoreReader import HighScoreReader
 
 if pygame.mixer:
     pygame.mixer.init()
-
+win = False
 pygame.init()
 maxEnemies = 5
 
@@ -55,6 +55,7 @@ while True:
         score8 = HighScore([300, 400], [""], screenSize)
         score9 = HighScore([300, 450], [""], screenSize)
         score10 = HighScore([300, 500], [""], screenSize)
+        gamewin = HighScore([400, 300], ["YOU WIN"], screenSize)
         yourscore = HighScore([300, 300], [""], screenSize) 
         counter = Counter([45,25], screenSize)
 
@@ -285,6 +286,11 @@ while True:
             block.playerKeyCollide(player)
             if not block.living:
                 map.oblocks.remove(block)
+        for block in map.endblocks:
+            if playerCollide(player)
+                win = True 
+                
+            
         
         # print player.key        
         
@@ -362,7 +368,8 @@ while True:
             # player.living = True
         pygame.display.flip()
         clk.tick(90)
-        
+        if win == True:
+            counter.increase(5000)
         while run3:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
@@ -448,6 +455,8 @@ while True:
             screen.blit(score1.surface, score1.rect)
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
+            if win = True
+                screen.blit(gamewin.surface, gamewin.rect)
             screen.blit(score4.surface, score4.rect)
             screen.blit(score5.surface, score5.rect)
             screen.blit(score6.surface, score6.rect)

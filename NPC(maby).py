@@ -11,24 +11,47 @@ class NPC():
         self.place(position)
         self.living = True
         
-    def  __str__(self):
-        return "I'm a NPC " + str(self.rect.center) + str(self.speed) + str(self.living)
+#    def  __str__(self):
+#        return "I'm a NPC " + str(self.rect.center) + str(self.speed) + str(self.living)
      
 	def place(self, pt):
-		print "I've moved to", pt
+        self.rect.center = pt
 		
     def dir(self, dir):
-		print "I have change direction 
+        if self.speed[1] < 0:
+            self.dir = "up"
+        elif self.speed[1] > 0:
+            self.dir = "down"
+        elif self.speed[0] < 0:
+            self.dir = "left"
+        elif self.speed[0] > 0:
+            self.dir = "right"
         
     def move(self):
-        print "I've moved", self.speed
+        if self.dir == "up":
+            self.surfaces = self.upimgs
+        if self.dir == "down":
+            self.surfaces = self.downimgs
+        if self.dir == "left":
+            self.surfaces = self.leftimgs
+        if self.dir == "right":
+            self.surfaces = self.rightimgs
     
 	def distToPoint(self, pt):
-		print "I am this far from it."
+		x1 = self.rect.center[0]
+        x2 = pt[0]
+        y1 = self.rect.center[1]
+        y2 = pt[1]
+        return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
     
     def collide(self, other):
         print "trying to hit other", screenHeight
     
     def collideWall(self, screenWidth, screenHeight):
-        print "trying to hit edges of screen", screenWidth, screenHeight
+        if (self.rect.left < 0 
+            or self.rect.right > self.screenWidth):
+                self.speed[0] = self.speed[0]*-1
+        if (self.rect.top < 0 
+            or self.rect.bottom >self.screenHeight):
+                self.speed[1] = self.speed[1]* -1
         
