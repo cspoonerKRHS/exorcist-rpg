@@ -37,6 +37,7 @@ class Block():
                 
                 other.speed[0] = other.speed[0] = 0
                 other.speed[1] = other.speed[1] = 0
+                return True 
     
     def lavaCollide(self, other):      
         if (self.rect.right > other.rect.left 

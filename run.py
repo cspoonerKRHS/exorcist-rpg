@@ -40,6 +40,8 @@ run4 = False
 while True:
     while not run and not run2 and not run3 and not run4:
     
+    
+        winstr = "You beat the game congratulations!"
         namept1 = Score([200, 200], screenSize)
         namept1.selected = True
         namept2 = Score([250, 200], screenSize)
@@ -55,8 +57,8 @@ while True:
         score8 = HighScore([300, 400], [""], screenSize)
         score9 = HighScore([300, 450], [""], screenSize)
         score10 = HighScore([300, 500], [""], screenSize)
-        gamewin = HighScore([400, 300], ["YOU WIN"], screenSize)
-        yourscore = HighScore([300, 300], [""], screenSize) 
+        gamewin = HighScore([400, 300], [winstr], screenSize)
+        yourscore = HighScore([100, 25], [""], screenSize) 
         counter = Counter([45,25], screenSize)
 
         highscorereader = HighScoreReader("rcs/scores.txt", yourscore, counter)
@@ -287,8 +289,9 @@ while True:
             if not block.living:
                 map.oblocks.remove(block)
         for block in map.endblocks:
-            if playerCollide(player)
+            if block.playerCollide(player):
                 win = True 
+                run3 = True
                 
             
         
@@ -442,6 +445,7 @@ while True:
             score8.update(score4.display)
             score9.update(score4.display)
             score10.update(score4.display)
+            gamewin.update(winstr)
             screen.fill(bgColor)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
@@ -455,7 +459,7 @@ while True:
             screen.blit(score1.surface, score1.rect)
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
-            if win = True
+            if win == True:
                 screen.blit(gamewin.surface, gamewin.rect)
             screen.blit(score4.surface, score4.rect)
             screen.blit(score5.surface, score5.rect)
