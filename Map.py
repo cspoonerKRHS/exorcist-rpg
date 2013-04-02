@@ -257,7 +257,7 @@ class Level():
                                             "rcs/imgs/block/wall.png",
                                             (10,10)
                                             )] 
-                 if c == "i":
+                if c == "i":
                     self.bossblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
                                             "rcs/imgs/block/wall.png",
