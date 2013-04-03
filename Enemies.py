@@ -88,19 +88,19 @@ class Enemy():
         return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
     
     def playerCollide(self, other, effect):
-            other.hurt = False
-            if (self.rect.right > other.rect.left 
-                and self.rect.left < other.rect.right):
-                    if (self.rect.bottom > other.rect.top and 
-                        self.rect.top < other.rect.bottom):
-                        other.hurt = True
-                        if other.nodamage == 0:
-                            effect.upframe = True
-                            effect.countframe = 1*self.dif
-                            other.hit = True   
-                        other.nodamage += 1
-                        if other.nodamage == 25:
-                            other.nodamage = 0    
+        other.hurt = False
+        if (self.rect.right > other.rect.left 
+            and self.rect.left < other.rect.right):
+                if (self.rect.bottom > other.rect.top and 
+                    self.rect.top < other.rect.bottom):
+                    other.hurt = True
+                    if other.nodamage == 0:
+                        effect.upframe = True
+                        effect.countframe = 1*self.dif
+                        other.hit = True   
+                    other.nodamage += 1
+                    if other.nodamage == 25:
+                        other.nodamage = 0    
 
     def collideWall(self):
 #        print "trying to hit edges of screen", self.screenWidth, self.screenHeight
