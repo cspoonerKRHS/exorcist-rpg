@@ -22,6 +22,7 @@ class Level():
         self.floorblocks = []
         self.wblocks = []
         self.hpblocks = []
+        self.endblocks = []
         self.darkblocks = []
         self.killblocks = []
         self.enemyblocks = []
@@ -233,6 +234,12 @@ class Level():
                                             self.levelLoader(c),
                                             [(x*10)+5, 0],
                                             c)]
+                if c == "7":
+                    self.endblocks += [Block([(x*10)+5, (y*10)+5],
+                                            self.screenSize,
+                                            "rcs/imgs/block/spawnspace.png",
+                                            (10,10)
+                                            )]
                 if c == "k":
                     self.lockblocks += [Block([(x*10)+5, (y*10)+5],
                                             self.screenSize,
