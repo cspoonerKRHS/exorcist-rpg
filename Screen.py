@@ -59,7 +59,9 @@ class Screen():
             self.value += 1
             if self.frame + self.countframe <= self.maxFrame and self.frame + self.countframe >= 0:
                 self.frame += self.countframe
-            elif self.frame == self.maxFrame:
+            elif self.frame + self.countframe > self.maxFrame:
+                self.frame = self.maxFrame
+            elif self.frame >= self.maxFrame:
                 other.living = False
             else:
                 self.countframe -= self.value

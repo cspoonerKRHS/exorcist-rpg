@@ -40,7 +40,7 @@ class BlackEnemy(Enemy):
                         other.hurt = True
                         if other.nodamage == 0:
                             effect.upframe = True
-                            effect.countframe = 2*self.dif
+                            effect.countframe = 1*self.dif
                             other.hit = True   
                         other.nodamage += 1
                         if other.nodamage == 25:
