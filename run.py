@@ -232,8 +232,17 @@ while True:
 
         for block in map.bossblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 200)]    
-
+                 x= BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)
+                x.canShoot = True
+                darkEnemies += [x]                  
+        for enemy in darkEnemies:
+            if enemy.count < 50:
+                enemy.count +=1
+            if enemy.count >= 50:
+                laser = Projectile()
+                laser.rect.center = enemy.rect.center
+                laser.living = True
+                lasers += [laser]
                 
         for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -292,12 +301,6 @@ while True:
             block.playerKeyCollide(player)
             if not block.living:
                 map.oblocks.remove(block)
-        for block in map.endblocks:
-            if block.playerCollide(player):
-                win = True 
-                run3 = True
-                
-            
         
         # print player.key        
         
@@ -324,6 +327,7 @@ while True:
             darkEnemy.playerDetect(player)
             darkEnemy.playerCollide(player, healthbar)
             darkEnemy.enemyCollide(darkEnemy)
+            darkEnemy.shoot(projectile)
             if not darkEnemy.living:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
