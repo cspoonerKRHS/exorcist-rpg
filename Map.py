@@ -291,7 +291,7 @@ class Level():
                 print "someting"
         if self.level == "map4":
             if dir == "3":
-                return "map5"
+                return "map6"
                 print "someting"
         if self.level == "map5":
             if dir == "4":

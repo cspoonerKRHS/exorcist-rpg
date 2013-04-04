@@ -57,7 +57,7 @@ while True:
         score8 = HighScore([300, 400], [""], screenSize)
         score9 = HighScore([300, 450], [""], screenSize)
         score10 = HighScore([300, 500], [""], screenSize)
-        gamewin = HighScore([400, 300], [winstr], screenSize)
+        gamewin = HighScore([400, 300], winstr, screenSize)
         yourscore = HighScore([100, 25], [""], screenSize) 
         counter = Counter([45,25], screenSize)
 
@@ -89,7 +89,7 @@ while True:
         canScrollUp = False
         canScrollDown = False
         godmode = False
-
+        typed = False
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
         map = Level("map6", screenSize)
@@ -375,6 +375,7 @@ while True:
         clk.tick(90)
         if win == True:
             counter.increase(5000)
+            
         while run3:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
@@ -386,6 +387,7 @@ while True:
                             run = False
                             run2 = False
                             run4 = False
+                            win = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                         namept2.switch("left", namept1)
@@ -400,18 +402,25 @@ while True:
                     elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                         canScrollDown = True
                     elif event.key == pygame.K_RETURN:
-                        yourscore.run = True
-                        score1.run = True
-                        score2.run = True
-                        score3.run = True
-                        score4.run = True
-                        highscorereader.canSend = True
-                        namept1.living = False
-                        namept2.living = False
-                        namept3.living = False
-                        namept4.living = False
-                        highscorereader.canRun = True
-                
+                        if not typed:
+                            yourscore.run = True
+                            score1.run = True
+                            score2.run = True
+                            score3.run = True
+                            score4.run = True
+                            highscorereader.canSend = True
+                            namept1.living = False
+                            namept2.living = False
+                            namept3.living = False
+                            namept4.living = False
+                            highscorereader.canRun = True
+                            typed = True
+                        else:
+                            run3 = False
+                            run = False
+                            run2 = False
+                            run4 = False 
+                            win = False
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w or event.key == pygame.K_UP:
                         canScrollUp = False
@@ -447,7 +456,10 @@ while True:
             score8.update(score4.display)
             score9.update(score4.display)
             score10.update(score4.display)
-            gamewin.update(winstr)
+            print win
+            print gamewin.rect.center
+            #gamewin.update(winstr)
+            print winstr
             screen.fill(bgColor)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
@@ -462,6 +474,7 @@ while True:
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
             if win == True:
+                print "ran", gamewin.display, winstr
                 screen.blit(gamewin.surface, gamewin.rect)
             screen.blit(score4.surface, score4.rect)
             screen.blit(score5.surface, score5.rect)
