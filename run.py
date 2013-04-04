@@ -18,7 +18,7 @@ from HighScoreReader import HighScoreReader
 
 if pygame.mixer:
     pygame.mixer.init()
-win = False
+
 pygame.init()
 maxEnemies = 5
 
@@ -40,8 +40,6 @@ run4 = False
 while True:
     while not run and not run2 and not run3 and not run4:
     
-    
-        winstr = "You beat the game congratulations!"
         namept1 = Score([200, 200], screenSize)
         namept1.selected = True
         namept2 = Score([250, 200], screenSize)
@@ -57,8 +55,7 @@ while True:
         score8 = HighScore([300, 400], [""], screenSize)
         score9 = HighScore([300, 450], [""], screenSize)
         score10 = HighScore([300, 500], [""], screenSize)
-        gamewin = HighScore([400, 300], [winstr], screenSize)
-        yourscore = HighScore([100, 25], [""], screenSize) 
+        yourscore = HighScore([300, 300], [""], screenSize) 
         counter = Counter([45,25], screenSize)
 
         highscorereader = HighScoreReader("rcs/scores.txt", yourscore, counter)
@@ -91,7 +88,7 @@ while True:
 
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-        map = Level("map6", screenSize)
+        map = Level("map5", screenSize)
 
         boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
         boss.place([300,500])
@@ -231,8 +228,17 @@ while True:
 
         for block in map.bossblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)]    
-
+                 x= BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)
+                x.canShoot = True
+                darkEnemies += [x]                  
+        for enemy in darkEnemies:
+            if enemy.count < 50:
+                enemy.count +=1
+            if enemy.count >= 50:
+                laser = Projectile()
+                laser.rect.center = enemy.rect.center
+                laser.living = True
+                lasers += [laser]
                 
         for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -288,12 +294,6 @@ while True:
             block.playerKeyCollide(player)
             if not block.living:
                 map.oblocks.remove(block)
-        for block in map.endblocks:
-            if block.playerCollide(player):
-                win = True 
-                run3 = True
-                
-            
         
         # print player.key        
         
@@ -322,6 +322,7 @@ while True:
             darkEnemy.playerDetect(player)
             darkEnemy.playerCollide(player, healthbar)
             darkEnemy.enemyCollide(darkEnemy)
+            darkEnemy.shoot(projectile)
             if not darkEnemy.living:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
@@ -371,8 +372,7 @@ while True:
             # player.living = True
         pygame.display.flip()
         clk.tick(90)
-        if win == True:
-            counter.increase(5000)
+        
         while run3:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
@@ -445,7 +445,6 @@ while True:
             score8.update(score4.display)
             score9.update(score4.display)
             score10.update(score4.display)
-            gamewin.update(winstr)
             screen.fill(bgColor)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
@@ -459,8 +458,6 @@ while True:
             screen.blit(score1.surface, score1.rect)
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
-            if win == True:
-                screen.blit(gamewin.surface, gamewin.rect)
             screen.blit(score4.surface, score4.rect)
             screen.blit(score5.surface, score5.rect)
             screen.blit(score6.surface, score6.rect)

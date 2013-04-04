@@ -1,5 +1,6 @@
 import pygame, math, sys, random
 from Enemies import Enemy
+from Projectile 
 
 class BlackEnemy(Enemy):
     def __init__(self, speed, screenSize, position, dif =2, waitMax = 1000, scaleFactor = 1, health = 10):
@@ -30,6 +31,7 @@ class BlackEnemy(Enemy):
         self.health = health
         self.fire = False
         self.waitFire = 0
+        self.canShoot = False
         
     def playerCollide(self, other, effect):
             other.hurt = False
@@ -45,4 +47,17 @@ class BlackEnemy(Enemy):
                         other.nodamage += 1
                         if other.nodamage == 25:
                             other.nodamage = 0    
+                            
+                            
+    def shoot(self, other):
+        if self.canShoot == True
+            if self.dir == "up"
+                other.speed[1] = -10
+            if self.dir == "down"
+                other.speed[1] = 10
+            if self.dir == "left"
+                other.speed[0] = -10
+            if self.dir == "right"
+                other.speed[0] = 10
+            
     
