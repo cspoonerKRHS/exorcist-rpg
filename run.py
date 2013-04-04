@@ -85,10 +85,11 @@ while True:
 
         canScrollUp = False
         canScrollDown = False
+        godmode = False
 
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-        map = Level("map5", screenSize)
+        map = Level("map6", screenSize)
 
         boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
         boss.place([300,500])
@@ -205,7 +206,7 @@ while True:
                 if event.key == pygame.K_j or event.key == pygame.K_SPACE:
                     sword.living = True
                 if event.key == pygame.K_g:
-                    healthbar.frame = 0
+                    godmode = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
@@ -221,10 +222,10 @@ while True:
         
         for block in map.enemyblocks:
             if block.playerDetect(player):
-                enemies += [Enemy([3,3], screenSize, block.rect.center, dif, 1)]
+                enemies += [Enemy([5,5], screenSize, block.rect.center, dif, 1)]
         for block in map.darkblocks:
             if block.playerDetect(player):
-                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1)]    
+                darkEnemies += [BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 1, 50)]    
 
         for block in map.bossblocks:
             if block.playerDetect(player):
@@ -244,6 +245,9 @@ while True:
             block.deathplayerCollide(player, healthbar)        
         if sword.living:
             sword.slash(player)
+        if godmode == True:
+            healthbar.frame = 0
+            
         hurt.place2(player)
         # Stuff that objects do
         player.move()
@@ -306,7 +310,6 @@ while True:
             enemy.collideWall()
             enemy.move()
             sword.attack(enemy, player)
-            enemy.attack(player)
             enemy.playerDetect(player)
             enemy.playerCollide(player, healthbar)
             enemy.enemyCollide(enemy)
@@ -318,7 +321,6 @@ while True:
             darkEnemy.collideWall()
             darkEnemy.move()
             sword.attack(darkEnemy, player)
-            darkEnemy.attack(player)
             darkEnemy.playerDetect(player)
             darkEnemy.playerCollide(player, healthbar)
             darkEnemy.enemyCollide(darkEnemy)
