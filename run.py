@@ -232,17 +232,17 @@ while True:
 
         for block in map.bossblocks:
             if block.playerDetect(player):
-                 x= BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)
+                x= BlackEnemy([1.5,1.5], screenSize, block.rect.center, dif, 1, 8, 50)
                 x.canShoot = True
                 darkEnemies += [x]                  
-        for enemy in darkEnemies:
-            if enemy.count < 50:
-                enemy.count +=1
-            if enemy.count >= 50:
-                laser = Projectile()
-                laser.rect.center = enemy.rect.center
-                laser.living = True
-                lasers += [laser]
+        # for enemy in darkEnemies:
+            # if enemy.count < 50:
+                # enemy.count +=1
+            # if enemy.count >= 50:
+                # laser = Projectile()
+                # laser.rect.center = enemy.rect.center
+                # laser.living = True
+                # lasers += [laser]
                 
         for block in map.killblocks:
             block.deathplayerCollide(player, healthbar)        
@@ -327,7 +327,6 @@ while True:
             darkEnemy.playerDetect(player)
             darkEnemy.playerCollide(player, healthbar)
             darkEnemy.enemyCollide(darkEnemy)
-            darkEnemy.shoot(projectile)
             if not darkEnemy.living:
                 player.hurt = False
                 darkEnemies.remove(darkEnemy)   
@@ -460,10 +459,6 @@ while True:
             score8.update(score4.display)
             score9.update(score4.display)
             score10.update(score4.display)
-            print win
-            print gamewin.rect.center
-            #gamewin.update(winstr)
-            print winstr
             screen.fill(bgColor)
             if namept1.living == True:
                 screen.blit(namept1.surface, namept1.rect)
@@ -478,7 +473,6 @@ while True:
             screen.blit(score2.surface, score2.rect)
             screen.blit(score3.surface, score3.rect)
             if win == True:
-                print "ran", gamewin.display, winstr
                 screen.blit(gamewin.surface, gamewin.rect)
             screen.blit(score4.surface, score4.rect)
             screen.blit(score5.surface, score5.rect)
