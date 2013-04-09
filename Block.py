@@ -111,7 +111,7 @@ class Block():
             if (self.rect.bottom > other.rect.top 
                 and self.rect.top < other.rect.bottom):
                 effect.upframe = True
-                effect.countframe = -5
+                effect.countframe = -10
                 self.living = False
             
 
