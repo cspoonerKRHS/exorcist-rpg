@@ -210,6 +210,8 @@ while True:
                     sword.living = True
                 if event.key == pygame.K_g:
                     godmode = True
+                    print "Calvin you Suck!"
+                    sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
