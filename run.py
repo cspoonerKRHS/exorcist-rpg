@@ -92,7 +92,7 @@ while True:
         typed = False
         hurt = Player_Effects(["rcs/imgs/player/hurt.png"], [0,0], screenSize, 10)
 
-        map = Level("map1", screenSize)
+        map = Level("map6", screenSize)
 
         boss = Boss(['rcs/imgs/bosses/boss.png'], [0,0], screenSize, 10)
         boss.place([300,500])
@@ -208,8 +208,8 @@ while True:
                     player.direction("down")
                 if event.key == pygame.K_j or event.key == pygame.K_SPACE:
                     sword.living = True
-                if event.key == pygame.K_g:
-                    godmode = True
+                # if event.key == pygame.K_g:
+                    # godmode = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")
@@ -221,7 +221,11 @@ while True:
                     player.direction("stop down")
                 if event.key == pygame.K_j or event.key == pygame.K_SPACE:  
                     sword.living = False
-                    
+         
+
+        for block in map.endblocks:
+            if block.playerCollide(player):
+                win = True
         
         for block in map.enemyblocks:
             if block.playerDetect(player):
@@ -272,6 +276,8 @@ while True:
                     or (block.dir == "4" and (player.dir == "down" or player.dir == "stop down"))
                     or (block.dir == "6" and (player.dir == "up" or player.dir == "stop up"))):
                     map.load(block.newMap)
+                    for block2 in map.placeblocks:
+                        player.rect.center = block2.rect.center
                     player.place(block.dest)
                 
 #        for block in map.killblocks:
@@ -378,6 +384,7 @@ while True:
         clk.tick(90)
         if win == True:
             counter.increase(5000)
+            run3 = True
             
         while run3:
             for event in pygame.event.get():
@@ -418,6 +425,7 @@ while True:
                             namept4.living = False
                             highscorereader.canRun = True
                             typed = True
+                            win = False
                         else:
                             run3 = False
                             run = False
