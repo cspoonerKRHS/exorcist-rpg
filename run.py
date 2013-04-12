@@ -86,7 +86,7 @@ while True:
 
         dif = 2
         
-        godCode = [pygame.K_UP, pygame.K_UP, pygame.K_DOWN]
+        godCode = [pygame.K_UP, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_RIGHT, pygame.K_s, pygame.K_t,  pygame.K_a, pygame.K_r, pygame.K_t]
         codeCount = 0
 
         canScrollUp = False
