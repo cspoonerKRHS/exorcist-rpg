@@ -22,6 +22,13 @@ class Button:
         else:
             self.frame = 0
             self.surface = self.font.render(str(self.text), 1, (color))
+    
+    def update2(self, color, text):
+        if self.highlighted:
+            self.frame = 1
+        else:
+            self.frame = 0
+            self.surface = self.font.render(str(text), 1, (color))
         
     def collidePt(self, pt):
         if (pt[0] > self.rect.left and pt[0] < self.rect.right):

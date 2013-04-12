@@ -85,6 +85,9 @@ while True:
         boss = []
 
         dif = 2
+        
+        godCode = [pygame.K_UP, pygame.K_UP, pygame.K_DOWN]
+        codeCount = 0
 
         canScrollUp = False
         canScrollDown = False
@@ -134,6 +137,12 @@ while True:
     while run4 and not run and not run2 and not run3:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == godCode[codeCount]:
+                    codeCount += 1
+                    print codeCount
+                else:
+                    codeCount = 0
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if singleplayer.collidePt(event.pos):
@@ -149,7 +158,10 @@ while True:
         singleplayer.update((200, 10, 10))
         option.update((200, 10, 10))
         exit.update((200, 10, 10))
-        
+        if codeCount == len(godCode):
+            godmode = True
+            singleplayer.update2((10, 200, 10), "God Mode")
+            
         screen.fill(bgColor)
         screen.blit(background.surface, background.rect)
         screen.blit(option.surface, option.rect)
@@ -211,8 +223,8 @@ while True:
                     player.direction("down")
                 if event.key == pygame.K_j or event.key == pygame.K_SPACE:
                     sword.living = True
-                # if event.key == pygame.K_g:
-                    # godmode = True
+                if event.key == pygame.K_g:
+                    godmode = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")

@@ -33,7 +33,7 @@ class Player():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.living = True
-        self.dir = "down"
+        self.dir = "stop down"
         self.moving = False
         self.living = True
         self.hit = False
