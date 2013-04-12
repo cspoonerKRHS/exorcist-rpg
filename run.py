@@ -169,12 +169,15 @@ while True:
                         if normal.collidePt(event.pos):
                             normal.clicked = True
                             dif = 2
+                            run2 = False
                         if easy.collidePt(event.pos):
                             easy.clicked = True
                             dif = 1        
+                            run2 = False
                         if hard.collidePt(event.pos):
                             hard.clicked = True
-                            dif = 3
+                            dif = 5
+                            run2 = False
                             
             opexit.update((200, 10, 10))
             easy.update((200, 10, 10))

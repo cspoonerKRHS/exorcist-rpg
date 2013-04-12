@@ -128,11 +128,11 @@ class Enemy():
         self.playerDected = False
         if self.distToPoint(player.rect.center) < self.detectRadius:
             if self.rect.center[0] < player.rect.center[0]:
-                self.speed[0] = 5
+                self.speed[0] = 2*self.dif
                 self.playerDected = True
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             elif self.rect.center[0] > player.rect.center[0]:
-                self.speed[0] = -5
+                self.speed[0] = -2*self.dif
                 self.playerDected = True
                 xdiff = math.fabs(player.rect.center[0] - self.rect.center[0])
             else:
@@ -141,11 +141,11 @@ class Enemy():
                 xdiff = 0
             
             if self.rect.center[1] < player.rect.center[1]:
-                self.speed[1] = 5
+                self.speed[1] = 2*self.dif
                 self.playerDected = True
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             elif self.rect.center[1] > player.rect.center [1]:
-                self.speed[1] = -5
+                self.speed[1] = -2*self.dif
                 self.playerDected = True
                 ydiff = math.fabs(player.rect.center[1] - self.rect.center[1])
             
