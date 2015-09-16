@@ -1,0 +1,1 @@
+The game is set up like Zelda. it is a over head view game where you can control one character
